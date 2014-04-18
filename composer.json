@@ -40,14 +40,14 @@
 	},
 	"extra": {
 		"writable": [
-			"backend/runtime",
-			"backend/web/assets",
+			"admin/runtime",
+			"admin/web/assets",
 
 			"console/runtime",
 			"console/migrations",
 
-			"frontend/runtime",
-			"frontend/web/assets"
+			"site/runtime",
+			"site/web/assets"
 		]
 	}
 }

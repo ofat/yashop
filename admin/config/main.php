@@ -7,10 +7,11 @@ $params = array_merge(
 );
 
 return [
-    'id' => 'app-frontend',
+    'id' => 'app-admin',
     'basePath' => dirname(__DIR__),
+    'controllerNamespace' => 'admin\controllers',
     'bootstrap' => ['log'],
-    'controllerNamespace' => 'frontend\controllers',
+    'modules' => [],
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',
