@@ -1,5 +1,5 @@
 <?php
-use backend\assets\AppAsset;
+use admin\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;

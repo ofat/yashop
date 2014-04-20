@@ -1,8 +1,8 @@
 <?php
 
-namespace frontend\tests\unit\models;
+namespace site\tests\unit\models;
 
-use frontend\tests\unit\DbTestCase;
+use site\tests\unit\DbTestCase;
 use common\tests\fixtures\UserFixture;
 
 class SignupFormTest extends DbTestCase

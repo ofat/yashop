@@ -1,12 +1,12 @@
 <?php
-namespace frontend\controllers;
+namespace site\controllers;
 
 use Yii;
 use common\models\LoginForm;
-use frontend\models\PasswordResetRequestForm;
-use frontend\models\ResetPasswordForm;
-use frontend\models\SignupForm;
-use frontend\models\ContactForm;
+use site\models\PasswordResetRequestForm;
+use site\models\ResetPasswordForm;
+use site\models\SignupForm;
+use site\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;

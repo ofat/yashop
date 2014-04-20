@@ -1,5 +1,5 @@
 <?php
-namespace backend\controllers;
+namespace admin\controllers;
 
 use Yii;
 use yii\filters\AccessControl;

@@ -1,8 +1,8 @@
 <?php
 
-namespace frontend\tests\acceptance;
+namespace site\tests\acceptance;
 
-use frontend\tests\_pages\SignupPage;
+use site\tests\_pages\SignupPage;
 use common\models\User;
 
 class SignupCest

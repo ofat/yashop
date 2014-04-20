@@ -1,4 +1,0 @@
-yashop
-======
-
-yet another shop
