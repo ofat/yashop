@@ -1,5 +1,5 @@
 <?php
-namespace site\models;
+namespace site\models\forms;
 
 use common\models\User;
 use yii\base\Model;
@@ -8,7 +8,7 @@ use Yii;
 /**
  * Signup form
  */
-class SignupForm extends Model
+class RegisterForm extends Model
 {
     public $username;
     public $email;
@@ -22,8 +22,8 @@ class SignupForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username address has already been taken.'],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
@@ -35,12 +35,21 @@ class SignupForm extends Model
         ];
     }
 
-    /**
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('user','Username'),
+            'email' => Yii::t('user','E-mail'),
+            'password' => Yii::t('user','Password')
+        ];
+    }
+
+        /**
      * Signs user up.
      *
      * @return User|null the saved model or null if saving fails
      */
-    public function signup()
+    public function register()
     {
         if ($this->validate()) {
             return User::create($this->attributes);
