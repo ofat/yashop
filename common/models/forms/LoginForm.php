@@ -1,8 +1,9 @@
 <?php
-namespace common\models;
+namespace common\models\forms;
 
 use Yii;
 use yii\base\Model;
+use common\models\User;
 
 /**
  * Login form
@@ -27,6 +28,15 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+        ];
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => Yii::t('user','Username'),
+            'password' => Yii::t('user','Password'),
+            'rememberMe' => Yii::t('user','Запомнить меня')
         ];
     }
 
