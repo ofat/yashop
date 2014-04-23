@@ -5,6 +5,8 @@ namespace site\controllers;
 use Yii;
 use yii\web\Controller;
 use site\models\forms\RegisterForm;
+use site\models\forms\PasswordResetRequestForm;
+use site\models\forms\ResetPasswordForm;
 use common\models\forms\LoginForm;
 
 use yii\filters\VerbFilter;
@@ -81,7 +83,20 @@ class UserController extends Controller
 
     public function actionRemind()
     {
-        return $this->render('remind');
+        $model = new PasswordResetRequestForm();
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            if ($model->sendEmail()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('user','Check your email for further instructions.'));
+
+                return $this->goHome();
+            } else {
+                Yii::$app->getSession()->setFlash('error', Yii::t('user','Sorry, we are unable to reset password for email provided.'));
+            }
+        }
+
+        return $this->render('requestPasswordResetToken', [
+            'model' => $model,
+        ]);
     }
 
     public function actionLogout()
