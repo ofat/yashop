@@ -8,6 +8,7 @@ $params = array_merge(
 
 return [
     'id' => 'app-site',
+    'name' => 'YaShop',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'site\controllers',
@@ -28,6 +29,11 @@ return [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
+        ],
+    ],
+    'modules' => [
+        'cabinet' => [
+            'class' => 'site\modules\cabinet\CabinetModule',
         ],
     ],
     'params' => $params,

@@ -26,7 +26,7 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => Yii::$app->name,
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
@@ -41,6 +41,7 @@ AppAsset::register($this);
                 $menuItems[] = ['label' => Yii::t('user','Signup'), 'url' => ['/user/register']];
                 $menuItems[] = ['label' => Yii::t('user','Login'), 'url' => ['/user/login']];
             } else {
+                $menuItems[] = ['label' => Yii::t('cabinet','Account'), 'url' => ['/cabinet']];
                 $menuItems[] = [
                     'label' => Yii::t('user','Logout').' (' . Yii::$app->user->identity->username . ')',
                     'url' => ['/user/logout'],
@@ -65,7 +66,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?=Yii::$app->name?> <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>
