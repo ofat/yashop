@@ -12,6 +12,9 @@ use common\models\forms\LoginForm;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
+use yii\base\InvalidParamException;
+use yii\web\BadRequestHttpException;
+
 /*
  * User controller
  */
@@ -95,6 +98,25 @@ class UserController extends Controller
         }
 
         return $this->render('requestPasswordResetToken', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionResetPassword($token)
+    {
+        try {
+            $model = new ResetPasswordForm($token);
+        } catch (InvalidParamException $e) {
+            throw new BadRequestHttpException($e->getMessage());
+        }
+
+        if ($model->load(Yii::$app->request->post()) && $model->validate() && $model->resetPassword()) {
+            Yii::$app->getSession()->setFlash('success', Yii::t('user','New password was saved.'));
+
+            return $this->goHome();
+        }
+
+        return $this->render('resetPassword', [
             'model' => $model,
         ]);
     }
