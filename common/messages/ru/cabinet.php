@@ -1,5 +1,9 @@
 <?php
 
 return [
-    'Account'           => 'Личный кабинет'
+    'Account'           => 'Кабинет',
+    'Dashboard'         => 'Общая информация',
+    'Profile'           => 'Профиль',
+    'Change password'   => 'Сменить пароль',
+    'Change e-mail'     => 'Сменить e-mail'
 ];

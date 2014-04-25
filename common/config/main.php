@@ -13,6 +13,14 @@ return [
         ],
         'i18n' => [
             'translations' => [
+                'cabinet.*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'sourceLanguage' => 'en',
+                    'basePath' => '@app/../common/messages',
+                    'fileMap' => [
+                        'cabinet.profile' => 'cabinet/profile.php',
+                    ],
+                ],
                 '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'sourceLanguage' => 'en',

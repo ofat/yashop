@@ -5,6 +5,7 @@ return [
     'E-mail'                => 'E-mail',
     'Password'              => 'Пароль',
     'Register'              => 'Зарегистрироватся',
+    'This email address has already been taken.' => 'Этот e-mail уже используется',
     'Login'                 => 'Авторизация',
     'If you forgot your password you can' => 'Если вы забыли пароль, вы можете',
     'reset it'              => 'сбросить его',
