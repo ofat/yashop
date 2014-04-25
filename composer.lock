@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "425b826028219db9a08c32faa5b63799",
+    "hash": "df89315e480278b8d29a98ac11df9016",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -210,6 +210,48 @@
                 "web"
             ],
             "time": "2014-04-17 08:08:54"
+        },
+        {
+            "name": "yashop/yii2-yashop-ses",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ofat/yashop-ses.git",
+                "reference": "4ec18903634bbfd78980181fc3bebc7902bffb1e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ofat/yashop-ses/zipball/4ec18903634bbfd78980181fc3bebc7902bffb1e",
+                "reference": "4ec18903634bbfd78980181fc3bebc7902bffb1e",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yashop\\ses\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vitaliy Ofat",
+                    "email": "ofatv22@gmail.com"
+                }
+            ],
+            "description": "Extension for sending emails via amazon ses. Part of YaShop",
+            "keywords": [
+                "aws",
+                "extension",
+                "ses",
+                "yii2"
+            ],
+            "time": "2014-04-25 15:21:04"
         },
         {
             "name": "yiisoft/jquery",

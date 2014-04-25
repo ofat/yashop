@@ -1,11 +1,28 @@
 <?php
+use yii\helpers\Html;
+use yii\widgets\ActiveForm;
+
 /**
  * @var yii\web\View $this
+ * @var yii\widgets\ActiveForm $form
+ * @var \common\models\forms\LoginForm $model
  */
+$this->title = Yii::t('cabinet.profile','Changing password');
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1>profile/password</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
+<div class="cabinet-profile-email">
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <div class="row">
+        <div class="col-lg-5">
+            <?php $form = ActiveForm::begin(); ?>
+            <?= $form->field($model, 'oldPassword')->passwordInput() ?>
+            <?= $form->field($model, 'newPassword')->passwordInput() ?>
+            <div class="form-group">
+                <?= Html::submitButton(Yii::t('base','Save'), ['class' => 'btn btn-primary']) ?>
+            </div>
+            <?php ActiveForm::end(); ?>
+        </div>
+    </div>
+</div>

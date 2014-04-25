@@ -19,7 +19,7 @@ class ChangeEmailForm extends Model
     public $newEmail;
     public $password;
 
-    /*
+    /**
      * @inheritdoc
      */
     public function rules()
@@ -56,7 +56,7 @@ class ChangeEmailForm extends Model
         ];
     }
 
-    /*
+    /**
      * Check entered old email with current email
      */
     public function isCurrentEmail($attribute) {
@@ -66,7 +66,7 @@ class ChangeEmailForm extends Model
         }
     }
 
-    /*
+    /**
      * Check entered password with current password
      */
     public function isCurrentPassword($attribute) {
@@ -76,7 +76,7 @@ class ChangeEmailForm extends Model
         }
     }
 
-    /*
+    /**
      * Change user email
      * @return boolean Result of saving model
      */

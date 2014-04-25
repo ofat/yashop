@@ -2,6 +2,7 @@
 
 namespace site\modules\cabinet\controllers;
 
+use site\modules\cabinet\models\forms\ChangePasswordForm;
 use Yii;
 use yii\filters\AccessControl;
 
@@ -42,7 +43,16 @@ class ProfileController extends CabinetController
 
     public function actionPassword()
     {
-        return $this->render('password');
+        $model = new ChangePasswordForm;
+
+        if($model->load(Yii::$app->request->post()) && $model->changePassword()) {
+            Yii::$app->session->setFlash('success', Yii::t('cabinet/profile','Password successfully changed.'));
+            return $this->redirect(['/cabinet']);
+        }
+
+        return $this->render('password', [
+            'model' => $model
+        ]);
     }
 
 }
