@@ -8,7 +8,6 @@ $params = array_merge(
 
 return [
     'id' => 'app-site',
-    'name' => 'YaShop',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'site\controllers',

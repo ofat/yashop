@@ -17,11 +17,13 @@ return [
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,
-            'loginUrl' => 'dashboard/login'
+            'loginUrl' => 'login'
         ],
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-            'defaultRoles' => ['user']
+        'urlManager' => [
+            'rules' => [
+                'login' => 'dashboard/login',
+                'logout' => 'dashboard/logout'
+            ]
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,

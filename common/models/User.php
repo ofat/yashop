@@ -1,10 +1,15 @@
 <?php
 namespace common\models;
 
+use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
+use yii\db\Query;
 use yii\helpers\Security;
+use yii\rbac\Item;
 use yii\web\IdentityInterface;
+
+use common\models\auth\Assignment;
 
 /**
  * User model
@@ -24,6 +29,7 @@ use yii\web\IdentityInterface;
 class User extends ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
+    const STATUS_NON_ACTIVE = 5;
     const STATUS_ACTIVE = 10;
 
     /**
@@ -40,6 +46,8 @@ class User extends ActiveRecord implements IdentityInterface
         $user->setPassword($attributes['password']);
         $user->generateAuthKey();
         if ($user->save()) {
+            $user->setRole(Yii::$app->authManager->defaultRoles[0]);
+
             return $user;
         } else {
             return null;
@@ -198,6 +206,96 @@ class User extends ActiveRecord implements IdentityInterface
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'unique'],
+
+            ['role', 'safe']
         ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+            'id' => Yii::t('user', 'ID'),
+            'username' => Yii::t('user', 'Username'),
+            'email' => Yii::t('user', 'E-mail'),
+            'status' => Yii::t('user', 'Status'),
+            'created_at' => Yii::t('user', 'Registered'),
+            'updated_at' => Yii::t('user', 'Updated'),
+            'role'  => Yii::t('user', 'Role')
+        ];
+    }
+
+    /**
+     * @return array Array of user statuses
+     */
+    public static function getStatusesList()
+    {
+        return [
+            self::STATUS_NON_ACTIVE => Yii::t('user', 'Not verified'),
+            self::STATUS_ACTIVE => Yii::t('user', 'Active'),
+            self::STATUS_DELETED => Yii::t('user', 'Blocked')
+        ];
+    }
+
+    /**
+     * @return array List of available roles
+     */
+    public static function getRolesList()
+    {
+        $data = (new Query())
+                    ->select('name')
+                    ->from('auth_item')
+                    ->where('type=:type',[':type'=>Item::TYPE_ROLE])
+                    ->all();
+        $res = [];
+        foreach($data as $record)
+        {
+            $res[ $record['name'] ] = Yii::t('user', $record['name']);
+        }
+        return $res;
+    }
+
+    /**
+     * @return string User status
+     */
+    public function getStatus()
+    {
+        return static::getStatusesList()[ $this->status ];
+    }
+
+    /**
+     * Role relation
+     * @return \yii\db\ActiveQuery
+     */
+    public function getRole()
+    {
+        return $this->hasOne(Assignment::className(), ['user_id' => 'id']);
+    }
+
+    /**
+     * Change role for user
+     * @param $roleName
+     * @return bool
+     */
+    public function setRole($roleName)
+    {
+        $auth = Yii::$app->authManager;
+
+        $role = $auth->getRole($roleName);
+
+        $r = $auth->revokeAll($this->getId());
+        $r = $auth->assign($role, $this->getId()) && $r;
+
+        return $r;
+    }
+
+    /**
+     * @return string Translated role name
+     */
+    public function getRoleName()
+    {
+        return Yii::t('user', $this->role->item_name);
     }
 }

@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "df89315e480278b8d29a98ac11df9016",
+    "hash": "b25a119507dcb117e9b95f3bbc6b53a8",
     "packages": [
         {
             "name": "cebe/markdown",
@@ -108,60 +108,6 @@
                 "html"
             ],
             "time": "2013-11-30 08:25:19"
-        },
-        {
-            "name": "swiftmailer/swiftmailer",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "d5d580ca7ced89955ce7200f41fb0f97b8f74c60"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/d5d580ca7ced89955ce7200f41fb0f97b8f74c60",
-                "reference": "d5d580ca7ced89955ce7200f41fb0f97b8f74c60",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.4"
-            },
-            "require-dev": {
-                "mockery/mockery": "~0.9@dev"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "5.1-dev"
-                }
-            },
-            "autoload": {
-                "files": [
-                    "lib/swift_required.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com",
-                    "homepage": "http://fabien.potencier.org",
-                    "role": "Lead Developer"
-                },
-                {
-                    "name": "Chris Corbyn"
-                }
-            ],
-            "description": "Swiftmailer, free feature-rich PHP mailer",
-            "homepage": "http://swiftmailer.org",
-            "keywords": [
-                "mail",
-                "mailer"
-            ],
-            "time": "2014-04-13 13:06:08"
         },
         {
             "name": "twbs/bootstrap",
@@ -470,27 +416,26 @@
             "time": "2014-04-14 01:22:29"
         },
         {
-            "name": "yiisoft/yii2-swiftmailer",
+            "name": "yiisoft/yii2-jui",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
-                "reference": "693092b44f5e6f3b4804f60b64beb85cff74a9cb"
+                "url": "https://github.com/yiisoft/yii2-jui.git",
+                "reference": "da78d6858e342dbd7f7dbcbdf3fac0ef4ef21fcd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/693092b44f5e6f3b4804f60b64beb85cff74a9cb",
-                "reference": "693092b44f5e6f3b4804f60b64beb85cff74a9cb",
+                "url": "https://api.github.com/repos/yiisoft/yii2-jui/zipball/da78d6858e342dbd7f7dbcbdf3fac0ef4ef21fcd",
+                "reference": "da78d6858e342dbd7f7dbcbdf3fac0ef4ef21fcd",
                 "shasum": ""
             },
             "require": {
-                "swiftmailer/swiftmailer": "*",
                 "yiisoft/yii2": "*"
             },
             "type": "yii2-extension",
             "autoload": {
                 "psr-4": {
-                    "yii\\swiftmailer\\": ""
+                    "yii\\jui\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -499,21 +444,19 @@
             ],
             "authors": [
                 {
-                    "name": "Paul Klimov",
-                    "email": "klimov.paul@gmail.com",
-                    "role": "Core framework development"
+                    "name": "Qiang Xue",
+                    "email": "qiang.xue@gmail.com",
+                    "homepage": "http://www.yiiframework.com/",
+                    "role": "Founder and project lead"
                 }
             ],
-            "description": "The SwiftMailer integration for the Yii framework",
+            "description": "The Jquery UI extension for the Yii framework",
             "keywords": [
-                "email",
-                "mail",
-                "mailer",
-                "swift",
-                "swiftmailer",
+                "jQuery UI",
+                "renderer",
                 "yii2"
             ],
-            "time": "2014-04-14 01:22:29"
+            "time": "2014-04-23 01:25:11"
         }
     ],
     "packages-dev": [
@@ -549,6 +492,60 @@
             ],
             "description": "A comprehensive library for generating differences between two hashable objects (strings or arrays).",
             "time": "2013-11-01 13:02:21"
+        },
+        {
+            "name": "swiftmailer/swiftmailer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/swiftmailer/swiftmailer.git",
+                "reference": "d5d580ca7ced89955ce7200f41fb0f97b8f74c60"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/d5d580ca7ced89955ce7200f41fb0f97b8f74c60",
+                "reference": "d5d580ca7ced89955ce7200f41fb0f97b8f74c60",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.4"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9@dev"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.1-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "lib/swift_required.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Chris Corbyn"
+                }
+            ],
+            "description": "Swiftmailer, free feature-rich PHP mailer",
+            "homepage": "http://swiftmailer.org",
+            "keywords": [
+                "mail",
+                "mailer"
+            ],
+            "time": "2014-04-13 13:06:08"
         },
         {
             "name": "yiisoft/yii2-codeception",
@@ -678,6 +675,52 @@
                 "yii2"
             ],
             "time": "2014-04-18 00:42:50"
+        },
+        {
+            "name": "yiisoft/yii2-swiftmailer",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yiisoft/yii2-swiftmailer.git",
+                "reference": "693092b44f5e6f3b4804f60b64beb85cff74a9cb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yiisoft/yii2-swiftmailer/zipball/693092b44f5e6f3b4804f60b64beb85cff74a9cb",
+                "reference": "693092b44f5e6f3b4804f60b64beb85cff74a9cb",
+                "shasum": ""
+            },
+            "require": {
+                "swiftmailer/swiftmailer": "*",
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "yii\\swiftmailer\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Paul Klimov",
+                    "email": "klimov.paul@gmail.com",
+                    "role": "Core framework development"
+                }
+            ],
+            "description": "The SwiftMailer integration for the Yii framework",
+            "keywords": [
+                "email",
+                "mail",
+                "mailer",
+                "swift",
+                "swiftmailer",
+                "yii2"
+            ],
+            "time": "2014-04-14 01:22:29"
         }
     ],
     "aliases": [

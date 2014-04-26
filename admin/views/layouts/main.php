@@ -25,27 +25,42 @@ AppAsset::register($this);
     <div class="wrap">
         <?php
             NavBar::begin([
-                'brandLabel' => 'My Company',
+                'brandLabel' => Yii::$app->name,
                 'brandUrl' => Yii::$app->homeUrl,
                 'options' => [
                     'class' => 'navbar-inverse navbar-fixed-top',
                 ],
             ]);
+
+            /*
+             * Main menu
+             */
             $menuItems = [
-                ['label' => 'Home', 'url' => ['/dashboard/index']],
+                ['label' => Yii::t('base','Home'), 'url' => ['/dashboard']],
+                ['label' => Yii::t('user','Users'), 'url' => ['/user/list']],
             ];
+
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav'],
+                'items' => $menuItems,
+            ]);
+
+            /*
+             * Right menu nav
+             */
+            $rightMenu = [];
             if (Yii::$app->user->isGuest) {
-                $menuItems[] = ['label' => 'Login', 'url' => ['/dashboard/login']];
+                $rightMenu[] = ['label' => 'Login', 'url' => ['/login']];
             } else {
-                $menuItems[] = [
-                    'label' => 'Logout (' . Yii::$app->user->identity->username . ')',
-                    'url' => ['/dashboard/logout'],
+                $rightMenu[] = [
+                    'label' => Yii::t('user','Logout').' (' . Yii::$app->user->identity->username . ')',
+                    'url' => ['/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];
             }
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav navbar-right'],
-                'items' => $menuItems,
+                'items' => $rightMenu,
             ]);
             NavBar::end();
         ?>
@@ -60,7 +75,7 @@ AppAsset::register($this);
 
     <footer class="footer">
         <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; <?=Yii::$app->name?> <?= date('Y') ?></p>
         <p class="pull-right"><?= Yii::powered() ?></p>
         </div>
     </footer>

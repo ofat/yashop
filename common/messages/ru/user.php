@@ -20,5 +20,18 @@ return [
     'New password was saved.' => 'Новый пароль успешно сохранен.',
     'Reset password'        => 'Сброс пароля',
     'Please choose your new password' => 'Введите новый пароль',
-    'Follow the link below to reset your password' => 'Для восстановления пароля перейдите по ссылке ниже'
+    'Follow the link below to reset your password' => 'Для восстановления пароля перейдите по ссылке ниже',
+
+    //admin
+    'Users'                 => 'Пользователи',
+    'Status'                => 'Статус',
+    'Registered'            => 'Зарегистрирован',
+    'Updated'               => 'Изменён',
+    'Not verified'          => 'Не подтверждён',
+    'Active'                => 'Активный',
+    'Blocked'               => 'Заблокирован',
+    'User ID {id}'          => 'Пользователь ID {id}',
+    'admin'                 => 'Администратор',
+    'user'                  => 'Пользователь',
+    'Role'                  => 'Роль'
 ];
