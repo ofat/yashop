@@ -1,0 +1,50 @@
+/* Login styles */
+body.login {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	background-color: #eee;
+}
+
+#login-form {
+	max-width: 330px;
+	padding: 15px;
+	margin: 0 auto;
+	#login-form-heading, .checkbox {
+		margin-bottom: 10px;
+	}
+	.checkbox {
+		font-weight: normal;
+	}
+	.form-group {
+		margin: 0;
+		position: relative;
+	}
+	.help-block {
+		margin: 0 0 0 315px;
+		position: absolute;
+		width: 330px;
+		top: 15px;
+	}
+	.form-control {
+		position: relative;
+		height: auto;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		padding: 10px;
+		font-size: 16px;
+	}
+	.form-control:focus {
+		z-index: 2;
+	}
+	input[type="text"] {
+		margin-bottom: -1px;
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	input[type="password"] {
+		margin-bottom: 10px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+	}
+}

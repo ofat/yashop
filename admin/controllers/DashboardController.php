@@ -8,9 +8,9 @@ use common\models\forms\LoginForm;
 use yii\filters\VerbFilter;
 
 /**
- * Site controller
+ * Dashboard controller
  */
-class SiteController extends Controller
+class DashboardController extends Controller
 {
     /**
      * @inheritdoc
@@ -26,10 +26,15 @@ class SiteController extends Controller
                         'allow' => true,
                     ],
                     [
-                        'actions' => ['logout', 'index'],
+                        'actions' => ['index'],
+                        'allow' => true,
+                        'roles' => ['admin'],
+                    ],
+                    [
+                        'actions' => ['logout'],
                         'allow' => true,
                         'roles' => ['@'],
-                    ],
+                    ]
                 ],
             ],
             'verbs' => [
@@ -67,11 +72,13 @@ class SiteController extends Controller
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
-        } else {
-            return $this->render('login', [
-                'model' => $model,
-            ]);
         }
+
+        $this->layout = 'login';
+
+        return $this->render('login', [
+            'model' => $model,
+        ]);
     }
 
     public function actionLogout()
