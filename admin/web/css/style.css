@@ -1,0 +1,126 @@
+html,
+body {
+  height: 100%;
+}
+.wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+.wrap > .container {
+  padding: 70px 15px 20px;
+}
+.footer {
+  height: 60px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+.jumbotron {
+  text-align: center;
+  background-color: transparent;
+}
+.jumbotron .btn {
+  font-size: 21px;
+  padding: 14px 24px;
+}
+.not-set {
+  color: #c55;
+  font-style: italic;
+}
+/* add sorting icons to gridview sort links */
+a.asc:after,
+a.desc:after {
+  position: relative;
+  top: 1px;
+  display: inline-block;
+  font-family: 'Glyphicons Halflings';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  padding-left: 5px;
+}
+a.asc:after {
+  content: /*"\e113"*/ "\e151";
+}
+a.desc:after {
+  content: /*"\e114"*/ "\e152";
+}
+.sort-numerical a.asc:after {
+  content: "\e153";
+}
+.sort-numerical a.desc:after {
+  content: "\e154";
+}
+.sort-ordinal a.asc:after {
+  content: "\e155";
+}
+.sort-ordinal a.desc:after {
+  content: "\e156";
+}
+.grid-view th {
+  white-space: nowrap;
+}
+.hint-block {
+  display: block;
+  margin-top: 5px;
+  color: #999;
+}
+.error-summary {
+  color: #a94442;
+  background: #fdf7f7;
+  border-left: 3px solid #eed3d7;
+  padding: 10px 20px;
+  margin: 0 0 15px 0;
+}
+/* Login styles */
+body.login {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #eee;
+}
+#login-form {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
+#login-form #login-form-heading,
+#login-form .checkbox {
+  margin-bottom: 10px;
+}
+#login-form .checkbox {
+  font-weight: normal;
+}
+#login-form .form-group {
+  margin: 0;
+  position: relative;
+}
+#login-form .help-block {
+  margin: 0 0 0 315px;
+  position: absolute;
+  width: 330px;
+  top: 15px;
+}
+#login-form .form-control {
+  position: relative;
+  height: auto;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 10px;
+  font-size: 16px;
+}
+#login-form .form-control:focus {
+  z-index: 2;
+}
+#login-form input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+#login-form input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
