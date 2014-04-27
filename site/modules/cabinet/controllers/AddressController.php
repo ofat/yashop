@@ -5,7 +5,7 @@
 
 namespace site\modules\cabinet\controllers;
 
-use site\models\AddressSearch;
+use common\models\search\AddressSearch;
 use Yii;
 use yii\filters\AccessControl;
 use common\models\user\Address;
@@ -38,8 +38,10 @@ class AddressController extends CabinetController
     {
         $searchModel = new AddressSearch();
         $params = [
-            'is_hidden' => 0,
-            'user_id' => Yii::$app->user->getId()
+            'AddressSearch' => [
+                'user_id' => Yii::$app->user->getId(),
+                'is_hidden' => 0
+            ]
         ];
         $dataProvider = $searchModel->search($params);
 

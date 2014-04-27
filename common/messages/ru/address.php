@@ -23,5 +23,8 @@ return [
     'Default'           => 'По умолчанию',
     'Address limit is reached. Limit: {count} addresses' => 'Достигнут лимит адресов. Лимит: {count} адресов',
     'Adding address'    => 'Добавление адреса',
-    'Editing address'   => 'Редактирование адреса'
+    'Editing address'   => 'Редактирование адреса',
+    'Addresses'         => 'Адреса',
+    'User\'s ID {id} addresses'    => 'Адреса пользователя ID {id}',
+    'Deleted'           => 'Удален'
 ];

@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use common\models\user\Address;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
@@ -297,5 +298,19 @@ class User extends ActiveRecord implements IdentityInterface
     public function getRoleName()
     {
         return Yii::t('user', $this->role->item_name);
+    }
+
+    /**
+     * Return all users addresses
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAddresses()
+    {
+        return $this->hasMany(Address::className(), ['user_id' => 'id']);
+    }
+
+    public function getAddressCount()
+    {
+        return $this->getAddresses()->count();
     }
 }
