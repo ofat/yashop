@@ -21,7 +21,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="pull-right">
     <?=Html::submitButton(Yii::t('base', 'Switch on'), ['class'=>'btn btn-sm btn-info', 'name'=>'type', 'value'=>'on'])?>
+    <?=Html::a(Yii::t('base', 'Switch on all'),['/settings/country/switch-all', 'type'=>'on'], ['class'=>'btn btn-sm btn-info', 'name'=>'type', 'value'=>'on'])?>
+    |
     <?=Html::submitButton(Yii::t('base', 'Switch off'), ['class'=>'btn btn-sm btn-warning', 'name'=>'type', 'value'=>'off'])?>
+    <?=Html::a(Yii::t('base', 'Switch off all'),['/settings/country/switch-all', 'type'=>'off'], ['class'=>'btn btn-sm btn-warning', 'name'=>'type', 'value'=>'off'])?>
 </div>
 
 <div class="user-list">

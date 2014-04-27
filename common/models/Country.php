@@ -91,4 +91,14 @@ class Country extends ActiveRecord
     {
         return Yii::$app->db->createCommand()->update(static::tableName(),['is_active'=>(int)$active],['id'=>$models])->execute();
     }
+
+    /**
+     * Switch off/on all countries
+     * @param $models
+     * @return \yii\db\Command
+     */
+    public static function setActiveAll($active)
+    {
+        return Yii::$app->db->createCommand()->update(static::tableName(),['is_active'=>(int)$active])->execute();
+    }
 }

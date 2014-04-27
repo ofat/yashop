@@ -7,5 +7,7 @@ return [
 
     'Settings'      => 'Настройки',
     'Switch off'    => 'Выключить',
-    'Switch on'    => 'Включить'
+    'Switch on'     => 'Включить',
+    'Switch off all'=> 'Выключить все',
+    'Switch on all' => 'Включить все'
 ];

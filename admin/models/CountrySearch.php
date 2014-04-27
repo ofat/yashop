@@ -32,6 +32,12 @@ class CountrySearch extends Country
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => Yii::$app->params['pageSize'],
+            ],
+            'sort' => [
+                'defaultOrder' => ['sort_order'=>SORT_ASC]
+            ]
         ]);
 
         if (!($this->load($params) && $this->validate())) {
