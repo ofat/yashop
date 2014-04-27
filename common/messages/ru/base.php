@@ -9,5 +9,7 @@ return [
     'Switch off'    => 'Выключить',
     'Switch on'     => 'Включить',
     'Switch off all'=> 'Выключить все',
-    'Switch on all' => 'Включить все'
+    'Switch on all' => 'Включить все',
+    'Edit'          => 'Редактировать',
+    'Remove'        => 'Удалить'
 ];

@@ -101,4 +101,14 @@ class Country extends ActiveRecord
     {
         return Yii::$app->db->createCommand()->update(static::tableName(),['is_active'=>(int)$active])->execute();
     }
+
+    public static function getList()
+    {
+        $data = [];
+        foreach(static::findAll(['is_active'=>1]) as $country)
+        {
+            $data[ $country->id ] = $country->{Yii::$app->language};
+        }
+        return $data;
+    }
 }

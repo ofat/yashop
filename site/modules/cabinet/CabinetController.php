@@ -5,6 +5,7 @@
 
 namespace site\modules\cabinet;
 
+use Yii;
 use yii\web\Controller;
 
 class CabinetController extends Controller
