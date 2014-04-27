@@ -12,7 +12,11 @@ return [
     'controllerNamespace' => 'admin\controllers',
     'bootstrap' => ['log'],
     'defaultRoute' => 'dashboard',
-    'modules' => [],
+    'modules' => [
+        'settings' => [
+            'class' => 'admin\modules\settings\SettingsModule'
+        ]
+    ],
     'components' => [
         'user' => [
             'identityClass' => 'common\models\User',
@@ -23,6 +27,18 @@ return [
             'rules' => [
                 'login' => 'dashboard/login',
                 'logout' => 'dashboard/logout'
+            ]
+        ],
+        'i18n' => [
+            'translations' => [
+                'admin.*' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'sourceLanguage' => 'en',
+                    'basePath' => '@app/../common/messages',
+                    'fileMap' => [
+                        'admin.country' => 'admin/country.php',
+                    ],
+                ],
             ]
         ],
         'log' => [

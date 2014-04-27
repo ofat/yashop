@@ -17,6 +17,12 @@ return [
             'enableAutoLogin' => true,
             'loginUrl' => ['user/login']
         ],
+        'urlManager' => [
+            'rules' => [
+                'cabinet/profile/address' => 'cabinet/address',
+                'cabinet/profile/address/<action>' => 'cabinet/address/<action>'
+            ]
+        ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

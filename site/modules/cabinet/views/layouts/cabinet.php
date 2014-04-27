@@ -27,6 +27,7 @@ use yii\bootstrap\Nav;
                     'items' => [
                         ['label' => Yii::t('cabinet','Change password'), 'url' => ['/cabinet/profile/password']],
                         ['label' => Yii::t('cabinet','Change e-mail'), 'url' => ['/cabinet/profile/email']],
+                        ['label' => Yii::t('cabinet','Addresses'), 'url' => ['/cabinet/profile/address']],
                     ],
                 ],
             ],
