@@ -6,6 +6,8 @@ use yii\widgets\Breadcrumbs;
 use site\assets\AppAsset;
 use site\widgets\Alert;
 
+use common\helpers\Base;
+
 /**
  * @var \yii\web\View $this
  * @var string $content
@@ -43,7 +45,7 @@ AppAsset::register($this);
             } else {
                 $menuItems[] = ['label' => Yii::t('cabinet','Account'), 'url' => ['/cabinet']];
                 $menuItems[] = [
-                    'label' => Yii::t('user','Logout').' (' . Yii::$app->user->identity->username . ')',
+                    'label' => Yii::t('user','Logout').' (' . Yii::$app->user->identity->username . ' | '.Base::getCurrentBalance().' )',
                     'url' => ['/user/logout'],
                     'linkOptions' => ['data-method' => 'post']
                 ];

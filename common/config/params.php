@@ -5,4 +5,5 @@ return [
     'user.passwordResetTokenExpire' => 3600,
     'pageSize'  => 20,
     'userMaxAddress' => 3,
+    'defaultCurrency' => 'usd'
 ];

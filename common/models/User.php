@@ -2,6 +2,7 @@
 namespace common\models;
 
 use common\models\user\Address;
+use common\models\user\Payment;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
@@ -309,8 +310,29 @@ class User extends ActiveRecord implements IdentityInterface
         return $this->hasMany(Address::className(), ['user_id' => 'id']);
     }
 
+    /**
+     * Return count of users addresses
+     * @return int
+     */
     public function getAddressCount()
     {
         return $this->getAddresses()->count();
+    }
+
+    /**
+     * Return users payments
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPayments()
+    {
+        return $this->hasMany(Payment::className(), ['user_id' => 'id']);
+    }
+
+    public function getBalance()
+    {
+        return (float)$this->getPayments()
+            ->select('SUM(sum)')
+            ->andWhere(['status'=>[Payment::STATUS_INCREASE, Payment::STATUS_DECREASE]])
+            ->scalar();
     }
 }

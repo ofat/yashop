@@ -40,10 +40,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         <a href="<?=Url::toRoute(['/cabinet/profile/address/remove', 'id'=>$address->id])?>" class="btn btn-xs btn-danger">
                             <?=Yii::t('base','Remove')?>
                         </a>
-                        <?php if($address->is_default):?>
-                            <p class="btn btn-xs btn-info"><?=Yii::t('address','Default')?></p>
-                        <?php endif ?>
                     </div>
+                    <?php if($address->is_default):?>
+                        <p class="label label-info"><?=Yii::t('address','Default')?></p>
+                    <?php endif ?>
                 </div>
             </div>
         <?php endforeach; endif; ?>
