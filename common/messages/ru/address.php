@@ -26,5 +26,6 @@ return [
     'Editing address'   => 'Редактирование адреса',
     'Addresses'         => 'Адреса',
     'User\'s ID {id} addresses'    => 'Адреса пользователя ID {id}',
-    'Deleted'           => 'Удален'
+    'Deleted'           => 'Удален',
+    'Add address'       => 'Добавить адрес'
 ];

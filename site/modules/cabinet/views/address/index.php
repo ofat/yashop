@@ -14,7 +14,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="cabinet-address">
-    <a href="<?=Url::toRoute(['/cabinet/profile/address/add'])?>" class="btn btn-primary pull-right">Добавить адрес</a>
+    <a href="<?=Url::toRoute(['/cabinet/profile/address/add'])?>" class="btn btn-primary pull-right"><?=Yii::t('address','Add address')?></a>
     <div class="clearfix"></div>
     <div class="row">
         <?php if(!$data->count):?>

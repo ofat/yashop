@@ -30,6 +30,14 @@ use yii\bootstrap\Nav;
                         ['label' => Yii::t('cabinet','Addresses'), 'url' => ['/cabinet/profile/address']],
                     ],
                 ],
+                [
+                    'label' => Yii::t('payment','Payments'),
+                    'items' => [
+                        ['label' => Yii::t('payment','Deposit'), 'url' => ['/cabinet/balance/payment']],
+                        ['label' => Yii::t('payment','History'), 'url' => ['/cabinet/balance']],
+                        ['label' => Yii::t('payment','Withdraw'), 'url' => ['/cabinet/balance/withdraw']]
+                    ],
+                ],
             ],
         ]);
         ?>
