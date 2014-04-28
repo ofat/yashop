@@ -42,7 +42,8 @@ AppAsset::register($this);
                     ['label' => Yii::t('admin.country', 'Countries'), 'url' => ['/settings/country']]
                 ]],
                 ['label' => Yii::t('base', 'Widgets'), 'url' => ['/widgets'], 'items' => [
-                    ['label' => Yii::t('admin.menu', 'Menu'), 'url' => ['/widgets/menu']]
+                    ['label' => Yii::t('admin.menu', 'Menu'), 'url' => ['/widgets/menu']],
+                    ['label' => Yii::t('admin.promo', 'Promo items'), 'url' => ['/widgets/promo']]
                 ]]
             ];
 

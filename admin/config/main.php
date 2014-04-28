@@ -32,6 +32,11 @@ return [
                 'logout' => 'dashboard/logout'
             ]
         ],
+        'urlManagerSite' => [
+            'class' => 'yii\web\urlManager',
+            'baseUrl' => 'http://yashop/',
+            'enablePrettyUrl' => true
+        ],
         'i18n' => [
             'translations' => [
                 'admin.*' => [
@@ -41,6 +46,7 @@ return [
                     'fileMap' => [
                         'admin.country' => 'admin/country.php',
                         'admin.menu' => 'admin/menu.php',
+                        'admin.promo' => 'admin/promo.php',
                     ],
                 ],
             ]
