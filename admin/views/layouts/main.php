@@ -41,6 +41,9 @@ AppAsset::register($this);
                 ['label' => Yii::t('base','Settings'), 'url' => '', 'items'=> [
                     ['label' => Yii::t('admin.country', 'Countries'), 'url' => ['/settings/country']]
                 ]],
+                ['label' => Yii::t('base', 'Widgets'), 'url' => ['/widgets'], 'items' => [
+                    ['label' => Yii::t('admin.menu', 'Menu'), 'url' => ['/widgets/menu']]
+                ]]
             ];
 
             echo Nav::widget([

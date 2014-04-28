@@ -102,7 +102,7 @@ abstract class CrudController extends Controller
         if (($model = $modelName::findOne($id)) !== null) {
             return $model;
         } else {
-            throw new NotFoundHttpException(Yii::t('yii','The requested page does not exist.'));
+            throw new NotFoundHttpException(Yii::t('base','The requested page does not exist.'));
         }
     }
 

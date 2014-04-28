@@ -11,5 +11,10 @@ return [
     'Switch off all'=> 'Выключить все',
     'Switch on all' => 'Включить все',
     'Edit'          => 'Редактировать',
-    'Remove'        => 'Удалить'
+    'Remove'        => 'Удалить',
+    'Widgets'       => 'Виджеты',
+    'The requested page does not exist.' => 'Запрашиваемая страница не найдена',
+
+    'Russian'       => 'По-русски',
+    'English'       => 'По-англ'
 ];

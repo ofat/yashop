@@ -15,6 +15,9 @@ return [
     'modules' => [
         'settings' => [
             'class' => 'admin\modules\settings\SettingsModule'
+        ],
+        'widgets' => [
+            'class' => 'admin\modules\widgets\WidgetsModule',
         ]
     ],
     'components' => [
@@ -37,6 +40,7 @@ return [
                     'basePath' => '@app/../common/messages',
                     'fileMap' => [
                         'admin.country' => 'admin/country.php',
+                        'admin.menu' => 'admin/menu.php',
                     ],
                 ],
             ]

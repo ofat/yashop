@@ -124,3 +124,12 @@ body.login {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+.widget-menu-item {
+  padding: 3px 0;
+}
+.widget-menu-item a {
+  margin: -7px 0 0;
+}
+.widget-menu-item + ul {
+  margin: 10px 0 0;
+}
