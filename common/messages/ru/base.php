@@ -16,5 +16,8 @@ return [
     'The requested page does not exist.' => 'Запрашиваемая страница не найдена',
 
     'Russian'       => 'По-русски',
-    'English'       => 'По-англ'
+    'English'       => 'По-англ',
+    'Is active'     => 'Включено',
+    'Is default'    => 'По-умолчанию',
+    'Sort Order'    => 'Порядок отображения',
 ];
