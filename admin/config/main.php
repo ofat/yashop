@@ -47,7 +47,8 @@ return [
                         'admin.country' => 'admin/country.php',
                         'admin.menu' => 'admin/menu.php',
                         'admin.promo' => 'admin/promo.php',
-                        'admin.language' => 'admin/language.php'
+                        'admin.language' => 'admin/language.php',
+                        'admin.currency' => 'admin/currency.php'
                     ],
                 ],
             ]
