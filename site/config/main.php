@@ -17,6 +17,7 @@ return [
         ],
         'urlManager' => [
             'rules' => [
+                'item/<id:\d+>' => 'item/view',
                 'cabinet/profile/address' => 'cabinet/address',
                 'cabinet/profile/address/<action>' => 'cabinet/address/<action>'
             ]

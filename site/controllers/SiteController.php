@@ -1,5 +1,5 @@
 <?php
-namespace yashop\yashop\site\controllers;
+namespace yashop\site\controllers;
 
 use Yii;
 use yashop\common\models\LoginForm;

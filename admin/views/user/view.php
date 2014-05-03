@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?=Yii::t('user','Statistics')?>
             </h4>
             <ul class="nav nav-pills nav-stacked">
-                <li class="active">
+                <li>
                     <a href="<?=Url::toRoute(['/user/address','id'=>$model->id])?>">
                         <span class="badge pull-right"><?=$model->getAddressCount()?></span>
                         <?=Yii::t('address','Addresses')?>

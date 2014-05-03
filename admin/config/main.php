@@ -20,7 +20,7 @@ return [
     ],
     'components' => [
         'user' => [
-            'identityClass' => 'yashop\yashop\common\models\User',
+            'identityClass' => 'yashop\common\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => 'login'
         ],

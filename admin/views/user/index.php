@@ -13,8 +13,6 @@ use yii\jui\DatePickerAsset;
 
 $this->title = Yii::t('user', 'Users');
 $this->params['breadcrumbs'][] = $this->title;
-DatePickerAsset::register($this);
-$this->registerJs('$(".datePicker input").datepicker();');
 ?>
 <div class="user-list">
 
