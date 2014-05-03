@@ -3,16 +3,14 @@
 namespace yashop\common\models\item;
 
 use Yii;
-use yashop\common\models\catalog\Category;
 use yii\db\ActiveRecord;
+use yashop\common\models\catalog\Category;
 
 /**
  * This is the model class for table "item".
  *
  * @property integer $id
  * @property integer $category_id
- * @property string $title_ru
- * @property string $title_en
  * @property string $image
  * @property string $price
  * @property string $promo_price
@@ -41,7 +39,7 @@ class Item extends ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'title_ru', 'title_en', 'image', 'price', 'num', 'updated_at', 'created_at'], 'required'],
+            [['category_id', 'image', 'price', 'num', 'updated_at', 'created_at'], 'required'],
             [['category_id', 'num', 'updated_at', 'created_at'], 'integer'],
             [['price', 'promo_price'], 'number'],
             [['title_ru', 'title_en', 'image'], 'string', 'max' => 512]
@@ -56,8 +54,6 @@ class Item extends ActiveRecord
         return [
             'id' => Yii::t('payment', 'ID'),
             'category_id' => Yii::t('payment', 'Category ID'),
-            'title_ru' => Yii::t('payment', 'Title'),
-            'title_en' => Yii::t('payment', 'Title'),
             'image' => Yii::t('payment', 'Image'),
             'price' => Yii::t('payment', 'Price'),
             'promo_price' => Yii::t('payment', 'Promo Price'),
@@ -97,5 +93,16 @@ class Item extends ActiveRecord
     public function getItemSkus()
     {
         return $this->hasMany(ItemSku::className(), ['item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getItemDescription()
+    {
+        /**
+         * todo: change lang id from config
+         */
+        return $this->hasOne(ItemDescription::className(), ['item_id' => 'id', 'language_id' => 2]);
     }
 }

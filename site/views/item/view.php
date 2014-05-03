@@ -6,7 +6,7 @@
  */
 
 use yii\helpers\Html;
-$this->title = 'Item';
+$this->title = $item->title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

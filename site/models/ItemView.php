@@ -5,6 +5,7 @@
 
 namespace yashop\site\models;
 
+use yashop\common\models\item\ItemDescription;
 use yashop\common\models\item\ItemProperty;
 use yashop\common\models\item\ItemSku;
 use yashop\common\models\Property;
@@ -12,7 +13,6 @@ use Yii;
 use yashop\common\models\item\ItemImage;
 use yashop\common\models\item\Item;
 use yii\db\Query;
-use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;
 
 class ItemView extends Item
@@ -21,6 +21,11 @@ class ItemView extends Item
      * @var int Item ID
      */
     private $_id;
+
+    /**
+     * @var string Item title
+     */
+    public $title;
 
     /**
      * @var array Item images
@@ -104,14 +109,18 @@ class ItemView extends Item
     protected  function loadBase()
     {
         $base = (new Query())
-            ->select('')
-            ->from(Item::tableName())
-            ->where(['id'=>$this->_id])
+            ->select(['base.*', 'desc.title'])
+            ->from([
+                'base' => Item::tableName(),
+            ])
+            ->where(['base.id'=>$this->_id])
+            ->leftJoin(['desc' => ItemDescription::tableName()], 'desc.item_id = base.id')
             ->one();
 
         if(empty($base))
             throw new NotFoundHttpException(Yii::t('yii','The requested page does not exist.'));
 
+        $this->title = $base['title'];
         $this->setAttributes($base);
 
         return $this;
