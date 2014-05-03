@@ -14,8 +14,7 @@
 		"php": ">=5.4.0",
 		"yiisoft/yii2": "*",
 		"yiisoft/yii2-bootstrap": "*",
-        "ofat/yii2-yashop-ses": "*",
-		"yiisoft/yii2-jui": "*"
+        "ofat/yii2-yashop-ses": "*"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",
@@ -33,19 +32,12 @@
 			"yii\\composer\\Installer::setPermission"
 		]
 	},
+    "autoload": {
+        "psr-4": {
+            "yashop\\": ""
+        }
+    },
 	"config": {
 		"process-timeout": 1800
-	},
-	"extra": {
-		"writable": [
-			"admin/runtime",
-			"admin/web/assets",
-
-			"console/runtime",
-			"console/migrations",
-
-			"site/runtime",
-			"site/web/assets"
-		]
 	}
 }
