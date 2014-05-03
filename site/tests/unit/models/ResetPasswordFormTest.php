@@ -1,10 +1,10 @@
 <?php
 
-namespace site\tests\unit\models;
+namespace yashop\site\tests\unit\models;
 
-use site\tests\unit\DbTestCase;
-use common\tests\fixtures\UserFixture;
-use site\models\ResetPasswordForm;
+use yashop\site\tests\unit\DbTestCase;
+use yashop\common\tests\fixtures\UserFixture;
+use yashop\site\models\ResetPasswordForm;
 
 class ResetPasswordFormTest extends DbTestCase
 {

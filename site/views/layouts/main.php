@@ -3,10 +3,10 @@ use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
-use site\assets\AppAsset;
-use site\widgets\Alert;
+use yashop\site\assets\AppAsset;
+use yashop\site\widgets\Alert;
 
-use common\helpers\Base;
+use yashop\common\helpers\Base;
 
 /**
  * @var \yii\web\View $this

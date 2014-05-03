@@ -2,13 +2,13 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
-use common\models\User;
+use yashop\common\models\User;
 use yii\jui\DatePickerAsset;
 
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var admin\models\UserSearch $searchModel
+ * @var yashop\admin\models\UserSearch $searchModel
  */
 
 $this->title = Yii::t('user', 'Users');

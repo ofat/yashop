@@ -1,10 +1,10 @@
 <?php
 
-namespace admin\modules\widgets;
+namespace yashop\admin\modules\widgets;
 
 class WidgetsModule extends \yii\base\Module
 {
-    public $controllerNamespace = 'admin\modules\widgets\controllers';
+    public $controllerNamespace = 'yashop\admin\modules\widgets\controllers';
 
     public function init()
     {

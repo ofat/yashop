@@ -3,14 +3,14 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace site\models;
+namespace yashop\site\models;
 
-use common\models\item\ItemProperty;
-use common\models\item\ItemSku;
-use common\models\Property;
+use yashop\common\models\item\ItemProperty;
+use yashop\common\models\item\ItemSku;
+use yashop\common\models\Property;
 use Yii;
-use common\models\item\ItemImage;
-use common\models\item\Item;
+use yashop\common\models\item\ItemImage;
+use yashop\common\models\item\Item;
 use yii\db\Query;
 use yii\helpers\ArrayHelper;
 use yii\web\NotFoundHttpException;

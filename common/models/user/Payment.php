@@ -1,9 +1,9 @@
 <?php
 
-namespace common\models\user;
+namespace yashop\common\models\user;
 
 use Yii;
-use common\models\User;
+use yashop\common\models\User;
 use yii\db\ActiveRecord;
 
 /**

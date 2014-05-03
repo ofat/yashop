@@ -7,7 +7,7 @@
  */
 
 use yii\helpers\Url;
-use common\models\user\Address;
+use yashop\common\models\user\Address;
 
 $this->title = Yii::t('cabinet','Addresses');
 $this->params['breadcrumbs'][] = $this->title;

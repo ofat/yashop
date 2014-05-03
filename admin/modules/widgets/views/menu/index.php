@@ -2,7 +2,7 @@
 /**
  * @var array $menuTypes
  * @var array $items
- * @var boolean|common\models\widgets\WidgetMenu $menu
+ * @var boolean|yashop\common\models\widgets\WidgetMenu $menu
  * @var yii\web\View $this
  */
 

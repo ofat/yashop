@@ -1,19 +1,17 @@
 <?php
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/../../common/config/params-local.php'),
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/params.php')
 );
 
 return [
     'id' => 'app-site',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
-    'controllerNamespace' => 'site\controllers',
+    'controllerNamespace' => 'yashop\site\controllers',
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'yashop\common\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => ['user/login']
         ],
@@ -38,7 +36,7 @@ return [
     ],
     'modules' => [
         'cabinet' => [
-            'class' => 'site\modules\cabinet\CabinetModule',
+            'class' => 'yashop\site\modules\cabinet\CabinetModule',
         ],
     ],
     'params' => $params,

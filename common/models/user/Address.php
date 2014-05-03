@@ -1,11 +1,11 @@
 <?php
 
-namespace common\models\user;
+namespace yashop\common\models\user;
 
 use Yii;
 use yii\db\ActiveRecord;
-use common\models\Country;
-use common\models\User;
+use yashop\common\models\Country;
+use yashop\common\models\User;
 
 /**
  * This is the model class for table "user_address".

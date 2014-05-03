@@ -3,7 +3,7 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace site\modules\cabinet;
+namespace yashop\site\modules\cabinet;
 
 use Yii;
 use yii\web\Controller;

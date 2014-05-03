@@ -1,6 +1,6 @@
 <?php
 
-namespace admin\modules\settings\controllers;
+namespace yashop\admin\modules\settings\controllers;
 
 use yii\web\Controller;
 

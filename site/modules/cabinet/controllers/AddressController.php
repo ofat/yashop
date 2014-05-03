@@ -3,14 +3,14 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace site\modules\cabinet\controllers;
+namespace yashop\site\modules\cabinet\controllers;
 
-use common\models\search\AddressSearch;
+use yashop\common\models\search\AddressSearch;
 use Yii;
 use yii\filters\AccessControl;
-use common\models\user\Address;
+use yashop\common\models\user\Address;
 
-use site\modules\cabinet\CabinetController;
+use yashop\site\modules\cabinet\CabinetController;
 use yii\web\NotFoundHttpException;
 
 class AddressController extends CabinetController

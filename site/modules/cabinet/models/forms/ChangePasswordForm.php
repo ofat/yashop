@@ -5,12 +5,12 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace site\modules\cabinet\models\forms;
+namespace yashop\site\modules\cabinet\models\forms;
 
 use Yii;
 use yii\base\Model;
 
-use common\models\User;
+use yashop\common\models\User;
 
 class ChangePasswordForm extends Model
 {

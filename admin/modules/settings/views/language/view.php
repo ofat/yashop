@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 
 /**
  * @var yii\web\View $this
- * @var common\models\Country $model
+ * @var yashop\common\models\Country $model
  */
 
 $this->title = ($model->isNewRecord) ? Yii::t('admin.language', 'Adding language') : Yii::t('admin.language', 'Language "{code}"', ['code' => $model->code]);

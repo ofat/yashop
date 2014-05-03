@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\cart;
+namespace yashop\common\models\cart;
 
 use Yii;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\widgets;
+namespace yashop\common\models\widgets;
 
 use Yii;
 use yii\db\ActiveRecord;

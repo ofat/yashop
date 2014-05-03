@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\catalog;
+namespace yashop\common\models\catalog;
 
 use Yii;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace common\models\item;
+namespace yashop\common\models\item;
 
 use Yii;
-use common\models\catalog\Category;
+use yashop\common\models\catalog\Category;
 use yii\db\ActiveRecord;
 
 /**

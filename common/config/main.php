@@ -1,8 +1,6 @@
 <?php
 return [
     'name' => 'YaShop',
-    'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
-    'extensions' => require(__DIR__ . '/../../vendor/yiisoft/extensions.php'),
     'language' => 'ru',
     'components' => [
         'cache' => [
@@ -21,7 +19,7 @@ return [
                 'cabinet.*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'sourceLanguage' => 'en',
-                    'basePath' => '@app/../common/messages',
+                    'basePath' => '@yashop-common/messages',
                     'fileMap' => [
                         'cabinet.profile' => 'cabinet/profile.php',
                     ],
@@ -29,7 +27,7 @@ return [
                 '*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'sourceLanguage' => 'en',
-                    'basePath' => '@app/../common/messages'
+                    'basePath' => '@yashop-common/messages'
                 ],
             ],
         ],

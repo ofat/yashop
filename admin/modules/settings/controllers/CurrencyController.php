@@ -3,12 +3,12 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace admin\modules\settings\controllers;
+namespace yashop\admin\modules\settings\controllers;
 
-use admin\models\CurrencySearch;
+use yashop\admin\models\CurrencySearch;
 use Yii;
-use common\models\Currency;
-use common\helpers\CrudController;
+use yashop\common\models\Currency;
+use yashop\common\helpers\CrudController;
 
 /**
  * LanguageController implements the CRUD actions for Country model.

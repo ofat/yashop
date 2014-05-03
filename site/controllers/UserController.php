@@ -1,13 +1,13 @@
 <?php
 
-namespace site\controllers;
+namespace yashop\site\controllers;
 
 use Yii;
 use yii\web\Controller;
-use site\models\forms\RegisterForm;
-use site\models\forms\PasswordResetRequestForm;
-use site\models\forms\ResetPasswordForm;
-use common\models\forms\LoginForm;
+use yashop\site\models\forms\RegisterForm;
+use yashop\site\models\forms\PasswordResetRequestForm;
+use yashop\site\models\forms\ResetPasswordForm;
+use yashop\common\models\forms\LoginForm;
 
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;

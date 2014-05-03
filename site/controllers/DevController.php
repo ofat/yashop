@@ -3,9 +3,9 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace site\controllers;
+namespace yashop\site\controllers;
 
-use common\models\Country;
+use yashop\common\models\Country;
 use Yii;
 use yii\web\Controller;
 

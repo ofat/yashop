@@ -1,12 +1,12 @@
 <?php
-namespace yashop\site\controllers;
+namespace yashop\yashop\site\controllers;
 
 use Yii;
-use common\models\LoginForm;
-use site\models\PasswordResetRequestForm;
-use site\models\ResetPasswordForm;
-use site\models\SignupForm;
-use site\models\ContactForm;
+use yashop\common\models\LoginForm;
+use yashop\site\models\PasswordResetRequestForm;
+use yashop\site\models\ResetPasswordForm;
+use yashop\site\models\SignupForm;
+use yashop\site\models\ContactForm;
 use yii\base\InvalidParamException;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;

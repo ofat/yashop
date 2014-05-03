@@ -1,10 +1,10 @@
 <?php
 
-namespace admin\modules\settings;
+namespace yashop\admin\modules\settings;
 
 class SettingsModule extends \yii\base\Module
 {
-    public $controllerNamespace = 'admin\modules\settings\controllers';
+    public $controllerNamespace = 'yashop\admin\modules\settings\controllers';
 
     public function init()
     {

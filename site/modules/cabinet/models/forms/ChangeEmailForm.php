@@ -4,12 +4,12 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace site\modules\cabinet\models\forms;
+namespace yashop\site\modules\cabinet\models\forms;
 
 use yii\base\Model;
 use Yii;
 
-use common\models\User;
+use yashop\common\models\User;
 
 class ChangeEmailForm extends Model
 {
@@ -36,7 +36,7 @@ class ChangeEmailForm extends Model
             [
                 'newEmail',
                 'unique',
-                'targetClass' => '\common\models\User',
+                'targetClass' => '\yashop\common\models\User',
                 'message' => Yii::t('user','This email address has already been taken.'),
                 'targetAttribute' => 'email'
             ],

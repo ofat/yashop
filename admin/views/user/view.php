@@ -1,14 +1,14 @@
 <?php
 
-use common\helpers\Base;
-use common\models\User;
+use yashop\common\helpers\Base;
+use yashop\common\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /**
  * @var yii\web\View $this
- * @var common\models\User $model
+ * @var yashop\common\models\User $model
  */
 
 $this->title = Yii::t('user', 'User ID {id}', ['id' => $model->id]);

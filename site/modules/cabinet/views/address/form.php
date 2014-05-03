@@ -3,12 +3,12 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  *
  * @var yii\web\View $this
- * @var common\models\user\Address $model
+ * @var yashop\common\models\user\Address $model
  */
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use common\models\Country;
+use yashop\common\models\Country;
 
 $this->title = ($model->isNewRecord) ? Yii::t('address','Adding address') : Yii::t('address','Editing address');
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cabinet','Account'), 'url' => ['/cabinet']];;

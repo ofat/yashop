@@ -1,8 +1,8 @@
 <?php
 
-namespace site\modules\cabinet\controllers;
+namespace yashop\site\modules\cabinet\controllers;
 
-use site\modules\cabinet\CabinetController;
+use yashop\site\modules\cabinet\CabinetController;
 
 class DefaultController extends CabinetController
 {

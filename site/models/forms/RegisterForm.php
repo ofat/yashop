@@ -1,7 +1,7 @@
 <?php
-namespace site\models\forms;
+namespace yashop\site\models\forms;
 
-use common\models\User;
+use yashop\common\models\User;
 use yii\base\Model;
 use Yii;
 
@@ -23,12 +23,12 @@ class RegisterForm extends Model
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
             ['username', 'string', 'min' => 2, 'max' => 255],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username address has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\yashop\common\models\User', 'message' => 'This username address has already been taken.'],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\yashop\common\models\User', 'message' => 'This email address has already been taken.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],

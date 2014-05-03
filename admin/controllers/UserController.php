@@ -1,12 +1,12 @@
 <?php
 
-namespace admin\controllers;
+namespace yashop\admin\controllers;
 
-use common\helpers\CrudController;
+use yashop\common\helpers\CrudController;
 use Yii;
-use common\models\User;
-use admin\models\UserSearch;
-use common\models\search\AddressSearch;
+use yashop\common\models\User;
+use yashop\admin\models\UserSearch;
+use yashop\common\models\search\AddressSearch;
 
 /**
  * UserController implements the CRUD actions for User model.

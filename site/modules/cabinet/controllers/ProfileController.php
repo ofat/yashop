@@ -1,13 +1,13 @@
 <?php
 
-namespace site\modules\cabinet\controllers;
+namespace yashop\site\modules\cabinet\controllers;
 
-use site\modules\cabinet\models\forms\ChangePasswordForm;
+use yashop\site\modules\cabinet\models\forms\ChangePasswordForm;
 use Yii;
 use yii\filters\AccessControl;
 
-use site\modules\cabinet\CabinetController;
-use site\modules\cabinet\models\forms\ChangeEmailForm;
+use yashop\site\modules\cabinet\CabinetController;
+use yashop\site\modules\cabinet\models\forms\ChangeEmailForm;
 
 class ProfileController extends CabinetController
 {

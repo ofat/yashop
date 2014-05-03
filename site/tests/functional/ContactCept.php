@@ -1,6 +1,6 @@
 <?php
 
-use site\tests\_pages\ContactPage;
+use yashop\site\tests\_pages\ContactPage;
 
 $I = new TestGuy($scenario);
 $I->wantTo('ensure that contact works');

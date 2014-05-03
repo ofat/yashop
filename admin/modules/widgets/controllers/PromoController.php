@@ -1,10 +1,10 @@
 <?php
 
-namespace admin\modules\widgets\controllers;
+namespace yashop\admin\modules\widgets\controllers;
 
 use Yii;
-use common\models\widgets\WidgetPromo;
-use common\models\widgets\WidgetPromoItem;
+use yashop\common\models\widgets\WidgetPromo;
+use yashop\common\models\widgets\WidgetPromoItem;
 use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -40,7 +40,7 @@ class PromoController extends Controller
         list($promoTypes,$promos) = $this->getPromoTypes();
         $listPromo = [];
         /**
-         * @var \common\models\widgets\WidgetPromo $item
+         * @var \yashop\common\models\widgets\WidgetPromo $item
          */
         foreach($promos as $item)
         {
@@ -142,7 +142,7 @@ class PromoController extends Controller
 
     /**
      * @param $id
-     * @return \common\models\widgets\WidgetPromo
+     * @return \yashop\common\models\widgets\WidgetPromo
      * @throws \yii\web\NotFoundHttpException
      */
     protected function getPromoModel($id)

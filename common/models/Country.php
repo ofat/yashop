@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models;
+namespace yashop\common\models;
 
 use Yii;
 use yii\db\ActiveRecord;

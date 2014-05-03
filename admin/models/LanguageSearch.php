@@ -3,15 +3,15 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace admin\models;
+namespace yashop\admin\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Language;
+use yashop\common\models\Language;
 
 /**
- * LanguageSearch represents the model behind the search form about `common\models\Language`.
+ * LanguageSearch represents the model behind the search form about `yashop\common\models\Language`.
  */
 class LanguageSearch extends Language
 {

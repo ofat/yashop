@@ -1,8 +1,8 @@
 <?php
 
-namespace common\models\widgets;
+namespace yashop\common\models\widgets;
 
-use common\models\item\Item;
+use yashop\common\models\item\Item;
 use Yii;
 use yii\db\ActiveRecord;
 

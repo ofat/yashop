@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
- * @var \site\modules\cabinet\models\forms\ChangeEmailForm $model
+ * @var \yashop\site\modules\cabinet\models\forms\ChangeEmailForm $model
  */
 $this->title = Yii::t('cabinet.profile','Changing e-mail');
 $this->params['breadcrumbs'][] = $this->title;

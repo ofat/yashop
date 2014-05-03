@@ -3,7 +3,7 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-use admin\assets\AppAsset;
+use yashop\admin\assets\AppAsset;
 use yii\helpers\Html;
 use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;

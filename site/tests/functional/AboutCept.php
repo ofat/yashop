@@ -1,6 +1,6 @@
 <?php
 
-use site\tests\_pages\AboutPage;
+use yashop\site\tests\_pages\AboutPage;
 
 $I = new TestGuy($scenario);
 $I->wantTo('ensure that about works');

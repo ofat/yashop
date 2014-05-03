@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 
 /**
  * @var yii\web\View $this
- * @var common\models\Currency $model
+ * @var yashop\common\models\Currency $model
  */
 
 $this->title = ($model->isNewRecord) ? Yii::t('admin.currency', 'Adding currency') : Yii::t('admin.currency', 'Currency {name}', ['name' => $model->name]);

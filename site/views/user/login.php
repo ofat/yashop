@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
- * @var \common\models\forms\LoginForm $model
+ * @var \yashop\common\models\forms\LoginForm $model
  */
 $this->title = Yii::t('user','Login');
 $this->params['breadcrumbs'][] = $this->title;

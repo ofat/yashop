@@ -3,12 +3,12 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace admin\modules\settings\controllers;
+namespace yashop\admin\modules\settings\controllers;
 
-use admin\models\LanguageSearch;
+use yashop\admin\models\LanguageSearch;
 use Yii;
-use common\models\Language;
-use common\helpers\CrudController;
+use yashop\common\models\Language;
+use yashop\common\helpers\CrudController;
 
 /**
  * LanguageController implements the CRUD actions for Country model.

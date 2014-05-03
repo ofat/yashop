@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /**
  * @var yii\web\View $this
  * @var array $dataProvider
- * @var common\models\Language $searchModel
+ * @var yashop\common\models\Language $searchModel
  */
 
 $this->title = Yii::t('admin.currency', 'Currencies');

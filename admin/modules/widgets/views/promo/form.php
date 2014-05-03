@@ -2,8 +2,8 @@
 /**
  * @var array $promoTypes
  * @var array $listPromo
- * @var common\models\widgets\WidgetPromo $promo
- * @var common\models\widgets\WidgetPromoItem $model
+ * @var yashop\common\models\widgets\WidgetPromo $promo
+ * @var yashop\common\models\widgets\WidgetPromoItem $model
  * @var yii\web\View $this
  */
 

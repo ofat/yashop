@@ -1,28 +1,26 @@
 <?php
 $params = array_merge(
     require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/../../common/config/params-local.php'),
-    require(__DIR__ . '/params.php'),
-    require(__DIR__ . '/params-local.php')
+    require(__DIR__ . '/params.php')
 );
 
 return [
     'id' => 'app-admin',
     'basePath' => dirname(__DIR__),
-    'controllerNamespace' => 'admin\controllers',
+    'controllerNamespace' => 'yashop\admin\controllers',
     'bootstrap' => ['log'],
     'defaultRoute' => 'dashboard',
     'modules' => [
         'settings' => [
-            'class' => 'admin\modules\settings\SettingsModule'
+            'class' => 'yashop\admin\modules\settings\SettingsModule'
         ],
         'widgets' => [
-            'class' => 'admin\modules\widgets\WidgetsModule',
+            'class' => 'yashop\admin\modules\widgets\WidgetsModule',
         ]
     ],
     'components' => [
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'yashop\yashop\common\models\User',
             'enableAutoLogin' => true,
             'loginUrl' => 'login'
         ],
@@ -34,7 +32,6 @@ return [
         ],
         'urlManagerSite' => [
             'class' => 'yii\web\urlManager',
-            'baseUrl' => 'http://yashop/',
             'enablePrettyUrl' => true
         ],
         'i18n' => [
@@ -42,7 +39,7 @@ return [
                 'admin.*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'sourceLanguage' => 'en',
-                    'basePath' => '@app/../common/messages',
+                    'basePath' => '@yashop-common/messages',
                     'fileMap' => [
                         'admin.country' => 'admin/country.php',
                         'admin.menu' => 'admin/menu.php',

@@ -1,10 +1,10 @@
 <?php
 
-namespace common\tests\_helpers;
+namespace yashop\common\tests\_helpers;
 
 use Codeception\Module;
 use yii\test\FixtureTrait;
-use common\tests\fixtures\UserFixture;
+use yashop\common\tests\fixtures\UserFixture;
 
 /**
  * This helper is used to populate database with needed fixtures before any tests should be run.

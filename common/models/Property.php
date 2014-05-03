@@ -1,9 +1,9 @@
 <?php
 
-namespace common\models;
+namespace yashop\common\models;
 
 use Yii;
-use common\models\item\ItemProperty;
+use yashop\common\models\item\ItemProperty;
 use yii\db\ActiveRecord;
 
 /**

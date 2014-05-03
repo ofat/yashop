@@ -3,13 +3,13 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace site\modules\cabinet\controllers;
+namespace yashop\site\modules\cabinet\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
-use common\models\user\Payment;
+use yashop\common\models\user\Payment;
 
-use site\modules\cabinet\CabinetController;
+use yashop\site\modules\cabinet\CabinetController;
 use yii\web\NotFoundHttpException;
 
 class BalanceController extends CabinetController

@@ -3,9 +3,9 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace site\widgets;
+namespace yashop\site\widgets;
 
-use common\models\widgets\WidgetMenu;
+use yashop\common\models\widgets\WidgetMenu;
 use yii\base\Widget;
 
 class Menu extends Widget

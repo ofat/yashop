@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 /**
  * @var yii\web\View $this
  * @var yii\widgets\ActiveForm $form
- * @var \site\modules\cabinet\models\forms\ChangePasswordForm $model
+ * @var \yashop\site\modules\cabinet\models\forms\ChangePasswordForm $model
  */
 $this->title = Yii::t('cabinet.profile','Changing password');
 $this->params['breadcrumbs'][] = $this->title;

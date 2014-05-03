@@ -1,14 +1,14 @@
 <?php
 
-namespace common\models\search;
+namespace yashop\common\models\search;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\user\Address;
+use yashop\common\models\user\Address;
 
 /**
- * AddressSearch represents the model behind the search form about `common\models\user\Address`.
+ * AddressSearch represents the model behind the search form about `yashop\common\models\user\Address`.
  */
 class AddressSearch extends Address
 {

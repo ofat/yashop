@@ -2,7 +2,7 @@
 /**
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  * @var yii\web\View $this
- * @var site\models\ItemView $item
+ * @var yashop\site\models\ItemView $item
  */
 
 use yii\helpers\Html;

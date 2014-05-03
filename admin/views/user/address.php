@@ -3,15 +3,15 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-use common\helpers\Base;
-use common\models\User;
+use yashop\common\helpers\Base;
+use yashop\common\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 
 /**
  * @var yii\web\View $this
- * @var common\models\User $userModel
+ * @var yashop\common\models\User $userModel
  * @var yii\data\ActiveDataProvider $data
  */
 

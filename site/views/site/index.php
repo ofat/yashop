@@ -3,7 +3,7 @@
  * @var yii\web\View $this
  */
 
-use site\widgets\Menu;
+use yashop\site\widgets\Menu;
 
 $this->title = 'My Yii Application';
 ?>

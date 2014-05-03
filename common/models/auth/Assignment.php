@@ -1,6 +1,6 @@
 <?php
 
-namespace common\models\auth;
+namespace yashop\common\models\auth;
 
 use Yii;
 use yii\db\ActiveRecord;
@@ -13,7 +13,7 @@ use yii\db\ActiveRecord;
  * @property integer $created_at
  *
  * @property AuthItem $itemName
- * @property \common\models\User $user
+ * @property \yashop\common\models\User $user
  */
 class Assignment extends ActiveRecord
 {

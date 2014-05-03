@@ -1,12 +1,12 @@
 <?php
 
-namespace site\tests\unit\models;
+namespace yashop\site\tests\unit\models;
 
 use Yii;
-use site\tests\unit\DbTestCase;
-use site\models\PasswordResetRequestForm;
-use common\tests\fixtures\UserFixture;
-use common\models\User;
+use yashop\site\tests\unit\DbTestCase;
+use yashop\site\models\PasswordResetRequestForm;
+use yashop\common\tests\fixtures\UserFixture;
+use yashop\common\models\User;
 
 class PasswordResetRequestFormTest extends DbTestCase
 {

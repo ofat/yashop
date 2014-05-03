@@ -12,7 +12,7 @@ modules:
       - Filesystem
       - TestHelper
       - Yii2
-      - common\tests\_helpers\FixtureHelper
+      - yashop\common\tests\_helpers\FixtureHelper
     config:
         Yii2:
             configFile: 'tests/functional/_config.php'

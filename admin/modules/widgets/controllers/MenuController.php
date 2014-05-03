@@ -1,10 +1,10 @@
 <?php
 
-namespace admin\modules\widgets\controllers;
+namespace yashop\admin\modules\widgets\controllers;
 
 use Yii;
-use common\models\widgets\WidgetMenu;
-use common\models\widgets\WidgetMenuItem;
+use yashop\common\models\widgets\WidgetMenu;
+use yashop\common\models\widgets\WidgetMenuItem;
 use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -61,7 +61,7 @@ class MenuController extends Controller
         list($menuTypes,$menus) = $this->getMenuTypes();
         $listMenu = [];
         /**
-         * @var \common\models\widgets\WidgetMenu $item
+         * @var \yashop\common\models\widgets\WidgetMenu $item
          */
         foreach($menus as $item)
         {
@@ -165,7 +165,7 @@ class MenuController extends Controller
 
     /**
      * @param $id
-     * @return \common\models\widgets\WidgetMenu
+     * @return \yashop\common\models\widgets\WidgetMenu
      * @throws \yii\web\NotFoundHttpException
      */
     protected function getMenuModel($id)

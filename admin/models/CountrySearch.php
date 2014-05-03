@@ -1,14 +1,14 @@
 <?php
 
-namespace admin\models;
+namespace yashop\admin\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Country;
+use yashop\common\models\Country;
 
 /**
- * CountrySearch represents the model behind the search form about `common\models\Country`.
+ * CountrySearch represents the model behind the search form about `yashop\common\models\Country`.
  */
 class CountrySearch extends Country
 {

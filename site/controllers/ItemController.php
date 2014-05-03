@@ -1,8 +1,8 @@
 <?php
 
-namespace site\controllers;
+namespace yashop\site\controllers;
 
-use site\models\ItemView;
+use yashop\site\models\ItemView;
 use yii\web\Controller;
 
 class ItemController extends Controller

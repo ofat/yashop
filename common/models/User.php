@@ -1,8 +1,8 @@
 <?php
-namespace common\models;
+namespace yashop\common\models;
 
-use common\models\user\Address;
-use common\models\user\Payment;
+use yashop\common\models\user\Address;
+use yashop\common\models\user\Payment;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\db\ActiveRecord;
@@ -11,7 +11,7 @@ use yii\helpers\Security;
 use yii\rbac\Item;
 use yii\web\IdentityInterface;
 
-use common\models\auth\Assignment;
+use yashop\common\models\auth\Assignment;
 
 /**
  * User model

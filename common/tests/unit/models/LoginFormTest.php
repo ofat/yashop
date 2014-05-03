@@ -1,10 +1,10 @@
 <?php
 
-namespace common\tests\unit\models;
+namespace yashop\common\tests\unit\models;
 
 use Yii;
 use frontend\tests\unit\TestCase;
-use common\models\User;
+use yashop\common\models\User;
 use yii\helpers\Security;
 
 class LoginFormTest extends TestCase
@@ -61,7 +61,7 @@ class LoginFormTest extends TestCase
 
     private function mockUser($user)
     {
-        $loginForm = $this->getMock('common\models\LoginForm', ['getUser']);
+        $loginForm = $this->getMock('yashop\common\models\LoginForm', ['getUser']);
         $loginForm->expects($this->any())->method('getUser')->will($this->returnValue($user));
 
         return $loginForm;

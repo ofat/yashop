@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var admin\models\CountrySearch $searchModel
+ * @var yashop\admin\models\CountrySearch $searchModel
  */
 
 $this->title = Yii::t('admin.country', 'Countries');

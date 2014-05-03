@@ -3,7 +3,7 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace common\helpers;
+namespace yashop\common\helpers;
 
 use Yii;
 use yii\web\Controller;

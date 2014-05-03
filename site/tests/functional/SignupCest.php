@@ -1,9 +1,9 @@
 <?php
 
-namespace site\tests\functional;
+namespace yashop\site\tests\functional;
 
-use site\tests\_pages\SignupPage;
-use common\models\User;
+use yashop\site\tests\_pages\SignupPage;
+use yashop\common\models\User;
 
 class SignupCest
 {
@@ -79,7 +79,7 @@ class SignupCest
         ]);
 
         $I->expectTo('see that user is created');
-        $I->seeRecord('common\models\User', [
+        $I->seeRecord('yashop\common\models\User', [
             'username'		=>	'tester',
             'email'			=>	'tester.email@example.com',
         ]);

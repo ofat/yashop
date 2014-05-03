@@ -2,8 +2,8 @@
 /**
  * @var array $menuTypes
  * @var array $listMenu
- * @var common\models\widgets\WidgetMenu $menu
- * @var common\models\widgets\WidgetMenuItem $model
+ * @var yashop\common\models\widgets\WidgetMenu $menu
+ * @var yashop\common\models\widgets\WidgetMenuItem $model
  * @var yii\web\View $this
  */
 

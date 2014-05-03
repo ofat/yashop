@@ -1,9 +1,9 @@
 <?php
-namespace common\models\forms;
+namespace yashop\common\models\forms;
 
 use Yii;
 use yii\base\Model;
-use common\models\User;
+use yashop\common\models\User;
 
 /**
  * Login form

@@ -2,7 +2,7 @@
 /**
  * @var array $promoTypes
  * @var array $items
- * @var boolean|common\models\widgets\WidgetPromo $promo
+ * @var boolean|yashop\common\models\widgets\WidgetPromo $promo
  * @var yii\web\View $this
  */
 
