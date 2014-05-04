@@ -93,15 +93,6 @@ class ItemView extends Item
     }
 
     /**
-     * @return string Item title
-     */
-    public function getTitle()
-    {
-        $lang = Yii::$app->language;
-        return $this->{'title_'.$lang};
-    }
-
-    /**
      * Loading base item data
      * @return $this
      * @throws \yii\web\NotFoundHttpException

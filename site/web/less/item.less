@@ -1,0 +1,46 @@
+@import 'libs/helpless';
+
+.item-main {
+	#small-images, #main-image {
+		img {
+			border: 1px solid #eee;
+		}
+	}
+	#main-image {
+		margin: 10px 0;
+	}
+	.price {
+		font-size: 18px;
+		font-weight: bold;
+		background: rgba(0,100,0,.3);
+		display: inline;
+		padding: 5px 10px;
+		#hl.round-all-corners(4px);
+	}
+	.item-count-controls {
+		height: 34px;
+		line-height: 34px;
+		font-size: 13px;
+		a, input {
+			float: left;
+			margin: 0 2px;
+		}
+		input {
+			width: 50px;
+		}
+	}
+	.item-total {
+		padding-left: 20px;
+	}
+
+	.input-property {
+		padding: 4px 8px;
+		border: 1px solid #ddd;
+		float: left;
+		margin: 0 5px 5px 0;
+		&:hover, &.active {
+			border-color: #006699;
+			text-decoration: none;
+		}
+	}
+}
