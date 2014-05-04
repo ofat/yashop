@@ -20,7 +20,7 @@ class ItemView extends Item
     /**
      * @var int Item ID
      */
-    private $_id;
+    protected $_id;
 
     /**
      * @var string Item title
