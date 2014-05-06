@@ -44,9 +44,9 @@ class Category extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('payment', 'ID'),
-            'parent_id' => Yii::t('payment', 'Parent ID'),
-            'url' => Yii::t('payment', 'Url'),
+            'id' => Yii::t('category', 'ID'),
+            'parent_id' => Yii::t('category', 'Parent ID'),
+            'url' => Yii::t('category', 'Url'),
         ];
     }
 
