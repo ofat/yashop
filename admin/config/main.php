@@ -16,6 +16,9 @@ return [
         ],
         'widgets' => [
             'class' => 'yashop\admin\modules\widgets\WidgetsModule',
+        ],
+        'catalog' => [
+            'class' => 'yashop\admin\modules\catalog\CatalogModule',
         ]
     ],
     'components' => [
@@ -41,11 +44,13 @@ return [
                     'sourceLanguage' => 'en',
                     'basePath' => '@yashop-common/messages',
                     'fileMap' => [
-                        'admin.country' => 'admin/country.php',
-                        'admin.menu' => 'admin/menu.php',
-                        'admin.promo' => 'admin/promo.php',
+                        'admin.country'  => 'admin/country.php',
+                        'admin.menu'     => 'admin/menu.php',
+                        'admin.promo'    => 'admin/promo.php',
                         'admin.language' => 'admin/language.php',
-                        'admin.currency' => 'admin/currency.php'
+                        'admin.currency' => 'admin/currency.php',
+                        'admin.category' => 'admin/category.php',
+                        'admin.item'     => 'admin/item.php'
                     ],
                 ],
             ]

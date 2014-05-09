@@ -4,7 +4,7 @@ namespace yashop\common\models\item;
 
 use Yii;
 use yii\db\ActiveRecord;
-use yashop\common\models\catalog\Category;
+use yashop\common\models\category\Category;
 
 /**
  * This is the model class for table "item".
@@ -22,6 +22,7 @@ use yashop\common\models\catalog\Category;
  * @property ItemImage[] $itemImages
  * @property ItemProperty[] $itemProperties
  * @property ItemSku[] $itemSkus
+ * @property ItemDescription $description
  */
 class Item extends ActiveRecord
 {
@@ -98,11 +99,11 @@ class Item extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getItemDescription()
+    public function getDescription()
     {
         /**
          * todo: change lang id from config
          */
-        return $this->hasOne(ItemDescription::className(), ['item_id' => 'id', 'language_id' => 2]);
+        return $this->hasOne(ItemDescription::className(), ['item_id' => 'id'])->where(['language_id' => 2]);
     }
 }

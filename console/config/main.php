@@ -1,8 +1,4 @@
 <?php
-$params = array_merge(
-    require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/params.php')
-);
 
 return [
     'id' => 'app-console',
@@ -10,6 +6,12 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
     'modules' => [],
+    'controllerMap' => [
+        'migrate' => [
+            'class' => 'yii\console\controllers\MigrateController',
+            'migrationPath' => '@yashop-console/migrations',
+        ],
+    ],
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
@@ -22,6 +24,5 @@ return [
                 ],
             ],
         ],
-    ],
-    'params' => $params,
+    ]
 ];

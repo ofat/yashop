@@ -59,14 +59,6 @@ class WidgetMenu extends ActiveRecord
     }
 
     /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->{Yii::$app->language};
-    }
-
-    /**
      * Get tree of menu items
      * @return array
      */

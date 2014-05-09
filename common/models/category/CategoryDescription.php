@@ -15,6 +15,10 @@ use yashop\common\models\Language;
  * @property integer $category_id
  * @property integer $language_id
  * @property string $name
+ * @property string $text
+ * @property string $title
+ * @property string $meta_desc
+ * @property string $meta_keyword
  *
  * @property Category $category
  * @property Language $language
@@ -37,7 +41,8 @@ class CategoryDescription extends ActiveRecord
         return [
             [['category_id', 'language_id', 'name'], 'required'],
             [['category_id', 'language_id'], 'integer'],
-            [['name'], 'string', 'max' => 255]
+            [['text'], 'string'],
+            [['name', 'title', 'meta_desc', 'meta_keyword'], 'string', 'max' => 255]
         ];
     }
 
@@ -47,10 +52,14 @@ class CategoryDescription extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('category', 'ID'),
-            'category_id' => Yii::t('category', 'Category ID'),
-            'language_id' => Yii::t('category', 'Language ID'),
-            'name' => Yii::t('category', 'Name'),
+            'id' => Yii::t('admin.category', 'ID'),
+            'category_id' => Yii::t('admin.category', 'Category ID'),
+            'language_id' => Yii::t('admin.category', 'Language ID'),
+            'name' => Yii::t('admin.category', 'Name'),
+            'text' => Yii::t('admin.category', 'Description'),
+            'title' => Yii::t('admin.category', 'HTML Title'),
+            'meta_desc' => Yii::t('admin.category', 'Meta-description'),
+            'meta_keyword' => Yii::t('admin.category', 'Meta-keyword'),
         ];
     }
 

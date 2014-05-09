@@ -12,35 +12,16 @@ use yashop\common\models\category\Category;
  * @var yashop\common\models\Language[] $languages
  */
 
-$this->title = ($model->isNewRecord) ? Yii::t('admin.category', 'Adding category') :
-    Yii::t('admin.category', 'Category "{name}"', ['name' => $model->description->name]);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('admin.category', 'Categories'), 'url' => ['index']];
+$this->title = ($model->isNewRecord) ? Yii::t('admin.item', 'Adding item') :
+    Yii::t('admin.category', 'Item "{name}"', ['name' => $model->description->name]);
+$this->params['breadcrumbs'][] = ['label' => Yii::t('admin.item', 'Items'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="user-view">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
             <?php $form = ActiveForm::begin() ?>
-            <?= $form->field($model, 'parent_id')->dropDownList(Category::getList()) ?>
-
-            <?= $form->field($model, 'url') ?>
-
-            <?= $form->field($model, 'is_active')->checkbox() ?>
-
-            <?php
-            $items = [];
-            foreach($languages as $i=>$language)
-            {
-                $items[] = [
-                    'label' => $language->name,
-                    'content' => $this->render('lang_tab', ['form'=>$form, 'model'=>$description[$language->id], 'i'=>$language->id]),
-                    'active' => !$i
-                ];
-            }
-            echo Tabs::widget([
-                'items' => $items
-            ]);
-            ?>
+            <?= $form->field($model, 'category_id')->dropDownList(Category::getList()) ?>
 
             <div class="form-group">
                 <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary']) ?>

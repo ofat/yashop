@@ -56,4 +56,9 @@ class Language extends ActiveRecord
             'sort_order' => Yii::t('base', 'Sort order'),
         ];
     }
+
+    public static function getActive()
+    {
+        return static::find()->where('is_active=1')->all();
+    }
 }

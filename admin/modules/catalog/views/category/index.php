@@ -7,52 +7,34 @@ use yii\grid\GridView;
 /**
  * @var yii\web\View $this
  * @var yii\data\ActiveDataProvider $dataProvider
- * @var yashop\admin\models\CountrySearch $searchModel
+ * @var yashop\admin\models\CategorySearch $searchModel
  */
 
-$this->title = Yii::t('admin.country', 'Countries');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('base', 'Settings'), 'url' => ['/settings']];
+$this->title = Yii::t('admin.category', 'Categories');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('base', 'Catalog'), 'url' => ['/catalog']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
-<form action="<?=Url::toRoute(['/settings/country/switch'])?>" method="get">
-
-<?=Html::a(Yii::t('admin.country', 'Add country'), ['/settings/country/create'], ['class'=>'btn btn-sm btn-primary'])?>
-
-<div class="pull-right">
-    <?=Html::submitButton(Yii::t('base', 'Switch on'), ['class'=>'btn btn-sm btn-info', 'name'=>'type', 'value'=>'on'])?>
-    <?=Html::a(Yii::t('base', 'Switch on all'),['/settings/country/switch-all', 'type'=>'on'], ['class'=>'btn btn-sm btn-info', 'name'=>'type', 'value'=>'on'])?>
-    |
-    <?=Html::submitButton(Yii::t('base', 'Switch off'), ['class'=>'btn btn-sm btn-warning', 'name'=>'type', 'value'=>'off'])?>
-    <?=Html::a(Yii::t('base', 'Switch off all'),['/settings/country/switch-all', 'type'=>'off'], ['class'=>'btn btn-sm btn-warning', 'name'=>'type', 'value'=>'off'])?>
-</div>
-
-<div class="user-list">
+<p class="pull-right">
+    <?=Html::a(Yii::t('admin.category', 'Add category'), ['/catalog/category/create'], ['class'=>'btn btn-sm btn-primary'])?>
+</p>
+<div class="category-list">
 
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\CheckboxColumn'],
             'id',
-            'code',
-            'ru',
-            'en',
+            'description.name',
+            'url',
+            'description.title',
+            'description.meta_keyword',
+            'description.meta_desc',
             [
                 'class' => '\yii\grid\DataColumn',
                 'attribute' => 'is_active',
                 'content' => function($model) {
                         $class = $model->is_active ? 'glyphicon-plus' : 'glyphicon-minus';
-                        return Html::tag('i','',['class' => 'glyphicon '.$class]);
-                    },
-                'filter' => ['Нет', 'Да'],
-                'contentOptions' => ['class'=>'text-center']
-            ],
-            [
-                'class' => '\yii\grid\DataColumn',
-                'attribute' => 'is_main',
-                'content' => function($model) {
-                        $class = $model->is_main ? 'glyphicon-plus' : 'glyphicon-minus';
                         return Html::tag('i','',['class' => 'glyphicon '.$class]);
                     },
                 'filter' => ['Нет', 'Да'],
@@ -71,5 +53,3 @@ $this->params['breadcrumbs'][] = $this->title;
     ]); ?>
 
 </div>
-
-</form>

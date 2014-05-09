@@ -46,6 +46,10 @@ AppAsset::register($this);
                 ['label' => Yii::t('base', 'Widgets'), 'url' => ['/widgets'], 'items' => [
                     ['label' => Yii::t('admin.menu', 'Menu'), 'url' => ['/widgets/menu']],
                     ['label' => Yii::t('admin.promo', 'Promo items'), 'url' => ['/widgets/promo']]
+                ]],
+                ['label' => Yii::t('base', 'Catalog'), 'url' => ['/catalog'], 'items' => [
+                    ['label' => Yii::t('admin.item', 'Items'), 'url' => ['/catalog/item']],
+                    ['label' => Yii::t('admin.category', 'Categories'), 'url' => ['/catalog/category']],
                 ]]
             ];
 

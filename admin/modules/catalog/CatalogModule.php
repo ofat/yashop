@@ -1,10 +1,12 @@
 <?php
 
-namespace admin\modules\catalog;
+namespace yashop\admin\modules\catalog;
 
-class CatalogModule extends \yii\base\Module
+use yii\base\Module;
+
+class CatalogModule extends Module
 {
-    public $controllerNamespace = 'admin\modules\catalog\controllers';
+    public $controllerNamespace = 'yashop\admin\modules\catalog\controllers';
 
     public function init()
     {

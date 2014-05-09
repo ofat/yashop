@@ -2,6 +2,7 @@
 
 namespace yashop\common\models\category;
 
+use yashop\common\helpers\Tree;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -13,7 +14,10 @@ use yashop\common\models\item\Item;
  * @property integer $id
  * @property integer $parent_id
  * @property string $url
+ * @property integer $is_active
  *
+ * @property CategoryDescription $description
+ * @property CategoryDescription[] $allDescription
  * @property Item[] $items
  */
 class Category extends ActiveRecord
@@ -32,8 +36,8 @@ class Category extends ActiveRecord
     public function rules()
     {
         return [
-            [['parent_id', 'url'], 'required'],
-            [['parent_id'], 'integer'],
+            [['parent_id', 'is_active'], 'integer'],
+            [['url'], 'required'],
             [['url'], 'string', 'max' => 255]
         ];
     }
@@ -44,10 +48,30 @@ class Category extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('category', 'ID'),
-            'parent_id' => Yii::t('category', 'Parent ID'),
-            'url' => Yii::t('category', 'Url'),
+            'id' => Yii::t('admin.category', 'ID'),
+            'parent_id' => Yii::t('admin.category', 'Parent category'),
+            'url' => Yii::t('admin.category', 'URL'),
+            'is_active' => Yii::t('base', 'Is active'),
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDescription()
+    {
+        /**
+         * todo: change lang id - from config
+         */
+        return $this->hasOne(CategoryDescription::className(), ['category_id' => 'id'])->where(['language_id' => 2]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAllDescription()
+    {
+        return $this->hasMany(CategoryDescription::className(), ['category_id' => 'id']);
     }
 
     /**
@@ -56,5 +80,11 @@ class Category extends ActiveRecord
     public function getItems()
     {
         return $this->hasMany(Item::className(), ['category_id' => 'id']);
+    }
+
+    public static function getList()
+    {
+        $data = static::find()->where('is_active=1')->with('description')->asArray()->all();
+        return Tree::getDropDownData($data,'description.name');
     }
 }

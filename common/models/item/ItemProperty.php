@@ -46,11 +46,11 @@ class ItemProperty extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('item', 'ID'),
-            'item_id' => Yii::t('item', 'Item ID'),
-            'property_id' => Yii::t('item', 'Property ID'),
-            'value_id' => Yii::t('item', 'Value ID'),
-            'is_input' => Yii::t('item', 'Is Input'),
+            'id' => Yii::t('admin.item', 'ID'),
+            'item_id' => Yii::t('admin.item', 'Item ID'),
+            'property_id' => Yii::t('admin.item', 'Property ID'),
+            'value_id' => Yii::t('admin.item', 'Value ID'),
+            'is_input' => Yii::t('admin.item', 'Is Input'),
         ];
     }
 
