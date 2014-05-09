@@ -1,8 +1,9 @@
 <?php
 
 use yii\db\Schema;
+use yashop\console\migrations\base\YashopMigration;
 
-class m140509_110806_category extends \yii\db\Migration
+class m140509_110806_category extends YashopMigration
 {
     
     protected $tableCategory = '{{%category}}';
@@ -10,17 +11,14 @@ class m140509_110806_category extends \yii\db\Migration
     
     public function safeUp()
     {
-        $tableOptions = null;
-        if ($this->db->driverName === 'mysql') {
-            $tableOptions = 'ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1';
-        }
+        parent::safeUp();
 
         $this->createTable($this->tableCategory, [
             'id' => Schema::TYPE_PK,
             'parent_id' => Schema::TYPE_INTEGER . ' DEFAULT NULL',
             'url' => Schema::TYPE_STRING . '(255) NOT NULL',
             'is_active' => Schema::TYPE_SMALLINT . '(1) NOT NULL DEFAULT 1',
-        ], $tableOptions);
+        ], $this->tableOptions);
 
         $this->createIndex('parent_id', $this->tableCategory, 'parent_id');
         $this->createIndex('url', $this->tableCategory, 'url');
@@ -35,7 +33,7 @@ class m140509_110806_category extends \yii\db\Migration
             'title' => Schema::TYPE_STRING,
             'meta_desc' => Schema::TYPE_STRING . '(255)',
             'meta_keyword' => Schema::TYPE_STRING . '(255)'
-        ], $tableOptions);
+        ], $this->tableOptions);
 
         $this->createIndex('language_id', $this->tableDescription, 'language_id');
         $this->createIndex('category_id', $this->tableDescription, 'category_id');
