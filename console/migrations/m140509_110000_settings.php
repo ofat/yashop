@@ -15,6 +15,29 @@ class m140509_110000_settings extends YashopMigration
     {
         parent::safeUp();
 
+        $this->createCountry()
+            ->createCurrency()
+            ->createLanguage();
+
+        if(!$this->dataImport('country', $this->tableCountry))
+            return false;
+
+        if(!$this->dataImport('currency', $this->tableCurrency))
+            return false;
+
+        if(!$this->dataImport('language', $this->tableLanguage))
+            return false;
+    }
+
+    public function safeDown()
+    {
+        $this->dropTable($this->tableCountry);
+        $this->dropTable($this->tableCurrency);
+        $this->dropTable($this->tableLanguage);
+    }
+
+    protected function createCountry()
+    {
         /**
          * @todo: change ru/en columns to country_description table
          */
@@ -29,6 +52,11 @@ class m140509_110000_settings extends YashopMigration
         ], $this->tableOptions);
         $this->createIndex('code', $this->tableCountry, 'code', true);
 
+        return $this;
+    }
+
+    protected function createCurrency()
+    {
         $this->createTable($this->tableCurrency, [
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . '(128) NOT NULL',
@@ -40,6 +68,11 @@ class m140509_110000_settings extends YashopMigration
             'rate' => Schema::TYPE_DECIMAL . '(15,4) NOT NULL DEFAULT \'1.0000\'',
         ], $this->tableOptions);
 
+        return $this;
+    }
+
+    protected function createLanguage()
+    {
         $this->createTable($this->tableLanguage, [
             'id' => Schema::TYPE_PK,
             'name' => Schema::TYPE_STRING . '(255) NOT NULL',
@@ -49,12 +82,7 @@ class m140509_110000_settings extends YashopMigration
             'is_default' => Schema::TYPE_SMALLINT . '(1) NOT NULL DEFAULT 0',
             'sort_order' => Schema::TYPE_SMALLINT . '(2) NOT NULL DEFAULT 0'
         ], $this->tableOptions);
-    }
 
-    public function safeDown()
-    {
-        $this->dropTable($this->tableCountry);
-        $this->dropTable($this->tableCurrency);
-        $this->dropTable($this->tableLanguage);
+        return $this;
     }
 }
