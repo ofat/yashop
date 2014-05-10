@@ -2,6 +2,7 @@
 
 namespace yashop\common\models\user;
 
+use yashop\common\helpers\Config;
 use Yii;
 use yii\db\ActiveRecord;
 use yashop\common\models\Country;
@@ -102,11 +103,10 @@ class Address extends ActiveRecord
 
     /**
      * Get max allowed addresses per user
-     * @todo: make this config param
      * @return int
      */
     public static function getMaxPerUser()
     {
-        return (int)Yii::$app->params['userMaxAddress'];
+        return Config::get('maxUserAddress');
     }
 }

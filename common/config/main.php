@@ -3,9 +3,6 @@ return [
     'name' => 'YaShop',
     'language' => 'ru',
     'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
