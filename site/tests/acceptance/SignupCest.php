@@ -1,9 +1,9 @@
 <?php
 
-namespace yashop\site\tests\acceptance;
+namespace frontend\tests\acceptance;
 
-use yashop\site\tests\_pages\SignupPage;
-use yashop\common\models\User;
+use frontend\tests\_pages\SignupPage;
+use common\models\User;
 
 class SignupCest
 {

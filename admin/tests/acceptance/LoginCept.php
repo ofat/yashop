@@ -1,6 +1,6 @@
 <?php
 
-use yashop\common\tests\_pages\LoginPage;
+use common\tests\_pages\LoginPage;
 
 $I = new WebGuy($scenario);
 $I->wantTo('ensure login page works');

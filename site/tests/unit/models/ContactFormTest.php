@@ -1,10 +1,10 @@
 <?php
 
-namespace yashop\site\tests\unit\models;
+namespace frontend\tests\unit\models;
 
 use Yii;
-use yashop\site\tests\unit\TestCase;
-use yashop\site\models\ContactForm;
+use frontend\tests\unit\TestCase;
+use frontend\models\ContactForm;
 
 class ContactFormTest extends TestCase
 {

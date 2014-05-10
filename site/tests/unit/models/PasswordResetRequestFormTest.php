@@ -1,12 +1,12 @@
 <?php
 
-namespace yashop\site\tests\unit\models;
+namespace frontend\tests\unit\models;
 
 use Yii;
-use yashop\site\tests\unit\DbTestCase;
-use yashop\site\models\PasswordResetRequestForm;
-use yashop\common\tests\fixtures\UserFixture;
-use yashop\common\models\User;
+use frontend\tests\unit\DbTestCase;
+use frontend\models\PasswordResetRequestForm;
+use common\tests\fixtures\UserFixture;
+use common\models\User;
 
 class PasswordResetRequestFormTest extends DbTestCase
 {
@@ -66,7 +66,7 @@ class PasswordResetRequestFormTest extends DbTestCase
         return [
             'user' => [
                 'class' => UserFixture::className(),
-                'dataFile' => '@site/tests/unit/fixtures/data/user.php'
+                'dataFile' => '@frontend/tests/unit/fixtures/data/user.php'
             ],
         ];
     }

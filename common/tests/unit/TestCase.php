@@ -1,6 +1,6 @@
 <?php
 
-namespace yashop\common\tests\unit;
+namespace common\tests\unit;
 
 class TestCase extends \yii\codeception\TestCase
 {

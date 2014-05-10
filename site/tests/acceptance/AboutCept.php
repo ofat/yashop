@@ -1,6 +1,6 @@
 <?php
 
-use yashop\site\tests\_pages\AboutPage;
+use frontend\tests\_pages\AboutPage;
 
 $I = new WebGuy($scenario);
 $I->wantTo('ensure that about works');

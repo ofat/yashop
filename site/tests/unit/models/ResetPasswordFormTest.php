@@ -1,10 +1,10 @@
 <?php
 
-namespace yashop\site\tests\unit\models;
+namespace frontend\tests\unit\models;
 
-use yashop\site\tests\unit\DbTestCase;
-use yashop\common\tests\fixtures\UserFixture;
-use yashop\site\models\ResetPasswordForm;
+use frontend\tests\unit\DbTestCase;
+use common\tests\fixtures\UserFixture;
+use frontend\models\ResetPasswordForm;
 
 class ResetPasswordFormTest extends DbTestCase
 {
@@ -29,7 +29,7 @@ class ResetPasswordFormTest extends DbTestCase
         return [
             'user' => [
                 'class' => UserFixture::className(),
-                'dataFile' => '@site/tests/unit/fixtures/data/user.php'
+                'dataFile' => '@frontend/tests/unit/fixtures/data/user.php'
             ],
         ];
     }

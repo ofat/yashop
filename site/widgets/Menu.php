@@ -21,6 +21,9 @@ class Menu extends Widget
          * @var WidgetMenu $menu
          */
         $menu = WidgetMenu::find()->where(['alias'=>$this->type])->one();
+        if(!$menu)
+            return false;
+
         $items = $menu->getChildrenTree();
 
         return $this->render('menu',['data'=>$menu->getChildrenTree(), 'type'=>$this->type]);

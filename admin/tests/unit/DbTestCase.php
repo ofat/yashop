@@ -1,8 +1,8 @@
 <?php
 
-namespace yashop\admin\tests\unit;
+namespace backend\tests\unit;
 
 class DbTestCase extends \yii\codeception\DbTestCase
 {
-    public $appConfig = '@admin/tests/unit/_config.php';
+    public $appConfig = '@backend/tests/unit/_config.php';
 }
