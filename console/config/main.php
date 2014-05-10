@@ -6,12 +6,6 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'console\controllers',
     'modules' => [],
-    'controllerMap' => [
-        'migrate' => [
-            'class' => 'yii\console\controllers\MigrateController',
-            'migrationPath' => '@yashop-console/migrations',
-        ],
-    ],
     'components' => [
         'authManager' => [
             'class' => 'yii\rbac\DbManager',
