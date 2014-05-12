@@ -38,10 +38,11 @@ AppAsset::register($this);
             $menuItems = [
                 ['label' => Yii::t('base','Home'), 'url' => ['/dashboard']],
                 ['label' => Yii::t('user','Users'), 'url' => ['/user/list']],
-                ['label' => Yii::t('base','Settings'), 'url' => '', 'items'=> [
+                ['label' => Yii::t('base','Settings'), 'url' => '/settings', 'items'=> [
                     ['label' => Yii::t('admin.country', 'Countries'), 'url' => ['/settings/country']],
                     ['label' => Yii::t('admin.currency', 'Currencies'), 'url' => ['/settings/currency']],
-                    ['label' => Yii::t('admin.language', 'Languages'), 'url' => ['/settings/language']]
+                    ['label' => Yii::t('admin.language', 'Languages'), 'url' => ['/settings/language']],
+                    ['label' => Yii::t('admin.settings', 'Basic'), 'url' => ['/settings']]
                 ]],
                 ['label' => Yii::t('base', 'Widgets'), 'url' => ['/widgets'], 'items' => [
                     ['label' => Yii::t('admin.menu', 'Menu'), 'url' => ['/widgets/menu']],

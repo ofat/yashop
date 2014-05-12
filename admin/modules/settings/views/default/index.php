@@ -1,12 +1,29 @@
+<?php
+
+use yii\helpers\Html;
+use yii\bootstrap\ActiveForm;
+
+/**
+ * @var yii\web\View $this
+ * @var \yashop\common\models\Setting[] $settings
+ * @var \yashop\admin\models\forms\SettingForm[] $models
+ */
+
+$this->title = Yii::t('admin.settings', 'Basic settings');
+$this->params['breadcrumbs'][] = $this->title;
+?>
 <div class="settings-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <?php $form = ActiveForm::begin() ?>
+            <?php foreach($models as $i=>$model):?>
+            <?= $form->field($model, "[$i]value") ?>
+            <?php endforeach ?>
+
+            <div class="form-actions">
+                <?= Html::submitButton(Yii::t('base', 'Save'), ['class' => 'btn btn-primary']) ?>
+            </div>
+            <?php ActiveForm::end() ?>
+        </div>
+    </div>
 </div>

@@ -14,6 +14,9 @@ use yii\db\ActiveRecord;
  * @property string $value_string
  * @property integer $value_integer
  * @property double $value_float
+ *
+ * @property string|integer|float $value
+ * @property string $type
  */
 class Setting extends ActiveRecord
 {
@@ -53,5 +56,54 @@ class Setting extends ActiveRecord
             'value_integer' => Yii::t('admin.settings', 'Value Integer'),
             'value_float' => Yii::t('admin.settings', 'Value Float'),
         ];
+    }
+
+    /**
+     * @return float|int|string
+     */
+    public function getValue()
+    {
+        if(!is_null($this->value_string))
+            return $this->value_string;
+
+        if(!is_null($this->value_integer))
+            return $this->value_integer;
+
+        if(!is_null($this->value_float))
+            return $this->value_float;
+    }
+
+    /**
+     * @param $value
+     */
+    public function setValue($value)
+    {
+        switch($this->type)
+        {
+            case 'integer':
+                $this->value_integer = $value;
+                break;
+            case 'float':
+                $this->value_float = $value;
+                break;
+            case 'string':
+            default:
+                $this->value_string = $value;
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        if(!is_null($this->value_string))
+            return 'string';
+
+        if(!is_null($this->value_integer))
+            return 'integer';
+
+        if(!is_null($this->value_float))
+            return 'float';
     }
 }

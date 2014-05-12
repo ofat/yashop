@@ -50,7 +50,8 @@ return [
                         'admin.language' => 'admin/language.php',
                         'admin.currency' => 'admin/currency.php',
                         'admin.category' => 'admin/category.php',
-                        'admin.item'     => 'admin/item.php'
+                        'admin.item'     => 'admin/item.php',
+                        'admin.settings' => 'admin/settings.php'
                     ],
                 ],
             ]
