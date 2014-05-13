@@ -7,7 +7,7 @@ return [
     'controllerNamespace' => 'console\controllers',
     'modules' => [
         'fake' => [
-            'class' => 'yashop\console\modules\import\FakeModule',
+            'class' => 'yashop\console\modules\fake\FakeModule',
         ],
     ],
     'components' => [
@@ -34,8 +34,8 @@ return [
             'fixtureDataPath' => '@yashop-common/tests/fixtures/data',
             'namespace' => 'yashop\common\tests\fixtures'
         ],
-        'demo' => [
-            'class' => 'yashop\console\controllers\DemoController'
+        'rbac' => [
+            'class' => 'yashop\console\controllers\RbacController'
         ]
     ]
 ];

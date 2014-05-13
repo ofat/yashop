@@ -3,7 +3,7 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace console\controllers;
+namespace yashop\console\controllers;
 
 use Yii;
 use yii\console\Controller;
