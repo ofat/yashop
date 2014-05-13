@@ -10,11 +10,10 @@ use yii\db\ActiveRecord;
  * This is the model class for table "property".
  *
  * @property integer $id
- * @property string $ru
- * @property string $en
- * @property integer $type
+ * @property integer $parent_id
  *
  * @property ItemProperty[] $itemProperties
+ * @property PropertyDescription $description
  */
 class Property extends ActiveRecord
 {
@@ -32,9 +31,7 @@ class Property extends ActiveRecord
     public function rules()
     {
         return [
-            [['type'], 'required'],
-            [['type'], 'integer'],
-            [['ru', 'en'], 'string', 'max' => 512]
+            ['parent_id', 'integer'],
         ];
     }
 
@@ -44,10 +41,8 @@ class Property extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => Yii::t('payment', 'ID'),
-            'ru' => Yii::t('payment', 'Ru'),
-            'en' => Yii::t('payment', 'En'),
-            'type' => Yii::t('payment', 'Type'),
+            'id' => Yii::t('admin.property', 'ID'),
+            'parent_id' => Yii::t('admin.property', 'Parent id'),
         ];
     }
 
@@ -57,5 +52,13 @@ class Property extends ActiveRecord
     public function getItemProperties()
     {
         return $this->hasMany(ItemProperty::className(), ['value_id' => 'id']);
+    }
+
+    public function getDescription()
+    {
+        /**
+         * todo: change lang id from config
+         */
+        return $this->hasOne(PropertyDescription::className(), ['property_id' => 'id'])->where(['language_id' => 2]);
     }
 }
