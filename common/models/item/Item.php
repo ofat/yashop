@@ -40,10 +40,26 @@ class Item extends ActiveRecord
     public function rules()
     {
         return [
-            [['category_id', 'image', 'price', 'num', 'updated_at', 'created_at'], 'required'],
+            [['category_id', 'image', 'price', 'num'], 'required'],
             [['category_id', 'num', 'updated_at', 'created_at'], 'integer'],
             [['price', 'promo_price'], 'number'],
-            [['title_ru', 'title_en', 'image'], 'string', 'max' => 512]
+            [['image'], 'string', 'max' => 512]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['updated_at'],
+                ],
+            ],
         ];
     }
 

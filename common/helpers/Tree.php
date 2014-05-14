@@ -41,7 +41,7 @@ class Tree
      * @param $parent
      * @return array
      */
-    protected static function createTree(&$list, $parent){
+    public static function createTree(&$list, $parent){
         $tree = array();
         foreach($parent as $item)
         {
@@ -71,6 +71,24 @@ class Tree
 
             self::getList($items, $item['children'], $level+1, $name_key);
         }
+    }
+
+    /**
+     * Return last level of children
+     * @param $items
+     * @return array
+     */
+    public static function getChildren($items)
+    {
+        $children = [];
+        foreach($items as $item)
+        {
+            if(isset($item['children']))
+                $children = ArrayHelper::merge($children, self::getChildren($item['children']));
+            else
+                $children[] = $item;
+        }
+        return $children;
     }
 
 }

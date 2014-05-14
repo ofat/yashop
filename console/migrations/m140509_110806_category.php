@@ -17,6 +17,7 @@ class m140509_110806_category extends YashopMigration
             'id' => Schema::TYPE_PK,
             'parent_id' => Schema::TYPE_INTEGER . ' DEFAULT NULL',
             'url' => Schema::TYPE_STRING . '(255) NOT NULL',
+            'is_parent' => Schema::TYPE_SMALLINT . '(1) NOT NULL DEFAULT 0',
             'is_active' => Schema::TYPE_SMALLINT . '(1) NOT NULL DEFAULT 1',
         ], $this->tableOptions);
 
