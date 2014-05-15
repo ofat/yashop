@@ -39,7 +39,7 @@ class m140509_152020_item extends YashopMigration
         $this->createTable($this->tableItem, [
             'id' => Schema::TYPE_PK,
             'category_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
-            'image' => Schema::TYPE_STRING . '(512) NOT NULL',
+            'image' => Schema::TYPE_STRING . '(255) NOT NULL',
             'price' => Schema::TYPE_DECIMAL . '(15,4) NOT NULL',
             'promo_price' => Schema::TYPE_DECIMAL . '(15,4) DEFAULT NULL',
             'num' => Schema::TYPE_SMALLINT . '(5) NOT NULL',
@@ -77,7 +77,7 @@ class m140509_152020_item extends YashopMigration
         $this->createTable($this->tableImage, [
             'id' => Schema::TYPE_PK,
             'item_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
-            'image' => Schema::TYPE_STRING . '(512) NOT NULL'
+            'image' => Schema::TYPE_STRING . '(255) NOT NULL'
         ], $this->tableOptions);
         $this->createIndex('item_id', $this->tableImage, 'item_id');
         $this->addForeignKey('item_image_ibfk_1', $this->tableImage, 'item_id', $this->tableItem, 'id', 'CASCADE', 'CASCADE');
@@ -92,7 +92,8 @@ class m140509_152020_item extends YashopMigration
             'item_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'property_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'value_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
-            'is_input' => Schema::TYPE_SMALLINT . '(1) NOT NULL DEFAULT 0'
+            'is_input' => Schema::TYPE_SMALLINT . '(1) NOT NULL DEFAULT 0',
+            'image' => Schema::TYPE_STRING . '(255) DEFAULT NULL'
         ], $this->tableOptions);
         $this->createIndex('item_id', $this->tableProperty, 'item_id');
         $this->createIndex('property_id', $this->tableProperty, 'property_id');
