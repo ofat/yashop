@@ -6,9 +6,12 @@
  */
 
 use yii\helpers\Html;
+use yii\helpers\HtmlPurifier;
 use yashop\common\helpers\Base;
 $this->title = $item->title;
-$this->params['breadcrumbs'][] = $this->title;
+$this->registerMetaTag(['name' => 'description', 'content' => $item->meta_desc]);
+$this->registerMetaTag(['name' => 'keywords', 'content' => $item->meta_keyword]);
+$this->params['breadcrumbs'][] = $item->name;
 ?>
 
 <div class="row item-main">
@@ -16,21 +19,21 @@ $this->params['breadcrumbs'][] = $this->title;
         <div id="small-images">
             <?php foreach($item->images as $image):?>
                 <a rel="preload" href="<?=$image?>">
-                    <img src="<?=$image?>_40x40.jpg" alt="" width="40" height="40">
+                    <img src="http://cdn.yashop/items/<?=$image?>" alt="" width="40" height="40">
                 </a>
             <?php endforeach ?>
         </div>
         <div id="main-image">
             <a href="<?=$item->image?>">
-                <img src="<?=$item->image?>_300x300.jpg" alt="">
+                <img src="http://cdn.yashop/items/<?=$item->image?>" width="300" alt="">
             </a>
         </div>
     </div>
     <div class="col-md-8">
         <div id="item_id" data-value="<?=$item->id?>"></div>
-        <h2 class="title"><?=$item->title?></h2>
+        <h2 class="title"><?=$item->name?></h2>
         <div class="price" id="price">
-            <?=Base::formatMoney($item->price)?>
+            <?=$item->getPrice()?>
         </div>
         <form class="form-horizontal">
             <?= $this->render('_input_params', ['params' => $item->inputParams]) ?>
@@ -74,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <div class="tab-content">
             <div class="tab-pane" id="desc">
-
+                <?=HtmlPurifier::process($item->description)?>
             </div>
             <div class="tab-pane active" id="tab1">
                 <table class="table table-striped tcart">

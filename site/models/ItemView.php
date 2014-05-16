@@ -5,10 +5,11 @@
 
 namespace yashop\site\models;
 
+use yashop\common\helpers\Base;
 use yashop\common\models\item\ItemDescription;
 use yashop\common\models\item\ItemProperty;
 use yashop\common\models\item\ItemSku;
-use yashop\common\models\Property;
+use yashop\common\models\PropertyDescription;
 use Yii;
 use yashop\common\models\item\ItemImage;
 use yashop\common\models\item\Item;
@@ -23,9 +24,29 @@ class ItemView extends Item
     protected $_id;
 
     /**
-     * @var string Item title
+     * @var string Item name
+     */
+    public $name;
+
+    /**
+     * @var string Item html title
      */
     public $title;
+
+    /**
+     * @var string Item description
+     */
+    public $description;
+
+    /**
+     * @var string Item html meta description
+     */
+    public $meta_desc;
+
+    /**
+     * @var string Item html meta keywords
+     */
+    public $meta_keyword;
 
     /**
      * @var array Item images
@@ -100,7 +121,7 @@ class ItemView extends Item
     protected  function loadBase()
     {
         $base = (new Query())
-            ->select(['base.*', 'desc.title'])
+            ->select(['base.*', 'desc.*'])
             ->from([
                 'base' => Item::tableName(),
             ])
@@ -112,6 +133,10 @@ class ItemView extends Item
             throw new NotFoundHttpException(Yii::t('yii','The requested page does not exist.'));
 
         $this->title = $base['title'];
+        $this->name = $base['name'];
+        $this->description = $base['description'];
+        $this->meta_desc = $base['meta_desc'];
+        $this->meta_keyword = $base['meta_keyword'];
         $this->setAttributes($base);
 
         return $this;
@@ -143,26 +168,39 @@ class ItemView extends Item
      */
     protected function loadParams()
     {
+        /*
+         * @todo: change lang id from config
+         */
         $lang = Yii::$app->language;
+        $langId = 2;
 
         $this->params = (new Query())
             ->select([
-                'property'  => 'property.'.$lang,
-                'value'     => 'value.'.$lang,
+                'property'  => 'propertyDesc.name',
+                'value'     => 'valueDesc.name',
                 'is_input',
-                'property_id',
-                'value_id'
+                'param.property_id',
+                'param.value_id',
+                'image'
             ])
             ->from(['param'=>ItemProperty::tableName()])
-            ->where(['item_id'=>$this->_id])
-            ->leftJoin(['property' => Property::tableName()], 'property.id = param.property_id')
-            ->leftJoin(['value' => Property::tableName()], 'value.id = param.value_id')
+            ->where(['param.item_id'=>$this->_id])
+            ->leftJoin(
+                ['propertyDesc' => PropertyDescription::tableName()],
+                'propertyDesc.property_id=param.property_id AND propertyDesc.language_id=:langId',
+                [':langId'=>$langId]
+            )
+            ->leftJoin(
+                ['valueDesc' => PropertyDescription::tableName()],
+                'valueDesc.property_id=param.value_id AND valueDesc.language_id=:langId',
+                [':langId' => $langId]
+            )
             ->all();
 
         return $this;
     }
 
-    /**
+    /**[
      * Preparing input params
      * @return $this
      */
@@ -246,5 +284,15 @@ class ItemView extends Item
         }
 
         return $this;
+    }
+
+    public function getPrice()
+    {
+        if($this->priceMin != $this->priceMax)
+        {
+            return Yii::t('item', 'от {price}', ['price' => Base::formatMoney($this->priceMin)]);
+        }
+
+        return Base::formatMoney($this->priceMin);
     }
 }
