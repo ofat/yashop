@@ -1,6 +1,7 @@
 <?php
 /**
  * @author Vitaliy Ofat <ofatv22@gmail.com>
+ * @var yashop\common\models\Widgets\WidgetMenuItem[] $items
  */
 use yii\helpers\Url;
 use yii\helpers\Html;
@@ -9,8 +10,8 @@ use yii\helpers\Html;
 <?php foreach($items as $item):?>
     <li class="list-group-item">
         <div class="widget-menu-item">
-            <?=Html::encode($item[Yii::$app->language])?>
-            <a href="<?=Url::toRoute(['/widgets/menu/edit', 'menu_id'=>$item['menu_id'],'id'=>$item['id']])?>" class="btn btn-xs btn-info">
+            <?=Html::encode($item['description']['name'])?>
+            <a href="<?=Url::toRoute(['/widgets/menu/edit', 'menu_id'=>$item['widget_id'],'id'=>$item['id']])?>" class="btn btn-xs btn-info">
                 <i class="glyphicon glyphicon-edit"></i>
             </a>
             <a href="<?=Url::toRoute(['/widgets/menu/remove', 'id'=>$item['id']])?>" class="btn btn-xs btn-warning">

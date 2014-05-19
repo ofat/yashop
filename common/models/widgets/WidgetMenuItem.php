@@ -9,16 +9,16 @@ use yii\db\ActiveRecord;
  * This is the model class for table "widget_menu_item".
  *
  * @property integer $id
- * @property integer $menu_id
+ * @property integer $widget_id
  * @property integer $parent_id
- * @property string $ru
- * @property string $en
  * @property string $url
  * @property integer $sort_order
  *
  * @property WidgetMenuItem $parent
  * @property WidgetMenuItem[] $widgetMenuItems
- * @property WidgetMenu $menu
+ * @property Widget $widget
+ * @property WidgetMenuDescription $description
+ * @property WidgetMenuDescription[] $allDescription
  */
 class WidgetMenuItem extends ActiveRecord
 {
@@ -36,9 +36,9 @@ class WidgetMenuItem extends ActiveRecord
     public function rules()
     {
         return [
-            [['menu_id', 'ru', 'en', 'url', 'sort_order'], 'required'],
-            [['menu_id', 'parent_id', 'sort_order'], 'integer'],
-            [['ru', 'en', 'url'], 'string', 'max' => 255]
+            [['widget_id', 'url'], 'required'],
+            [['widget_id', 'parent_id', 'sort_order'], 'integer'],
+            [['url'], 'string', 'max' => 255]
         ];
     }
 
@@ -49,7 +49,7 @@ class WidgetMenuItem extends ActiveRecord
     {
         return [
             'id' => Yii::t('widget', 'ID'),
-            'menu_id' => Yii::t('admin.menu', 'Menu type'),
+            'widget_id' => Yii::t('admin.menu', 'Menu type'),
             'parent_id' => Yii::t('admin.menu', 'Parent menu item'),
             'ru' => Yii::t('base', 'Russian'),
             'en' => Yii::t('base', 'English'),
@@ -77,8 +77,27 @@ class WidgetMenuItem extends ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getMenu()
+    public function getWidget()
     {
-        return $this->hasOne(WidgetMenu::className(), ['id' => 'menu_id']);
+        return $this->hasOne(Widget::className(), ['id' => 'widget_id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAllDescription()
+    {
+        return $this->hasMany(WidgetMenuDescription::className(), ['item_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDescription()
+    {
+        /**
+         * @todo: make language from config
+         */
+        return $this->hasOne(WidgetMenuDescription::className(), ['item_id' => 'id'])->where(['language_id' => 2]);
     }
 }

@@ -2,11 +2,15 @@
 
 namespace yashop\admin\modules\widgets\controllers;
 
+use yashop\common\models\Language;
+use yashop\common\models\widgets\WidgetMenuDescription;
 use Yii;
-use yashop\common\models\widgets\WidgetMenu;
+use yashop\common\models\widgets\Widget;
 use yashop\common\models\widgets\WidgetMenuItem;
+use yii\base\Model;
 use yii\db\Query;
 use yii\filters\AccessControl;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
@@ -44,6 +48,7 @@ class MenuController extends Controller
     /**
      * @param $menu_id
      * @param $id
+     * @return string|\yii\web\Response
      */
     public function actionEdit($menu_id, $id)
     {
@@ -55,40 +60,82 @@ class MenuController extends Controller
      * @param $menu_id
      * @param int $id
      * @return string|\yii\web\Response
+     * @throws HttpException
      */
     protected function form($menu_id, $id = 0)
     {
         list($menuTypes,$menus) = $this->getMenuTypes();
         $listMenu = [];
         /**
-         * @var \yashop\common\models\widgets\WidgetMenu $item
+         * @var \yashop\common\models\widgets\Widget $item
          */
         foreach($menus as $item)
         {
-            $listMenu[$item->id] = $item->getName();
+            $listMenu[$item->id] = $item->description->name;
         }
         $menu = $this->getMenuModel($menu_id);
 
         $model = $this->getItemModel($id);
-        $model->menu_id = $menu->id;
+        $model->widget_id = $menu->id;
 
-        if($model->load(Yii::$app->request->post())) {
-            if($model->parent_id == 0)
-                $model->parent_id = null;
-            if(!$model->sort_order)
-            {
-                $last = (new Query())
-                        ->select('MAX(sort_order)')
-                        ->from(WidgetMenuItem::tableName())
-                        ->where(['menu_id'=>$model->menu_id, 'parent_id'=>$model->parent_id])
-                        ->scalar();
-                $model->sort_order = ++$last;
-            }
-            if($model->save())
-                return $this->redirect(['/widgets/menu/index', 'id'=>$model->menu_id]);
+        $description = ArrayHelper::index($model->allDescription, 'language_id');
+        $languages = Language::getActive();
+        foreach($languages as $language)
+        {
+            if(isset($description[ $language->id ]))
+                continue;
+
+            $description[ $language->id ] = new WidgetMenuDescription;
+            $description[ $language->id ]->language_id = $language->id;
+            $description[ $language->id ]->item_id = $model->id;
         }
 
-        return $this->render('form', ['menuTypes'=>$menuTypes, 'menu'=>$menu, 'model'=>$model, 'listMenu'=>$listMenu]);
+        $post = Yii::$app->request->post();
+        $itemLoaded = $model->load($post) && $model->validate();
+        $descriptionLoaded = Model::loadMultiple($description, $post);
+
+        if($itemLoaded && $descriptionLoaded) {
+            $transaction = Yii::$app->db->beginTransaction();
+            try {
+                if($model->parent_id == 0)
+                    $model->parent_id = null;
+                if(!$model->sort_order)
+                {
+                    $last = (new Query())
+                            ->select('MAX(sort_order)')
+                            ->from(WidgetMenuItem::tableName())
+                            ->where(['widget_id'=>$model->widget_id, 'parent_id'=>$model->parent_id])
+                            ->scalar();
+                    $model->sort_order = ++$last;
+                }
+                $r = $model->save();
+                if(!$r)
+                    die($model->getErrors());
+                foreach($description as $item)
+                {
+                    $item->item_id = $model->id;
+                    $r = $item->save() && $r;
+                }
+                if($r) {
+                    $transaction->commit();
+                    return $this->redirect(['/widgets/menu/index', 'id'=>$model->widget_id]);
+                }
+                else
+                    throw new HttpException(500, Yii::t('base', 'Saving error. Please try again'));
+            } catch(Exception $e) {
+                $transaction->rollBack();
+                Yii::$app->session->setFlash('error', $e->getMessage());
+            }
+        }
+
+        return $this->render('form', [
+            'menuTypes' => $menuTypes,
+            'menu' => $menu,
+            'model' => $model,
+            'listMenu' => $listMenu,
+            'languages' => $languages,
+            'description' => $description
+        ]);
     }
 
     /**
@@ -104,7 +151,7 @@ class MenuController extends Controller
             $items = [];
         } else {
             $menu = $this->getMenuModel($id);
-            $items = $menu->getItems();
+            $items = $menu->getMenuItems();
         }
         return $this->render('index', ['menuTypes' => $menuTypes, 'menu'=>$menu, 'items'=>$items]);
     }
@@ -143,7 +190,7 @@ class MenuController extends Controller
     public function actionRemove($id)
     {
         $item = $this->getItemModel($id);
-        $menu_id = $item->menu_id;
+        $menu_id = $item->widget_id;
         $item->delete();
         return $this->redirect(['index', 'id'=>$menu_id]);
     }
@@ -153,11 +200,14 @@ class MenuController extends Controller
      */
     protected function getMenuTypes()
     {
-        $listMenu = WidgetMenu::find()->all();
+        $listMenu = Widget::find()->where(['type_id'=>Widget::TYPE_MENU])->all();
         $menuTypes = [];
         foreach($listMenu as $item)
         {
-            $menuTypes[] = ['label' => $item->{Yii::$app->language}, 'url' => ['/widgets/menu/index', 'id'=>$item->id]];
+            /**
+             * @var $item Widget
+             */
+            $menuTypes[] = ['label' => $item->description->name, 'url' => ['/widgets/menu', 'id'=>$item->id]];
         }
 
         return [$menuTypes, $listMenu];
@@ -165,12 +215,12 @@ class MenuController extends Controller
 
     /**
      * @param $id
-     * @return \yashop\common\models\widgets\WidgetMenu
+     * @return \yashop\common\models\widgets\Widget
      * @throws \yii\web\NotFoundHttpException
      */
     protected function getMenuModel($id)
     {
-        $menu = WidgetMenu::findOne($id);
+        $menu = Widget::findOne($id);
         if(!$menu)
             throw new NotFoundHttpException(Yii::t('base', 'The requested page does not exist.'));
 
@@ -179,7 +229,7 @@ class MenuController extends Controller
 
     /**
      * @param $id
-     * @return WidgetMenu|static
+     * @return WidgetMenuItem
      * @throws \yii\web\NotFoundHttpException
      */
     protected function getItemModel($id)

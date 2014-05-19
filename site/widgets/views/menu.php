@@ -11,7 +11,7 @@ use yii\helpers\Html;
     <?php foreach($data as $k=>$item):?>
         <li>
             <a href="<?=Html::encode($item['url'])?>">
-                <?=Html::encode($item[Yii::$app->language])?>
+                <?=Html::encode($item['description']['name'])?>
             </a>
             <?php
             if(isset($item['children']))

@@ -5,7 +5,7 @@
 
 namespace yashop\site\widgets;
 
-use yashop\common\models\widgets\WidgetMenu;
+use yashop\common\models\widgets\Widget as WidgetMenu;
 use yii\base\Widget;
 
 class Menu extends Widget
@@ -24,8 +24,6 @@ class Menu extends Widget
         if(!$menu)
             return false;
 
-        $items = $menu->getChildrenTree();
-
-        return $this->render('menu',['data'=>$menu->getChildrenTree(), 'type'=>$this->type]);
+        return $this->render('menu',['data'=>$menu->getMenuTree(), 'type'=>$this->type]);
     }
 }

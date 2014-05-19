@@ -58,6 +58,9 @@ class m140509_111010_user extends YashopMigration
         ], $this->tableOptions);
         $this->createIndex('user_id', $this->tablePayment, 'user_id');
         $this->addForeignKey('user_payment_ibfk_1', $this->tablePayment, 'user_id', $this->tableUser, 'id', 'CASCADE', 'CASCADE');
+
+        if(!$this->dataImport('user', $this->tableUser))
+            return false;
     }
 
     public function safeDown()

@@ -10,7 +10,7 @@ use yii\helpers\Html;
     <?php foreach($items as $item):?>
     <li>
         <a href="<?=Html::encode($item['url'])?>">
-            <?=Html::encode($item[Yii::$app->language])?>
+            <?=Html::encode($item['description']['name'])?>
         </a>
     </li>
         <?php

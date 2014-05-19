@@ -2,7 +2,7 @@
 /**
  * @var array $menuTypes
  * @var array $items
- * @var boolean|yashop\common\models\widgets\WidgetMenu $menu
+ * @var boolean|yashop\common\models\widgets\Widget $menu
  * @var yii\web\View $this
  */
 
@@ -14,7 +14,7 @@ if(!$menu)
     $this->title = Yii::t('admin.menu', 'Menu');
 } else {
     $this->params['breadcrumbs'][] = ['label' => Yii::t('admin.menu', 'Menu'), 'url' => ['/widgets/menu']];
-    $this->title = $menu->getName();
+    $this->title = $menu->description->name;
 }
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         </a>
                     </p>
                     <div class="clearfix"></div>
-                    <?php echo $this->render('_menu_list', ['items' => $menu->getChildrenTree()]) ?>
+                    <?php echo $this->render('_menu_list', ['items' => $menu->getMenuTree()]) ?>
                 <?php endif ?>
             </div>
         </div>
