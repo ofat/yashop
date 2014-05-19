@@ -76,6 +76,7 @@ class m140509_152045_widget extends YashopMigration
         $this->dropTable($this->tablePromo);
         $this->dropTable($this->tableMenuDescription);
         $this->dropTable($this->tableMenu);
+        $this->dropTable($this->tableDescription);
         $this->dropTable($this->tableWidget);
     }
 }

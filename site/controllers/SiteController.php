@@ -1,6 +1,7 @@
 <?php
 namespace yashop\site\controllers;
 
+use yashop\common\helpers\Config;
 use Yii;
 use yashop\common\models\LoginForm;
 use yashop\site\models\PasswordResetRequestForm;
@@ -72,20 +73,7 @@ class SiteController extends Controller
 
     public function actionContact()
     {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
-            if ($model->sendEmail(Yii::$app->params['adminEmail'])) {
-                Yii::$app->session->setFlash('success', 'Thank you for contacting us. We will respond to you as soon as possible.');
-            } else {
-                Yii::$app->session->setFlash('error', 'There was an error sending email.');
-            }
-
-            return $this->refresh();
-        } else {
-            return $this->render('contact', [
-                'model' => $model,
-            ]);
-        }
+        echo Config::get('test');
     }
 
     public function actionAbout()

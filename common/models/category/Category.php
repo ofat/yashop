@@ -2,6 +2,7 @@
 
 namespace yashop\common\models\category;
 
+use yashop\common\helpers\Config;
 use yashop\common\helpers\Tree;
 use Yii;
 use yii\db\ActiveRecord;
@@ -60,10 +61,7 @@ class Category extends ActiveRecord
      */
     public function getDescription()
     {
-        /**
-         * todo: change lang id - from config
-         */
-        return $this->hasOne(CategoryDescription::className(), ['category_id' => 'id'])->where(['language_id' => 2]);
+        return $this->hasOne(CategoryDescription::className(), ['category_id' => 'id'])->where(['language_id' => Config::getLanguage()]);
     }
 
     /**

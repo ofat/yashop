@@ -6,6 +6,7 @@
 namespace yashop\site\models;
 
 use yashop\common\helpers\Base;
+use yashop\common\helpers\Config;
 use yashop\common\models\item\ItemDescription;
 use yashop\common\models\item\ItemProperty;
 use yashop\common\models\item\ItemSku;
@@ -168,11 +169,7 @@ class ItemView extends Item
      */
     protected function loadParams()
     {
-        /*
-         * @todo: change lang id from config
-         */
-        $lang = Yii::$app->language;
-        $langId = 2;
+        $langId = Config::getLanguage();
 
         $this->params = (new Query())
             ->select([

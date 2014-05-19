@@ -5,9 +5,11 @@
 
 namespace yashop\common\helpers;
 
+use yashop\common\models\Language;
 use yashop\common\models\Setting;
 use Yii;
 use yii\db\Query;
+use yii\web\Cookie;
 
 class Config
 {
@@ -15,6 +17,11 @@ class Config
      * @var array Config data
      */
     protected static $cachedData;
+
+    /**
+     * @var integer Current language id
+     */
+    protected static $language = null;
 
     /**
      * @var string Key for cache identifying
@@ -27,6 +34,11 @@ class Config
     public static $cachePeriod = 10800;
 
     /**
+     * @var string Key for saving language id to cookie
+     */
+    public static $languageKey = 'language';
+
+    /**
      * Get config param by key
      * @param $key
      * @return mixed|null
@@ -36,6 +48,22 @@ class Config
         $data = self::getCachedData();
 
         return isset($data[$key]) ? $data[$key] : null;
+    }
+
+    public static function getLanguage()
+    {
+        if(is_null(self::$language)) {
+            if(!isset(Yii::$app->request->cookies[ self::$languageKey ])) {
+                $languageId = (new Query())->select('id')->from(Language::tableName())->where(['is_default'=>'1'])->scalar();
+                Yii::$app->response->cookies->add(new Cookie([
+                    'name' => self::$languageKey,
+                    'value' => $languageId
+                ]));
+                self::$language = $languageId;
+            } else
+                self::$language = Yii::$app->request->cookies[ self::$languageKey ];
+        }
+        return self::$language;
     }
 
     /**
@@ -72,7 +100,11 @@ class Config
      */
     protected static function loadDataFromDB()
     {
-        $data = (new Query())->select('*')->from(Setting::tableName())->all();
+        $data = (new Query())
+                    ->select('*')
+                    ->from(Setting::tableName())
+                    ->all();
+
         $res = [];
         foreach($data as $item)
         {

@@ -2,6 +2,7 @@
 
 namespace yashop\common\models;
 
+use yashop\common\helpers\Config;
 use Yii;
 use yashop\common\models\item\ItemProperty;
 use yii\db\ActiveRecord;
@@ -56,9 +57,6 @@ class Property extends ActiveRecord
 
     public function getDescription()
     {
-        /**
-         * todo: change lang id from config
-         */
-        return $this->hasOne(PropertyDescription::className(), ['property_id' => 'id'])->where(['language_id' => 2]);
+        return $this->hasOne(PropertyDescription::className(), ['property_id' => 'id'])->where(['language_id' => Config::getLanguage()]);
     }
 }

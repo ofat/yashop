@@ -2,6 +2,7 @@
 
 namespace yashop\common\models\item;
 
+use yashop\common\helpers\Config;
 use Yii;
 use yii\db\ActiveRecord;
 use yashop\common\models\category\Category;
@@ -117,9 +118,6 @@ class Item extends ActiveRecord
      */
     public function getDescription()
     {
-        /**
-         * todo: change lang id from config
-         */
-        return $this->hasOne(ItemDescription::className(), ['item_id' => 'id'])->where(['language_id' => 2]);
+        return $this->hasOne(ItemDescription::className(), ['item_id' => 'id'])->where(['language_id' => Config::getLanguage()]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace yashop\common\models\widgets;
 
+use yashop\common\helpers\Config;
 use yashop\common\helpers\Tree;
 use Yii;
 use yii\db\ActiveRecord;
@@ -61,10 +62,7 @@ class Widget extends ActiveRecord
      */
     public function getDescription()
     {
-        /**
-         * @todo: change lang id to config
-         */
-        return $this->hasOne(WidgetDescription::className(), ['widget_id'=>'id'])->where(['language_id' => 2]);
+        return $this->hasOne(WidgetDescription::className(), ['widget_id'=>'id'])->where(['language_id' => Config::getLanguage()]);
     }
 
     /**

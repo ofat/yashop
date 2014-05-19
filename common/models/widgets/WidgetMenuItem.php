@@ -2,6 +2,7 @@
 
 namespace yashop\common\models\widgets;
 
+use yashop\common\helpers\Config;
 use Yii;
 use yii\db\ActiveRecord;
 
@@ -95,9 +96,6 @@ class WidgetMenuItem extends ActiveRecord
      */
     public function getDescription()
     {
-        /**
-         * @todo: make language from config
-         */
-        return $this->hasOne(WidgetMenuDescription::className(), ['item_id' => 'id'])->where(['language_id' => 2]);
+        return $this->hasOne(WidgetMenuDescription::className(), ['item_id' => 'id'])->where(['language_id' => Config::getLanguage()]);
     }
 }

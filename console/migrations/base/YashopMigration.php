@@ -38,7 +38,7 @@ class YashopMigration extends Migration
 
     /**
      * @param $file
-     * @param $modelName
+     * @param $table
      * @return bool
      */
     protected function dataImport($file, $table)

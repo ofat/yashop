@@ -10,14 +10,20 @@ class m140509_110000_settings extends YashopMigration
     protected $tableCountry = '{{%country}}';
     protected $tableCurrency = '{{%currency}}';
     protected $tableLanguage = '{{%language}}';
+    protected $tableSettings = '{{%settings}}';
 
     public function safeUp()
     {
         parent::safeUp();
 
-        $this->createCountry()
+        $this
+            ->createSettings()
+            ->createCountry()
             ->createCurrency()
             ->createLanguage();
+
+        if(!$this->dataImport('settings', $this->tableSettings))
+            return false;
 
         if(!$this->dataImport('country', $this->tableCountry))
             return false;
@@ -31,9 +37,24 @@ class m140509_110000_settings extends YashopMigration
 
     public function safeDown()
     {
+        $this->dropTable($this->tableSettings);
         $this->dropTable($this->tableCountry);
         $this->dropTable($this->tableCurrency);
         $this->dropTable($this->tableLanguage);
+    }
+
+    protected function createSettings()
+    {
+        $this->createTable($this->tableSettings, [
+            'id' => Schema::TYPE_PK,
+            'name' => Schema::TYPE_STRING . '(32) NOT NULL',
+            'label' => Schema::TYPE_STRING . '(64) NOT NULL',
+            'value_string' => Schema::TYPE_STRING . '(128) DEFAULT NULL',
+            'value_integer' => Schema::TYPE_INTEGER . ' DEFAULT NULL',
+            'value_float' => Schema::TYPE_FLOAT . ' DEFAULT NULL'
+        ], $this->tableOptions);
+
+        return $this;
     }
 
     protected function createCountry()
