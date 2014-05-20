@@ -9,6 +9,7 @@ use yashop\common\models\Language;
 use yashop\common\models\Setting;
 use Yii;
 use yii\db\Query;
+use yii\helpers\ArrayHelper;
 use yii\web\Cookie;
 
 class Config
@@ -29,7 +30,7 @@ class Config
     public static $cacheKey = 'config';
 
     /**
-     * @var int Period for cache. 3 hours
+     * @var int Period for cache. Default is 3 hours
      */
     public static $cachePeriod = 10800;
 
@@ -37,6 +38,11 @@ class Config
      * @var string Key for saving language id to cookie
      */
     public static $languageKey = 'language';
+
+    /**
+     * @var int Expiration for cookie. Default is 30 days
+     */
+    public static $cookiePeriod = 2592000;
 
     /**
      * Get config param by key
@@ -53,17 +59,36 @@ class Config
     public static function getLanguage()
     {
         if(is_null(self::$language)) {
-            if(!isset(Yii::$app->request->cookies[ self::$languageKey ])) {
+            $cookie = Yii::$app->request->cookies->getValue( self::$languageKey );
+            if(!$cookie) {
                 $languageId = (new Query())->select('id')->from(Language::tableName())->where(['is_default'=>'1'])->scalar();
-                Yii::$app->response->cookies->add(new Cookie([
-                    'name' => self::$languageKey,
-                    'value' => $languageId
-                ]));
+                self::setLanguage($languageId);
                 self::$language = $languageId;
             } else
-                self::$language = Yii::$app->request->cookies[ self::$languageKey ];
+                self::$language = $cookie;
         }
         return self::$language;
+    }
+
+    public static function setLanguage($id)
+    {
+        Yii::$app->response->cookies->add(new Cookie([
+            'name' => self::$languageKey,
+            'value' => $id,
+            'expire' => time() + self::$cookiePeriod
+        ]));
+
+        self::$language = $id;
+    }
+
+    public static function getLanguageCode()
+    {
+        $active = self::getLanguage();
+        $languages = ArrayHelper::map( Language::getActive(), 'id', 'code' );
+
+        Yii::$app->language = $languages[$active];
+
+        return $languages[$active];
     }
 
     /**

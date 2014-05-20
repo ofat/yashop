@@ -3,6 +3,13 @@ return [
     'name' => 'YaShop',
     'language' => 'ru',
     'components' => [
+        'view' => [
+            'renderers' => [
+                'twig' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                ],
+            ],
+        ],
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
