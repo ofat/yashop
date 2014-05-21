@@ -4,9 +4,24 @@ return [
     'language' => 'ru',
     'components' => [
         'view' => [
+            'defaultExtension' => 'twig',
             'renderers' => [
                 'twig' => [
-                    'class' => 'yii\twig\ViewRenderer',
+                    'class' => 'common\twig\ViewRenderer',
+                    'options' => [
+                        'cache' => false,
+                        'autoescape' => true
+                    ],
+                    'namespaces' => [
+                        'yii\bootstrap\NavBar'
+                    ],
+                    'globals' => [
+                        'Html' => '\yii\helpers\Html',
+                        'Base' => '\yashop\common\helpers\Base'
+                    ],
+                    'functions' => [
+                        't' => '\Yii::t'
+                    ]
                 ],
             ],
         ],

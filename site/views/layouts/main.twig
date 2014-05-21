@@ -1,0 +1,39 @@
+{{- use([
+    'yashop\\site\\assets\\AppAsset',
+    'yashop\\site\\widgets\\MainMenu',
+    'yashop\\site\\widgets\\Language',
+    'yashop\\site\\widgets\\Alert',
+    'yii\\widgets\\Breadcrumbs'
+]) -}}
+{{- static('AppAsset', 'register', this) -}}
+{{- this.beginPage() -}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="{{ app.charset }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ this.title }}</title>
+    {{ this.head() }}
+</head>
+<body>
+{{- this.beginBody() -}}
+<div class="wrap">
+    {{ widget_begin('NavBar', { brandLabel: app.name, brandUrl: app.homeUrl, options: { class: 'navbar-inverse navbar-fixed-top' } }) }}
+    {{ widget('Language') }}
+    {{ widget('MainMenu') }}
+    {{ widget_end('NavBar') }}
+    <div class="container">
+        {{ widget('Breadcrumbs', {links: this.params['breadcrumbs']}) }}
+        {{ widget('Alert') }}
+        {{ content | raw }}
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="container">
+        <p class="pull-left">&copy; {{ app.name }} {{ "now"|date('Y') }}</p>
+    </div>
+</footer>
+{{- this.endBody() -}}
+</body>
+{{- this.endPage() -}}

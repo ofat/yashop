@@ -1,0 +1,18 @@
+{{- setTitle(t('user', 'Registration')) -}}
+{{- addBreadcrumb(this.title) -}}
+<div class="site-signup">
+    <h1>{{ this.title }}</h1>
+
+    <div class="row">
+        <div class="col-lg-5">
+            {% set form = form_begin({id: 'form-signup'}) %}
+            {{ form.field(model, 'username') |raw }}
+            {{ form.field(model, 'email') |raw }}
+            {{ form.field(model, 'password').passwordInput |raw }}
+            <div class="form-group">
+                {{ Html.submitButton(t('user','Register'), {class: 'btn btn-primary', name: 'signup-button'}) |raw }}
+            </div>
+            {{- form_end() -}}
+        </div>
+    </div>
+</div>

@@ -1,22 +1,10 @@
-<?php
-
-use yii\helpers\Html;
-
-/**
- * @var yii\web\View $this
- * @var string $name
- * @var string $message
- * @var Exception $exception
- */
-
-$this->title = $name;
-?>
+{{- setTitle(name) -}}
 <div class="site-error">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>{{ this.title }}</h1>
 
     <div class="alert alert-danger">
-        <?= nl2br(Html::encode($message)) ?>
+        {{ message | nl2br }}
     </div>
 
     <p>

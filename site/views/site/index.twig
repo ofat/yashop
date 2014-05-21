@@ -1,0 +1,16 @@
+{{- use([
+    'yashop\\site\\widgets\\Menu',
+    'yashop\\common\\helpers\\Config'
+]) -}}
+{{- setTitle(app.name) -}}
+<div class="site-index">
+    <div class="row">
+        <div class="col-md-3">
+            {{ widget('Menu', {type:'categories'}) }}
+        </div>
+        <div class="col-md-9">
+            Language {{ echo_static('Config', 'getLanguage') }}
+
+        </div>
+    </div>
+</div>
