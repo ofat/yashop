@@ -4,6 +4,7 @@ namespace yashop\admin\modules\widgets\controllers;
 
 use yashop\common\models\Language;
 use yashop\common\models\widgets\WidgetMenuDescription;
+use yashop\console\modules\fake\controllers\BaseController;
 use Yii;
 use yashop\common\models\widgets\Widget;
 use yashop\common\models\widgets\WidgetMenuItem;
@@ -11,11 +12,10 @@ use yii\base\Model;
 use yii\db\Query;
 use yii\filters\AccessControl;
 use yii\helpers\ArrayHelper;
-use yii\web\Controller;
 use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 
-class MenuController extends Controller
+class MenuController extends BaseController
 {
     /**
      * @inheritdoc

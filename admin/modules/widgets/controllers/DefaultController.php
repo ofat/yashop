@@ -2,9 +2,9 @@
 
 namespace yashop\admin\modules\widgets\controllers;
 
-use yii\web\Controller;
+use yashop\common\components\BaseController;
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     public function actionIndex()
     {

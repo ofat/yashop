@@ -2,10 +2,10 @@
 
 namespace yashop\site\controllers;
 
+use yashop\common\components\BaseController;
 use yashop\site\models\ItemView;
-use yii\web\Controller;
 
-class ItemController extends Controller
+class ItemController extends BaseController
 {
     public function actionView($id)
     {

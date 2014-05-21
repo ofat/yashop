@@ -3,7 +3,7 @@
 namespace yashop\site\controllers;
 
 use Yii;
-use yii\web\Controller;
+use yashop\common\components\BaseController;
 use yashop\site\models\forms\RegisterForm;
 use yashop\site\models\forms\PasswordResetRequestForm;
 use yashop\site\models\forms\ResetPasswordForm;
@@ -18,7 +18,7 @@ use yii\web\BadRequestHttpException;
 /*
  * User controller
  */
-class UserController extends Controller
+class UserController extends BaseController
 {
     /**
      * @inheritdoc

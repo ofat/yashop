@@ -3,12 +3,12 @@
 namespace yashop\admin\modules\settings\controllers;
 
 use yashop\admin\models\forms\SettingForm;
+use yashop\common\components\BaseController;
 use yashop\common\models\Setting;
-use yii\web\Controller;
 use yii\base\Model;
 use Yii;
 
-class DefaultController extends Controller
+class DefaultController extends BaseController
 {
     public function actionIndex()
     {

@@ -10,7 +10,7 @@ use Yii;
 use yii\filters\AccessControl;
 use yashop\common\models\user\Address;
 
-use yashop\site\modules\cabinet\CabinetController;
+use yashop\site\modules\cabinet\components\CabinetController;
 use yii\web\NotFoundHttpException;
 
 class AddressController extends CabinetController

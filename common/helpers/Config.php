@@ -75,7 +75,8 @@ class Config
         Yii::$app->response->cookies->add(new Cookie([
             'name' => self::$languageKey,
             'value' => $id,
-            'expire' => time() + self::$cookiePeriod
+            'expire' => time() + self::$cookiePeriod,
+            'domain' => Yii::$app->params['baseDomain']
         ]));
 
         self::$language = $id;

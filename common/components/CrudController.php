@@ -3,14 +3,13 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace yashop\common\helpers;
+namespace yashop\common\components;
 
 use Yii;
-use yii\web\Controller;
 use yii\filters\AccessControl;
 use yii\web\NotFoundHttpException;
 
-abstract class CrudController extends Controller
+abstract class CrudController extends BaseController
 {
     public function behaviors()
     {

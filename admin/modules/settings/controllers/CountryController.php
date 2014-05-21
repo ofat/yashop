@@ -5,7 +5,7 @@ namespace yashop\admin\modules\settings\controllers;
 use Yii;
 use yashop\common\models\Country;
 use yashop\admin\models\CountrySearch;
-use yashop\common\helpers\CrudController;
+use yashop\common\components\CrudController;
 
 /**
  * CountryController implements the CRUD actions for Country model.

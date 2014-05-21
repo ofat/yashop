@@ -2,7 +2,7 @@
 
 namespace yashop\admin\controllers;
 
-use yashop\common\helpers\CrudController;
+use yashop\common\components\CrudController;
 use Yii;
 use yashop\common\models\User;
 use yashop\admin\models\UserSearch;

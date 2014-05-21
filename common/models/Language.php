@@ -19,6 +19,9 @@ use yii\data\ActiveDataProvider;
  */
 class Language extends ActiveRecord
 {
+
+    protected static $_active = null;
+
     /**
      * @inheritdoc
      */
@@ -59,6 +62,9 @@ class Language extends ActiveRecord
 
     public static function getActive()
     {
-        return static::find()->where('is_active=1')->all();
+        if(is_null(self::$_active))
+            self::$_active = static::find()->where('is_active=1')->all();
+
+        return self::$_active;
     }
 }

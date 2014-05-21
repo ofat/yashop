@@ -6,10 +6,10 @@
 namespace yashop\site\controllers;
 
 use yashop\common\models\Country;
+use yashop\common\components\BaseController;
 use Yii;
-use yii\web\Controller;
 
-class DevController extends Controller
+class DevController extends BaseController
 {
     public function actionCountry()
     {

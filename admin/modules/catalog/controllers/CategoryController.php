@@ -6,7 +6,7 @@
 namespace yashop\admin\modules\catalog\controllers;
 
 use yashop\admin\models\CategorySearch;
-use yashop\common\helpers\CrudController;
+use yashop\common\components\CrudController;
 use yashop\common\models\category\Category;
 use yashop\common\models\category\CategoryDescription;
 use yashop\common\models\Language;

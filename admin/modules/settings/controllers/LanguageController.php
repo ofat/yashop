@@ -8,7 +8,7 @@ namespace yashop\admin\modules\settings\controllers;
 use yashop\admin\models\LanguageSearch;
 use Yii;
 use yashop\common\models\Language;
-use yashop\common\helpers\CrudController;
+use yashop\common\components\CrudController;
 
 /**
  * LanguageController implements the CRUD actions for Country model.

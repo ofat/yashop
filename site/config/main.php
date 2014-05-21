@@ -10,11 +10,6 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'yashop\site\controllers',
     'components' => [
-        'user' => [
-            'identityClass' => 'yashop\common\models\User',
-            'enableAutoLogin' => true,
-            'loginUrl' => ['user/login']
-        ],
         'urlManager' => [
             'rules' => [
                 'item/<id:\d+>' => 'item/view',

@@ -3,6 +3,16 @@ return [
     'name' => 'YaShop',
     'language' => 'ru',
     'components' => [
+        'user' => [
+            'identityClass' => 'yashop\common\models\User',
+            'enableAutoLogin' => true,
+            'loginUrl' => ['user/login'],
+            'identityCookie' => [
+                'name' => '_identity',
+                'httpOnly' => true,
+                'domain' => '.yashop'
+            ]
+        ],
         'view' => [
             'defaultExtension' => 'twig',
             'renderers' => [

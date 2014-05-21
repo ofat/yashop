@@ -6,12 +6,12 @@ use yashop\common\models\Language;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\db\Query;
-use yii\web\Controller;
+use yashop\common\components\BaseController;
 
 /**
  * Site controller
  */
-class SiteController extends Controller
+class SiteController extends BaseController
 {
     /**
      * @inheritdoc

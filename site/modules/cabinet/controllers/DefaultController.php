@@ -2,7 +2,7 @@
 
 namespace yashop\site\modules\cabinet\controllers;
 
-use yashop\site\modules\cabinet\CabinetController;
+use yashop\site\modules\cabinet\components\CabinetController;
 
 class DefaultController extends CabinetController
 {

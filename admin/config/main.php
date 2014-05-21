@@ -23,8 +23,6 @@ return [
     ],
     'components' => [
         'user' => [
-            'identityClass' => 'yashop\common\models\User',
-            'enableAutoLogin' => true,
             'loginUrl' => 'login'
         ],
         'urlManager' => [

@@ -1,16 +1,16 @@
 <?php
 namespace yashop\admin\controllers;
 
+use yashop\common\components\BaseController;
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yashop\common\models\forms\LoginForm;
 use yii\filters\VerbFilter;
 
 /**
  * Dashboard controller
  */
-class DashboardController extends Controller
+class DashboardController extends BaseController
 {
     /**
      * @inheritdoc

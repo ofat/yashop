@@ -6,7 +6,7 @@ use yashop\site\modules\cabinet\models\forms\ChangePasswordForm;
 use Yii;
 use yii\filters\AccessControl;
 
-use yashop\site\modules\cabinet\CabinetController;
+use yashop\site\modules\cabinet\components\CabinetController;
 use yashop\site\modules\cabinet\models\forms\ChangeEmailForm;
 
 class ProfileController extends CabinetController

@@ -2,10 +2,10 @@
 
 namespace yashop\site\controllers;
 
+use yashop\common\components\BaseController;
 use Yii;
-use yii\web\Controller;
 
-class CartController extends Controller
+class CartController extends BaseController
 {
     public function actionAdd()
     {

@@ -2,15 +2,15 @@
 
 namespace yashop\admin\modules\widgets\controllers;
 
+use yashop\console\modules\fake\controllers\BaseController;
 use Yii;
 use yashop\common\models\widgets\WidgetPromo;
 use yashop\common\models\widgets\WidgetPromoItem;
 use yii\db\Query;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 
-class PromoController extends Controller
+class PromoController extends BaseController
 {
     /**
      * @inheritdoc

@@ -3,12 +3,12 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace yashop\site\modules\cabinet;
+namespace yashop\site\modules\cabinet\components;
 
+use yashop\common\components\BaseController;
 use Yii;
-use yii\web\Controller;
 
-class CabinetController extends Controller
+class CabinetController extends BaseController
 {
 
     public $cabinetLayout = '/layouts/cabinet';
