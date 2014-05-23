@@ -1,8 +1,6 @@
 <?php
-$params = array_merge(
-    require(__DIR__ . '/../../common/config/params.php'),
-    require(__DIR__ . '/params.php')
-);
+
+$params = file_exists(__DIR__) . '/params.php' ? require(__DIR__ . '/params.php') : [];
 
 return [
     'id' => 'app-site',

@@ -1,67 +1,75 @@
 <?php
-return [
-    'name' => 'YaShop',
-    'language' => 'ru',
-    'components' => [
-        'user' => [
-            'identityClass' => 'yashop\common\models\User',
-            'enableAutoLogin' => true,
-            'loginUrl' => ['user/login'],
-            'identityCookie' => [
-                'name' => '_identity',
-                'httpOnly' => true,
-                'domain' => '.yashop'
-            ]
-        ],
-        'view' => [
-            'defaultExtension' => 'twig',
-            'renderers' => [
-                'twig' => [
-                    'class' => 'common\twig\ViewRenderer',
-                    'options' => [
-                        'cache' => false,
-                        'autoescape' => true
+require_once __DIR__ . '/aliases.php';
+$local = file_exists(__DIR__ . '/main-local.php') ? require __DIR__ . '/main-local.php' : [];
+$params = file_exists(__DIR__ . '/params.php') ? require __DIR__ . '/params.php' : [];
+
+return yii\helpers\ArrayHelper::merge(
+    [
+        'name' => 'YaShop',
+        'language' => 'ru',
+        'components' => [
+            'user' => [
+                'identityClass' => 'yashop\common\models\User',
+                'enableAutoLogin' => true,
+                'loginUrl' => ['user/login'],
+                'identityCookie' => [
+                    'name' => '_identity',
+                    'httpOnly' => true,
+                    'domain' => '.yashop'
+                ]
+            ],
+            'view' => [
+                'defaultExtension' => 'twig',
+                'renderers' => [
+                    'twig' => [
+                        'class' => 'common\twig\ViewRenderer',
+                        'options' => [
+                            'cache' => false,
+                            'autoescape' => true
+                        ],
+                        'namespaces' => [
+                            'yii\bootstrap\NavBar'
+                        ],
+                        'globals' => [
+                            'Html' => '\yii\helpers\Html',
+                            'Base' => '\yashop\common\helpers\Base'
+                        ],
+                        'functions' => [
+                            't' => '\Yii::t'
+                        ]
                     ],
-                    'namespaces' => [
-                        'yii\bootstrap\NavBar'
+                ],
+            ],
+            'urlManager' => [
+                'enablePrettyUrl' => true,
+                'showScriptName' => false,
+            ],
+            'authManager' => [
+                'class' => 'yii\rbac\DbManager',
+                'defaultRoles' => ['user']
+            ],
+            'i18n' => [
+                'translations' => [
+                    'cabinet.*' => [
+                        'class' => 'yii\i18n\PhpMessageSource',
+                        'sourceLanguage' => 'en',
+                        'basePath' => '@yashop-common/messages',
+                        'fileMap' => [
+                            'cabinet.profile' => 'cabinet/profile.php',
+                        ],
                     ],
-                    'globals' => [
-                        'Html' => '\yii\helpers\Html',
-                        'Base' => '\yashop\common\helpers\Base'
+                    '*' => [
+                        'class' => 'yii\i18n\PhpMessageSource',
+                        'sourceLanguage' => 'en',
+                        'basePath' => '@yashop-common/messages'
                     ],
-                    'functions' => [
-                        't' => '\Yii::t'
-                    ]
                 ],
             ],
         ],
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
+        'modules' => [
+            'gii' => 'yii\gii\Module'
         ],
-        'authManager' => [
-            'class' => 'yii\rbac\DbManager',
-            'defaultRoles' => ['user']
-        ],
-        'i18n' => [
-            'translations' => [
-                'cabinet.*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'sourceLanguage' => 'en',
-                    'basePath' => '@yashop-common/messages',
-                    'fileMap' => [
-                        'cabinet.profile' => 'cabinet/profile.php',
-                    ],
-                ],
-                '*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'sourceLanguage' => 'en',
-                    'basePath' => '@yashop-common/messages'
-                ],
-            ],
-        ],
+        'params' => $params
     ],
-    'modules' => [
-        'gii' => 'yii\gii\Module'
-    ],
-];
+    $local
+);
