@@ -24,6 +24,7 @@ class ItemView extends Item
     const SIZE_THUMBNAIL = 'thumbnail';
     const SIZE_MAIN = 'main';
     const SIZE_FULL = 'full';
+    const SIZE_MEDIUM = 'medium';
 
     /**
      * @var int Item ID
@@ -330,6 +331,7 @@ class ItemView extends Item
             'main' => [390,390],
             'thumbnail' => [40,40],
             'property' => [30,30],
+            'medium' => [80,80],
             'full' => [0,0]
         ];
         $url = Yii::$app->params['staticUrl'].'/items/';

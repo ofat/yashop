@@ -1,4 +1,4 @@
-{{- use(['yii\\helpers\\HtmlPurifier','yashop\\site\\modules\\item\\models\\ItemView']) -}}
+{{- use(['yii\\helpers\\HtmlPurifier']) -}}
 {{- setTitle(item.title) -}}
 {{- this.registerMetaTag({name: 'description', content: item.meta_desc}) -}}
 {{- this.registerMetaTag({name: 'keywords', content: item.meta_keyword}) -}}
@@ -6,18 +6,18 @@
 <div class="row item-main">
     <div class="col-md-4 item-image-block">
         <div id="small-images">
-            <a rel="preload" href="{{ echo_static('ItemView', 'getImagePath', item.image) }}">
-                <img src="{{ echo_static('ItemView', 'getImagePath', item.image, 'thumbnail') }}" alt="" width="40" height="40">
+            <a rel="preload" href="{{ item_image(item.image) }}">
+                <img src="{{ item_image(item.image, 'thumbnail') }}" alt="" width="40" height="40">
             </a>
             {% for image in item.images %}
-                <a rel="preload" href="{{ echo_static('ItemView', 'getImagePath', image) }}">
-                    <img src="{{ echo_static('ItemView', 'getImagePath', image, 'thumbnail') }}" alt="" width="40" height="40">
+                <a rel="preload" href="{{ item_image(image) }}">
+                    <img src="{{ item_image(image, 'thumbnail') }}" alt="" width="40" height="40">
                 </a>
             {% endfor %}
         </div>
         <div id="main-image">
-            <a href="{{ echo_static('ItemView', 'getImagePath', item.image) }}" rel="preload">
-                <img src="{{ echo_static('ItemView', 'getImagePath', item.image, 'main') }}" class="img-responsive" alt="">
+            <a href="{{ item_image(item.image) }}" rel="preload">
+                <img src="{{ item_image(item.image, 'main') }}" class="img-responsive" alt="">
             </a>
         </div>
     </div>

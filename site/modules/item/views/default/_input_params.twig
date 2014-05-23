@@ -4,7 +4,7 @@
     <div class="col-md-9">
         {% for value in param.items %}
             {{- Html.beginTag('a', {
-                href: value.image ? echo_static('ItemView', 'getImagePath', value.image) : '#',
+                href: value.image ? item_image(value.image) : '#',
                 rel: value.image ? 'preload',
                 class: 'input-property' ~ (value.image ? ' image' : ''),
                 title: value.name,
@@ -12,7 +12,7 @@
                 'data-vid': value.id
             })|raw -}}
             {% if value.image %}
-                {{ Html.img(echo_static('ItemView', 'getImagePath', value.image, 'property'), {alt: value.name})|raw }}
+                {{ Html.img(item_image(value.image, 'property'), {alt: value.name})|raw }}
             {% else %}
                 {{- value.name -}}
             {% endif %}

@@ -4,7 +4,14 @@
  */
 
 namespace yashop\common\models\cart;
+use yashop\common\helpers\Base;
+use yashop\common\helpers\Config;
+use yashop\common\models\item\Item;
+use yashop\common\models\item\ItemDescription;
 use yashop\common\models\item\ItemSku;
+use yashop\common\models\Property;
+use yashop\common\models\PropertyDescription;
+use yii\db\Query;
 use yii\web\HttpException;
 
 /**
@@ -12,7 +19,7 @@ use yii\web\HttpException;
  * Class CartUser
  * @package yashop\common\models\cart
  */
-class CartUser implements CartBase
+class CartUser extends CartBase
 {
     protected $userId;
 
@@ -122,6 +129,87 @@ class CartUser implements CartBase
      */
     public function load($withParams = false)
     {
+        $data = (new Query())
+            ->select('cart_item.id AS cart_id, cart_item.num, cart_item.description, item_desc.name, item.image')
+            ->addSelect('item_sku.price AS base_price, item_sku.promo_price, item_sku.image AS sku_image, item_sku.id, item_sku.item_id')
+            ->from([
+                'cart_item' => CartItem::tableName()
+            ])
+            ->where(['cart_item.user_id' => $this->userId])
+            ->leftJoin(['item_sku' => ItemSku::tableName()], 'item_sku.id=cart_item.sku_id')
+            ->leftJoin(['item' => Item::tableName()], 'item.id=item_sku.item_id')
+            ->leftJoin(
+                ['item_desc' => ItemDescription::tableName()],
+                'item_desc.item_id = item_sku.item_id AND item_desc.language_id=:langId',
+                [':langId'=>Config::getLanguage()]
+            )
+            ->orderBy('cart_item.created_at DESC')
+            ->all();
+        //echo '<pre>'; print_r($data); exit;
+        $this->_sum = 0;
+        $this->_count = 0;
 
+        $ids = [];
+        foreach($data as $k=>$item)
+        {
+            $id = $item['cart_id'];
+
+            $image = $item['sku_image'] ? $item['sku_image'] : $item['image'];
+            $data[$k]['image'] = $image;
+            unset($item['sku_image']);
+
+            $price = $item['promo_price'] ? $item['promo_price'] : $item['base_price'];
+            $item['price'] = $price;
+            $item['params'] = [];
+            $this->_data[$id] = $item;
+
+            $ids[] = $id;
+            $this->_sum += Base::getPrice($item['num'], $price, false);
+            $this->_count += $item['num'];
+        }
+
+        if($withParams) {
+            $this->loadParams($ids);
+        }
+        return true;
+    }
+
+    protected function loadParams($ids)
+    {
+        $params = (new Query())
+            ->select([
+                'property'  => 'propertyDesc.name',
+                'value'     => 'valueDesc.name',
+                'id'        => 'cart_prop.cart_item_id'
+            ])
+            ->from(['cart_prop' => CartProperty::tableName()])
+            ->where(['cart_prop.cart_item_id' => $ids])
+            ->leftJoin(
+                ['propertyDesc' => PropertyDescription::tableName()],
+                'propertyDesc.property_id=cart_prop.property_id AND propertyDesc.language_id=:langId',
+                [':langId'=>Config::getLanguage()]
+            )
+            ->leftJoin(
+                ['valueDesc' => PropertyDescription::tableName()],
+                'valueDesc.property_id=cart_prop.value_id AND valueDesc.language_id=:langId',
+                [':langId'=>Config::getLanguage()]
+            )
+            ->all();
+        //echo '<pre>'; print_r($params); exit;
+        foreach($params as $param)
+        {
+            $id = $param['id'];
+            unset($param['id']);
+            $this->_data[$id]['params'][] = $param;
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getMaxItems()
+    {
+        //todo: change to config param
+        return 25;
     }
 }

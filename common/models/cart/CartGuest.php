@@ -10,7 +10,7 @@ namespace yashop\common\models\cart;
  * Class CartGuest
  * @package yashop\common\models\cart
  */
-class CartGuest implements CartBase
+class CartGuest extends CartBase
 {
     /**
      * @inheritdoc
@@ -56,6 +56,14 @@ class CartGuest implements CartBase
      * @inheritdoc
      */
     public function load($withParams = false)
+    {
+
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getMaxItems()
     {
 
     }

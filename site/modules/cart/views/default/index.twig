@@ -1,0 +1,148 @@
+{% if cart.maxItems %}
+<div class="row">
+    <div class="col-md-5 cart-progress-block">
+        <div class="pull-left">
+            Заполнение корзины:
+        </div>
+        <div class="col-md-5">
+            <div class="progress cart-progress">
+                <div class="progress-bar progress-bar-info" style="width: {{ cart.data|length/cart.maxItems*100 }}%"></div>
+            </div>
+        </div>
+        <div class="pull-left">
+            <strong>{{ cart.data|length }} / {{ cart.maxItems }}</strong>
+        </div>
+    </div>
+</div>
+{% endif %}
+<form action="{{ path('/checkout') }}" class="col-md-12" method="post">
+    <div class="row cart-info">
+        <div class="col-md-1">
+            <input type="checkbox" class="cart-check-all" value="1" checked>
+        </div>
+        <div class="col-md-8">
+            Выбранные:
+            &nbsp;&nbsp;
+            <a href="#" class="tooltip-holder items-remove">Удалить</a>
+            &nbsp;&nbsp;
+            <a href="#" class="tooltip-holder">Перенести в избранное</a>
+        </div>
+        <div class="col-md-2 cart-total">
+            {{ Base.formatMoney(cart.sum) }}
+        </div>
+        <div class="col-md-1 cart-btn">
+            <button type="submit" class="btn btn-sm btn-primary btn-block cart-submit tooltip-holder"
+                    title="Отмеченные галочкой товары будут перенесены в Заказ">Заказать</button>
+        </div>
+    </div>
+    <div class="row cart-header">
+        <div class="col-md-6 no-padding">
+            <div class="col-md-5 col-md-offset-1 col">Товар</div>
+            <div class="col-md-6 col">Параметры</div>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-4 col">Цена</div>
+            <div class="col-md-4 col">Количество</div>
+            <div class="col-md-4 col">Сумма</div>
+        </div>
+        <div class="col-md-1 col">Действия</div>
+    </div>
+    {% for item in cart.data %}
+    <div class="row cart-row cart-row-{{ item.id }} active" data-id="{{ item.id }}" data-item-id="{{ item.item_id }}">
+        <div class="col-md-6 no-padding">
+            <div class="col-md-1 col cart-col-check">
+                <input type="checkbox" class="cart-check" name="item[]" value="{{ item.id }}" checked>
+            </div>
+            <div class="col-md-2 col cart-col-image">
+                <a href="{{ path('/item/default/index', {id: item.item_id}) }}" title="{{ item.name }}">
+                    <img src="{{ item_image(item.image, 'medium') }}" alt="{{ item.name }}">
+                </a>
+            </div>
+            <div class="col-md-3 col cart-col-title">
+                <a href="{{ path('/item/default/index', {id: item.item_id}) }}" title="{{ item.name }}">
+                    {{ item.name }}
+                </a>
+            </div>
+            <div class="col-md-6 col cart-col-params">
+                <a href="#" class="param-edit">Изменить</a>
+                {% for param in item.params %}
+                    <p>
+                        <strong>{{ Base.maxLength(param.property, 55) }}:</strong> {{ param.value }}
+                    </p>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="col-md-4 cart-col-price col" data-price="{{ item.price }}">
+                {{ getPrice(1, item.price) }}
+                {% if item.promo_price %}
+                    <br>
+                    <s>{{ getPrice(1, item.base_price) }}</s>
+                {% endif %}
+            </div>
+            <div class="col-md-4 col cart-col-num">
+                <div class="col-md-3 no-padding col-md-offset-1">
+                    <a href="#" class="item-bigger btn btn-default btn-sm btn-block"><i class="glyphicon glyphicon-plus"></i></a>
+                </div>
+                <div class="col-md-4 no-padding">
+                    <input type="text" value="{{ item.num }}" class="form-control input-sm cart-num">
+                </div>
+                <div class="col-md-3 no-padding">
+                    <a href="#" class="item-smaller btn-sm btn btn-default btn-block"><i class="glyphicon glyphicon-minus"></i></a>
+                </div>
+            </div>
+            <div class="col-md-4 cart-col-total col">
+                {{ getPrice(item.num, item.price) }}
+                {% if item.promo_price %}
+                    <br>
+                    <s>{{ getPrice(item.num, item.base_price) }}</s>
+                {% endif %}
+            </div>
+        </div>
+        <div class="col-md-1 col cart-col-actions">
+            <div class="btn-group">
+                <a href="#" title="Удалить из корзины" class="btn btn-default cart-remove">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+                {% if not app.user.isGuest %}
+                <a href="#" title="Перенести в избранное" class="btn btn-default cart-favorite">
+                    <i class="glyphicon glyphicon-star"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="row">
+        <div class="col-md-12">
+            Empty
+        </div>
+    </div>
+    {% endfor %}
+    <?php endforeach; endif; ?>
+    <div class="row cart-info fixed-bar fixed-bottom">
+        <div class="col-md-1">
+            <input type="checkbox" class="cart-input-all" value="1" checked>
+        </div>
+        <div class="col-md-5">
+            Выбранные:&nbsp;&nbsp;
+            <a href="#" class="items-remove tooltip-holder"
+               title="Нажмите, чтобы УДАЛИТЬ из корзины все отмеченные галочкой товары">Удалить</a>&nbsp;&nbsp;
+            {% if not app.user.isGuest %}
+            <a href="#" class="items-favorite tooltip-holder"
+               title="Нажмите, чтобы перенести из корзины В ИЗБРАННОЕ все отмеченные товары">Перенести в избранное</a>
+            {% endif %}
+        </div>
+        <div class="col-md-2 text-right">Всего:</div>
+        <div class="col-md-1 text-center">
+            <span class="tooltip-holder cart-total-num" data-title="Количество">{{ cart.countItems }}</span>
+        </div>
+        <div class="col-md-2 cart-total">
+            {{ Base.formatMoney(cart.sum) }}
+        </div>
+        <div class="col-md-1 cart-btn">
+            <button type="submit" class="btn btn-primary btn-block cart-submit tooltip-holder"
+                    title="Отмеченные галочкой товары будут перенесены в Заказ">Заказать</button>
+        </div>
+    </div>
+</form>

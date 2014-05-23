@@ -30,7 +30,7 @@ class ItemDescription extends ActiveRecord
      */
     public static function tableName()
     {
-        return 'item_description';
+        return '{{%item_description}}';
     }
 
     /**

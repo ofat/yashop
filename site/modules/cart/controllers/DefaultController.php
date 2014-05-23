@@ -4,6 +4,7 @@ namespace yashop\site\modules\cart\controllers;
 
 use yashop\common\components\BaseController;
 use yashop\common\models\cart\Cart;
+use yashop\site\modules\cart\assets\CartAsset;
 use Yii;
 use yii\web\HttpException;
 
@@ -49,6 +50,15 @@ class DefaultController extends BaseController
     {
         $this->cart->clear();
         return true;
+    }
+
+    public function actionIndex()
+    {
+        $this->cart->load(true);
+
+        CartAsset::register(Yii::$app->view);
+
+        return $this->render('index', ['cart' => $this->cart]);
     }
 
     public function actionReload()

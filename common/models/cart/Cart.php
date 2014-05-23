@@ -8,9 +8,11 @@ namespace yashop\common\models\cart;
 /**
  * Base class for all operations with cart for guests and signed-in users
  * Class Cart
+ * @property integer $maxItems
+ *
  * @package yashop\common\models\cart
  */
-class Cart implements CartBase
+class Cart extends CartBase
 {
     /**
      * @var Cart
@@ -75,5 +77,34 @@ class Cart implements CartBase
     public function load($withParams = false)
     {
         return $this->cart->load($withParams);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getMaxItems()
+    {
+        return $this->cart->getMaxItems();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getCountItems()
+    {
+        return $this->cart->getCountItems();
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getData()
+    {
+        return $this->cart->getData();
+    }
+
+    public function getSum()
+    {
+        return $this->cart->getSum();
     }
 }

@@ -37,7 +37,9 @@ return yii\helpers\ArrayHelper::merge(
                             'Base' => '\yashop\common\helpers\Base'
                         ],
                         'functions' => [
-                            't' => '\Yii::t'
+                            't' => '\Yii::t',
+                            'getPrice' => '\yashop\common\helpers\Base::getPrice',
+                            'item_image' => '\yashop\site\modules\item\models\ItemView::getImagePath'
                         ]
                     ],
                 ],

@@ -46,6 +46,26 @@ class Base
         return Yii::$app->params['defaultCurrency'];
     }
 
+    /**
+     * @param $num
+     * @param $price
+     * @param bool $format
+     * @param bool $currency
+     * @param bool $needConvert
+     * @return float|string
+     */
+    public static function getPrice($num, $price, $format = true, $currency=false, $needConvert = true)
+    {
+        $price_res = $price*$num;
+
+        if($format)
+        {
+            $price_res = self::formatMoney($price_res,$currency);
+        }
+
+        return $price_res;
+    }
+
     public static function formatMoney($num, $currency = false, $withoutCurrency = false)
     {
         $money = number_format($num, 2, '.', ' ');
@@ -80,5 +100,10 @@ class Base
             return $money.' '.$symb;
         else
             return $symb.' '.$money;
+    }
+
+    public static function maxLength($text, $length)
+    {
+        return (strlen($text)>$length) ? mb_substr($text,0,$length,'utf-8').'..' : $text;
     }
 }

@@ -22,7 +22,8 @@ class ItemController extends BaseController
     protected $imageSizes = [
         [390, 390],
         [40, 40],
-        [30, 30]
+        [30, 30],
+        [80, 80]
     ];
 
     public function actionIndex()

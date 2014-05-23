@@ -5,8 +5,14 @@
 
 namespace yashop\common\models\cart;
 
-interface CartBase
+abstract class CartBase
 {
+    protected $_sum;
+
+    protected $_count;
+
+    protected $_data;
+
     /**
      * Add item to cart
      * @param $sku_id
@@ -15,14 +21,14 @@ interface CartBase
      * @param bool $description
      * @return mixed
      */
-    function add($sku_id, $num, $props, $description = false);
+    abstract function add($sku_id, $num, $props, $description = false);
 
     /**
      * Remove item from cart
      * @param $sku_id
      * @return boolean
      */
-    function remove($sku_id);
+    abstract function remove($sku_id);
 
     /**
      * Edit base data in cart
@@ -30,7 +36,7 @@ interface CartBase
      * @param $data
      * @return boolean
      */
-    function editData($sku_id, $data);
+    abstract function editData($sku_id, $data);
 
     /**
      * Edit item properties in cart
@@ -38,18 +44,51 @@ interface CartBase
      * @param $props
      * @return boolean
      */
-    function editProps($sku_id, $props);
+    abstract function editProps($sku_id, $props);
 
     /**
      * Remove all items from cart
      * @return boolean
      */
-    function clear();
+    abstract function clear();
 
     /**
      * Load data from cart
      * @param bool $withParams
      * @return mixed
      */
-    function load($withParams = false);
+    abstract function load($withParams = false);
+
+    /**
+     * Max number of items that user can add to cart
+     * @return integer
+     */
+    abstract function getMaxItems();
+
+    /**
+     * Number of items that user added to cart
+     * @return integer
+     */
+    public function getCountItems()
+    {
+        return $this->_count;
+    }
+
+    /**
+     * Return total sum for all items
+     * @return float
+     */
+    public function getSum()
+    {
+        return $this->_sum;
+    }
+
+    /**
+     * Return all items data
+     * @return array
+     */
+    public function getData()
+    {
+        return $this->_data;
+    }
 }
