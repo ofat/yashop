@@ -23,16 +23,14 @@ var yashop = (function($){
         },
 
         showMessage: function(text,type) {
-            console.log(test, type);
-            return;
             type = (type === 'error') ? 'danger' : type;
-            var block = $('<div id="alert-block" />').addClass('alert alert-'+type).hide().appendTo( $('body') ).html(text);
-
+            var block = $('<div id="alert-block" />').addClass('fade alert alert-'+type).appendTo( $('body') ).html(text);
             $('<button type="button" />').addClass('close').attr('data-dismiss','alert').html('&times;').appendTo( block );
 
-            block.show().delay(1500).fadeOut('normal',function(){
-                $(this).remove();
-            });
+            block.alert().show().addClass('in');
+            setTimeout(function(){
+                block.alert('close')
+            },2500);
         },
 
         getPrice: function(num,price,format,currency)

@@ -14,19 +14,16 @@ class m140509_170322_cart extends YashopMigration
 
         $this->createTable($this->tableItem, [
             'id' => Schema::TYPE_PK,
-            'item_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'user_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'sku_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'num' => Schema::TYPE_SMALLINT . '(8) NOT NULL',
             'description' => Schema::TYPE_STRING . '(512) DEFAULT NULL',
             'created_at' => Schema::TYPE_INTEGER . '(11) DEFAULT NULL',
         ], $this->tableOptions);
-        $this->createIndex('item_id', $this->tableItem, 'item_id');
         $this->createIndex('user_id', $this->tableItem, 'user_id');
         $this->createIndex('sku_id', $this->tableItem, 'sku_id');
-        $this->addForeignKey('cart_item_ibfk_1', $this->tableItem, 'item_id', '{{%item}}', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('cart_item_ibfk_2', $this->tableItem, 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
-        $this->addForeignKey('cart_item_ibfk_3', $this->tableItem, 'sku_id', '{{%item_sku}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('cart_item_ibfk_1', $this->tableItem, 'user_id', '{{%user}}', 'id', 'CASCADE', 'CASCADE');
+        $this->addForeignKey('cart_item_ibfk_2', $this->tableItem, 'sku_id', '{{%item_sku}}', 'id', 'CASCADE', 'CASCADE');
 
         $this->createTable($this->tableProperty, [
             'id' => Schema::TYPE_PK,

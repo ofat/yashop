@@ -1,3 +1,5 @@
+@import "libs/helpless";
+
 html,
 body {
 	height: 100%;
@@ -54,4 +56,14 @@ body {
 	background-color: #f5f5f5;
 	border-top: 1px solid #ddd;
 	padding-top: 20px;
+}
+
+#alert-block {
+	position: fixed;
+	top: 150px;
+	left: 50%;
+	margin-left: -200px;
+	z-index: 99999;
+	width: 400px;
+	#hl.transition(all, 300ms, ease, 0);
 }

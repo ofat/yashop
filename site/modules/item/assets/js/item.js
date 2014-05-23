@@ -3,7 +3,7 @@ yashop.item = (function($) {
         isActive: true,
 
         skuId: 0,
-        cartUrl: '/cart/add',
+        cartUrl: '/cart/default/add',
         $cartBtn: $("#add-to-cart"),
         $inputHiddenParam: $(".input-param"),
         id: null,
@@ -28,7 +28,6 @@ yashop.item = (function($) {
                 paramsError = false,
                 quantity    = parseInt( yashop.item.sku.$itemCount.text()),
                 data        = {
-                    item_id: this.id,
                     count: count,
                     props: {}
                 };

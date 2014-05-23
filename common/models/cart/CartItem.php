@@ -3,31 +3,32 @@
 namespace yashop\common\models\cart;
 
 use Yii;
+use yashop\common\models\item\ItemSku;
+use yashop\common\models\User;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "cart_item".
  *
  * @property integer $id
- * @property integer $item_id
  * @property integer $user_id
  * @property integer $sku_id
  * @property integer $num
  * @property string $description
- * @property integer $created
+ * @property integer $created_at
  *
  * @property ItemSku $sku
- * @property Item $item
  * @property User $user
- * @property CartProperty[] $cartProperties
+ * @property CartProperty[] $properties
  */
-class CartItem extends \yii\db\ActiveRecord
+class CartItem extends ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'cart_item';
+        return '{{%cart_item}}';
     }
 
     /**
@@ -36,9 +37,25 @@ class CartItem extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['item_id', 'user_id', 'sku_id', 'num', 'created'], 'required'],
-            [['item_id', 'user_id', 'sku_id', 'num', 'created'], 'integer'],
+            [['user_id', 'sku_id', 'num'], 'required'],
+            [['user_id', 'sku_id', 'num', 'created_at'], 'integer'],
             [['description'], 'string', 'max' => 512]
+        ];
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'timestamp' => [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'attributes' => [
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
+                    ActiveRecord::EVENT_BEFORE_UPDATE => ['created_at'],
+                ],
+            ],
         ];
     }
 
@@ -49,12 +66,11 @@ class CartItem extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('cart', 'ID'),
-            'item_id' => Yii::t('cart', 'Item ID'),
             'user_id' => Yii::t('cart', 'User ID'),
             'sku_id' => Yii::t('cart', 'Sku ID'),
             'num' => Yii::t('cart', 'Num'),
             'description' => Yii::t('cart', 'Description'),
-            'created' => Yii::t('cart', 'Created'),
+            'created_at' => Yii::t('cart', 'Created'),
         ];
     }
 
@@ -69,14 +85,6 @@ class CartItem extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getItem()
-    {
-        return $this->hasOne(Item::className(), ['id' => 'item_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
@@ -85,7 +93,7 @@ class CartItem extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getCartProperties()
+    public function getProperties()
     {
         return $this->hasMany(CartProperty::className(), ['cart_item_id' => 'id']);
     }

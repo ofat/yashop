@@ -35,6 +35,9 @@ return [
         'item' => [
             'class' => 'yashop\site\modules\item\ItemModule',
         ],
+        'cart' => [
+            'class' => 'yashop\site\modules\cart\CartModule',
+        ],
     ],
     'params' => $params,
 ];

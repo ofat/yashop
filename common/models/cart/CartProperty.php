@@ -3,6 +3,8 @@
 namespace yashop\common\models\cart;
 
 use Yii;
+use yashop\common\models\Property;
+use yii\db\ActiveRecord;
 
 /**
  * This is the model class for table "cart_property".
@@ -16,14 +18,14 @@ use Yii;
  * @property CartItem $cartItem
  * @property Property $property
  */
-class CartProperty extends \yii\db\ActiveRecord
+class CartProperty extends ActiveRecord
 {
     /**
      * @inheritdoc
      */
     public static function tableName()
     {
-        return 'cart_property';
+        return '{{%cart_property}}';
     }
 
     /**
