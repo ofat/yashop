@@ -1,0 +1,28 @@
+{{- use(['yii\\bootstrap\\Nav']) -}}
+<div class="row">
+    <div class="col-md-3">
+{{ widget('Nav', {
+    options: { class: 'nav-pills nav-stacked' },
+    items: [
+        { label: t('cabinet', 'Dashboard'), url: ['/cabinet'] },
+        {
+            label: t('cabinet', 'Profile'), items: [
+                { label: t('cabinet','Change password'), url: ['/cabinet/profile/password'] },
+                { label: t('cabinet','Change e-mail'), url: ['/cabinet/profile/email'] },
+                { label: t('cabinet','Addresses'), url: ['/cabinet/profile/address'] }
+            ]
+        },
+        {
+            label: t('cabinet', 'Payments'), items: [
+                { label: t('payment','Deposit'), url: ['/cabinet/balance/payment'] },
+                { label: t('payment','History'), url: ['/cabinet/balance'] },
+                { label: t('payment','Withdraw'), url: ['/cabinet/balance/withdraw'] }
+            ]
+        }
+    ]
+}) }}
+    </div>
+    <div class="col-md-9">
+        {{ content|raw }}
+    </div>
+</div>

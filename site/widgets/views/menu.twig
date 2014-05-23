@@ -1,0 +1,10 @@
+<ul class="menu-nav widget-menu{{ htmlClass ? ' '~htmlClass}}" id="{{ type }}Menu">
+    {% for item in data %}
+    <li>
+        <a href="{{ item.url }}">{{ item.description.name }}</a>
+        {% if item.children is defined %}
+            {{ this.render('_menu_children', {items: item.children}) }}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>

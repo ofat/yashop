@@ -9,6 +9,7 @@ use yashop\common\helpers\Tree;
 use yashop\common\models\item\Item;
 use Yii;
 use yii\db\Query;
+use yii\imagine\Image;
 
 class ItemController extends BaseController
 {
@@ -18,6 +19,11 @@ class ItemController extends BaseController
     protected $itemProperties;
     protected $imagePos;
     protected $itemSkuImages;
+    protected $imageSizes = [
+        [390, 390],
+        [40, 40],
+        [30, 30]
+    ];
 
     public function actionIndex()
     {
@@ -52,17 +58,20 @@ class ItemController extends BaseController
     protected function addItem($category_id)
     {
         $faker = $this->getGenerator();
-        $imagePath = Yii::$app->params['siteImagePath'] . '/items';
+        $imagePath = Yii::getAlias('@static/items');
+
+        $image = $faker->image($imagePath, 640, 480);
 
         $item = new Item;
         $item->category_id = $category_id;
-        $item->image = basename($faker->image($imagePath, 640, 480));
+        $item->image = basename($image);
         $item->price = $faker->randomFloat(2, 5, 500);
         $minPromoPrice = $item->price * 0.5;
         $maxPromoPrice = $item->price * 0.9;
         $item->promo_price = rand(0, 1) ? $faker->randomFloat(2, $minPromoPrice, $maxPromoPrice) : null;
         $item->num = $faker->randomNumber(50, 1000);
         $item->save();
+        $this->generateThumbnails($image);
 
         $this->addDescription($item->id);
         $this->addImages($item->id);
@@ -97,14 +106,16 @@ class ItemController extends BaseController
 
     protected function addImages($item_id)
     {
-        $imagePath = Yii::$app->params['siteImagePath'] . '/items';
+        $imagePath = Yii::getAlias('@static/items');
         $faker = $this->getGenerator();
         $data = [];
         for($i=0; $i<rand(3,8); $i++)
         {
+            $image = $faker->image($imagePath, 640, 480);
+            $this->generateThumbnails($image);
             $data[] = [
                 $item_id,
-                basename($faker->image($imagePath, 640, 480))
+                basename($image)
             ];
         }
 
@@ -113,7 +124,7 @@ class ItemController extends BaseController
 
     protected function addProperties($item_id)
     {
-        $imagePath = Yii::$app->params['siteImagePath'] . '/items';
+        $imagePath = Yii::getAlias('@static/items');
         $faker = $this->getGenerator();
         $properties = $this->getProperties();
         $minProperty = rand(1,2);
@@ -151,9 +162,13 @@ class ItemController extends BaseController
                 $itemValue = $itemProperty['children'][$valueKey];
                 $this->itemProperties[$i][] = $itemProperty['id'].':'.$itemValue['id'];
 
-                $image = $is_image ? basename($faker->image($imagePath, 640, 480)) : null;
-                if($is_image)
+                if($is_image) {
+                    $image = $faker->image($imagePath, 640, 480);
+                    $this->generateThumbnails($image);
+                    $image = basename($image);
                     $this->itemSkuImages[ $itemProperty['id'].':'.$itemValue['id'] ] = $image;
+                } else
+                    $image = null;
                 $data[] = [
                     $item_id,
                     $itemProperty['id'],
@@ -264,6 +279,16 @@ class ItemController extends BaseController
         }
 
         return $this->_properties;
+    }
+
+    protected function generateThumbnails($image)
+    {
+        foreach($this->imageSizes as $size)
+        {
+            list($width, $height) = $size;
+            Image::thumbnail($image, $width, $height)
+                ->save($image . '_' . $width . 'x' . $height . '.jpg');
+        }
     }
 
 }

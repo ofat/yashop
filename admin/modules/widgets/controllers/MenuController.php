@@ -2,9 +2,9 @@
 
 namespace yashop\admin\modules\widgets\controllers;
 
+use yashop\common\components\BaseController;
 use yashop\common\models\Language;
 use yashop\common\models\widgets\WidgetMenuDescription;
-use yashop\console\modules\fake\controllers\BaseController;
 use Yii;
 use yashop\common\models\widgets\Widget;
 use yashop\common\models\widgets\WidgetMenuItem;
@@ -207,7 +207,7 @@ class MenuController extends BaseController
             /**
              * @var $item Widget
              */
-            $menuTypes[] = ['label' => $item->description->name, 'url' => ['/widgets/menu', 'id'=>$item->id]];
+            $menuTypes[] = ['label' => $item->description->name, 'url' => ['/widgets/menu/index', 'id'=>$item->id]];
         }
 
         return [$menuTypes, $listMenu];

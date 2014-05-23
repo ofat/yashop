@@ -32,6 +32,9 @@ return [
         'cabinet' => [
             'class' => 'yashop\site\modules\cabinet\CabinetModule',
         ],
+        'item' => [
+            'class' => 'yashop\site\modules\item\ItemModule',
+        ],
     ],
     'params' => $params,
 ];

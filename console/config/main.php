@@ -1,5 +1,7 @@
 <?php
 
+$params = file_exists(__DIR__ . '/params.php') ? require __DIR__ . '/params.php' : [];
+
 return [
     'id' => 'app-console',
     'basePath' => dirname(__DIR__),
@@ -37,5 +39,6 @@ return [
         'rbac' => [
             'class' => 'yashop\console\controllers\RbacController'
         ]
-    ]
+    ],
+    'params' => $params
 ];

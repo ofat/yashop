@@ -3,7 +3,7 @@
  * @author Vitaliy Ofat <ofatv22@gmail.com>
  */
 
-namespace yashop\site\models;
+namespace yashop\site\modules\item\models;
 
 use yashop\common\helpers\Base;
 use yashop\common\helpers\Config;
@@ -15,10 +15,16 @@ use Yii;
 use yashop\common\models\item\ItemImage;
 use yashop\common\models\item\Item;
 use yii\db\Query;
+use yii\helpers\FileHelper;
 use yii\web\NotFoundHttpException;
 
 class ItemView extends Item
 {
+    const SIZE_PROPERTY = 'property';
+    const SIZE_THUMBNAIL = 'thumbnail';
+    const SIZE_MAIN = 'main';
+    const SIZE_FULL = 'full';
+
     /**
      * @var int Item ID
      */
@@ -218,6 +224,7 @@ class ItemView extends Item
 
             $this->inputParams[$param_id]['items'][] = [
                 'name' => $param['value'],
+                'image' => $param['image'],
                 'id' => $param['value_id']
             ];
         }
@@ -250,11 +257,19 @@ class ItemView extends Item
      */
     protected function loadSku()
     {
-        $this->sku = (new Query())
-            ->select('id,num,price,promo_price,image,property_str')
+        $sku = (new Query())
+            ->select('id,num,price,promo_price,property_str')
             ->from(ItemSku::tableName())
             ->where(['item_id'=>$this->_id])
             ->all();
+
+        foreach($sku as $data)
+        {
+            $prop_str = $data['property_str'];
+            unset($data['property_str']);
+            $data['num'] = Yii::t('item', '{n, plural, =0{no} other{# pcs.}}', ['n'=>$data['num']]);
+            $this->sku[$prop_str] = $data;
+        }
 
         return $this;
     }
@@ -291,5 +306,40 @@ class ItemView extends Item
         }
 
         return Base::formatMoney($this->priceMin);
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * @param $image
+     * @param string $size
+     * @return string
+     */
+    public static function getImagePath($image, $size = self::SIZE_FULL)
+    {
+        /**
+         * @todo: Change sizes to config params
+         */
+        $sizes = [
+            'main' => [390,390],
+            'thumbnail' => [40,40],
+            'property' => [30,30],
+            'full' => [0,0]
+        ];
+        $url = Yii::$app->params['staticUrl'].'/items/';
+
+        list($width, $height) = $sizes[ $size ];
+        $ext = pathinfo($image, PATHINFO_EXTENSION);
+
+        if($size == self::SIZE_FULL)
+            return $url.$image;
+        else
+            return $url.$image.'_'.$width.'x'.$height.'.'.$ext;
     }
 }

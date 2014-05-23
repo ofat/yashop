@@ -9,6 +9,7 @@ return yii\helpers\ArrayHelper::merge(
         'language' => 'ru',
         'components' => [
             'user' => [
+                'class' => 'yii\web\User',
                 'identityClass' => 'yashop\common\models\User',
                 'enableAutoLogin' => true,
                 'loginUrl' => ['user/login'],
@@ -28,7 +29,8 @@ return yii\helpers\ArrayHelper::merge(
                             'autoescape' => true
                         ],
                         'namespaces' => [
-                            'yii\bootstrap\NavBar'
+                            'yii\bootstrap\NavBar',
+                            'yashop\site\widgets\Menu'
                         ],
                         'globals' => [
                             'Html' => '\yii\helpers\Html',
@@ -38,6 +40,11 @@ return yii\helpers\ArrayHelper::merge(
                             't' => '\Yii::t'
                         ]
                     ],
+                ],
+            ],
+            'assetManager' => [
+                'bundles' => [
+
                 ],
             ],
             'urlManager' => [

@@ -1,0 +1,18 @@
+{{- setTitle(t('cabinet.profile','Changing e-mail')) -}}
+{{- addBreadcrumb(this.title) -}}
+<div class="cabinet-profile-email">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h3 class="page-header">{{ this.title }}</h3>
+
+            {% set form = form_begin({id: 'email-form'}) %}
+            {{ form.field(model, 'oldEmail')|raw }}
+            {{ form.field(model, 'newEmail')|raw }}
+            {{ form.field(model, 'password').passwordInput|raw }}
+            <div class="form-group">
+                {{ Html.submitButton(t('base','Save'), {class: 'btn btn-primary'})|raw }}
+            </div>
+            {{- form_end() -}}
+        </div>
+    </div>
+</div>

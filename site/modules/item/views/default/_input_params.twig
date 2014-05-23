@@ -3,17 +3,16 @@
     <label class="col-md-3 control-label">{{ param.name }}:</label>
     <div class="col-md-9">
         {% for value in param.items %}
-            {% set isImage = value.image is defined %}
             {{- Html.beginTag('a', {
-                href: isImage ? value.image : '#',
-                rel: 'preload',
-                class: 'input-property' ~ (isImage ? ' image' : ''),
+                href: value.image ? echo_static('ItemView', 'getImagePath', value.image) : '#',
+                rel: value.image ? 'preload',
+                class: 'input-property' ~ (value.image ? ' image' : ''),
                 title: value.name,
                 'data-pid': param.id,
                 'data-vid': value.id
             })|raw -}}
-            {% if isImage %}
-                {{ Html.img(value.image ~ '_40x40.jpg', {alt: value.name})|raw }}
+            {% if value.image %}
+                {{ Html.img(echo_static('ItemView', 'getImagePath', value.image, 'property'), {alt: value.name})|raw }}
             {% else %}
                 {{- value.name -}}
             {% endif %}

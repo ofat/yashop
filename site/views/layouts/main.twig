@@ -1,8 +1,9 @@
 {{- use([
     'yashop\\site\\assets\\AppAsset',
-    'yashop\\site\\widgets\\MainMenu',
+    'yashop\\site\\widgets\\UserMenu',
     'yashop\\site\\widgets\\Language',
     'yashop\\site\\widgets\\Alert',
+    'yashop\\site\\widgets\\SearchBlock',
     'yii\\widgets\\Breadcrumbs'
 ]) -}}
 {{- static('AppAsset', 'register', this) -}}
@@ -18,14 +19,33 @@
 <body>
 {{- this.beginBody() -}}
 <div class="wrap">
-    {{ widget_begin('NavBar', { brandLabel: app.name, brandUrl: app.homeUrl, options: { class: 'navbar-inverse navbar-fixed-top' } }) }}
+    {{ widget_begin('NavBar', { options: { class: 'navbar-inverse navbar-fixed-top navbar-top' } }) }}
     {{ widget('Language') }}
-    {{ widget('MainMenu') }}
+    {{ widget('UserMenu') }}
     {{ widget_end('NavBar') }}
     <div class="container">
-        {{ widget('Breadcrumbs', {links: this.params['breadcrumbs']}) }}
-        {{ widget('Alert') }}
-        {{ content | raw }}
+        <header class="head">
+            <div class="row">
+                <div class="col-md-3">
+                    <a href="{{ path(app.homeUrl) }}" class="logo">{{ app.name }}</a>
+                </div>
+                <div class="col-md-6 col-md-offset-3">
+                    {{ widget('SearchBlock') }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                {{ widget_begin('NavBar', {options: { class: 'navbar-default navbar-main'}}) }}
+                {{ widget('Menu', {type: 'main', htmlClass: 'nav navbar-nav'}) }}
+                {{ widget_end('NavBar') }}
+                </div>
+            </div>
+        </header>
+        <div class="main-content">
+            {{ widget('Breadcrumbs', {links: this.params['breadcrumbs']}) }}
+            {{ widget('Alert') }}
+            {{ content | raw }}
+        </div>
     </div>
 </div>
 

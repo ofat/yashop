@@ -1,17 +1,19 @@
 {{- setTitle(name) -}}
 <div class="site-error">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h3 class="page-header">{{ this.title }}</h3>
 
-    <h1>{{ this.title }}</h1>
+            <div class="alert alert-danger">
+                {{ message | nl2br }}
+            </div>
 
-    <div class="alert alert-danger">
-        {{ message | nl2br }}
+            <p>
+                The above error occurred while the Web server was processing your request.
+            </p>
+            <p>
+                Please contact us if you think this is a server error. Thank you.
+            </p>
+        </div>
     </div>
-
-    <p>
-        The above error occurred while the Web server was processing your request.
-    </p>
-    <p>
-        Please contact us if you think this is a server error. Thank you.
-    </p>
-
 </div>

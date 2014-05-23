@@ -6,11 +6,10 @@
 <div class="site-index">
     <div class="row">
         <div class="col-md-3">
-            {{ widget('Menu', {type:'categories'}) }}
+            {{ widget('Menu', {type:'categories',htmlClass: 'nav'}) }}
         </div>
         <div class="col-md-9">
             Language {{ echo_static('Config', 'getLanguage') }}
-
         </div>
     </div>
 </div>

@@ -15,6 +15,11 @@ class Menu extends Widget
      */
     public $type;
 
+    /**
+     * @var string Html class for menu
+     */
+    public $htmlClass;
+
     public function run()
     {
         /**
@@ -24,6 +29,6 @@ class Menu extends Widget
         if(!$menu)
             return false;
 
-        return $this->render('menu',['data'=>$menu->getMenuTree(), 'type'=>$this->type]);
+        return $this->render('menu',['data'=>$menu->getMenuTree(), 'type'=>$this->type, 'htmlClass' => $this->htmlClass]);
     }
 }

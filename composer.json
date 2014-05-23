@@ -16,7 +16,9 @@
 		"yiisoft/yii2": "*",
 		"yiisoft/yii2-bootstrap": "*",
         "ofat/yii2-yashop-ses": "*",
-		"yiisoft/yii2-twig": "*"
+		"yiisoft/yii2-twig": "*",
+        "yiisoft/yii2-sphinx": "*",
+        "yiisoft/yii2-imagine": "*"
 	},
 	"require-dev": {
 		"yiisoft/yii2-codeception": "*",

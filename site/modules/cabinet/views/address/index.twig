@@ -1,0 +1,46 @@
+{{- use(['yii\\helpers\\Url', 'yashop\\common\\models\\user\\Address']) -}}
+{{- setTitle(t('cabinet','Addresses')) -}}
+{{- addBreadcrumb(this.title) -}}
+<div class="cabinet-address">
+    <a href="{{ path('/cabinet/profile/address/add') }}" class="btn btn-primary pull-right">{{ t('address','Add address') }}</a>
+    <div class="clearfix"></div>
+    <div class="row">
+        {% for address in data.getModels() %}
+        <div class="col-md-4">
+            <div class="well{{ address.is_default ?' active':'' }}">
+                <strong>{{ address.full_name }}</strong>
+                <p>
+                    {{ address.zipcode }}, {{ address.country.ru }}, {{ address.region }}, {{ address.city }}
+                </p>
+                <p>
+                    {{ address.street }}, {{ address.building }}{{ address.apartment ? '-'~address.apartment : '' }}
+                </p>
+                <p>
+                    {{ t('address','tel.') }}: {{ address.phone }}
+                </p>
+                <div class="btn-group">
+                    <a href="{{ path('/cabinet/profile/address/edit', {id: address.id}) }}" class="btn btn-xs btn-warning">
+                        {{ t('base','Edit') }}
+                    </a>
+                    <a href="{{ path('/cabinet/profile/address/remove', {id: address.id}) }}" class="btn btn-xs btn-danger">
+                        {{ t('base','Remove') }}
+                    </a>
+                </div>
+                {% if address.is_default %}
+                <p class="label label-info">
+                    {{ t('address','Default') }}
+                </p>
+                {% endif %}
+            </div>
+        </div>
+        {% else %}
+        <div class="col-md-12">
+            <p>
+                {{ t('address','You can add up to {count} different addresses.',{count: echo_static('Address', 'getMaxPerUser')}) }}
+                <br>
+                {{ t('address','You can choose address while ordering.') }}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,0 +1,33 @@
+{{- use('yashop\\common\\models\\Country') -}}
+{{- setTitle( model.isNewRecord ? t('address','Adding address') : t('address','Editing address') ) -}}
+{{- addBreadcrumb( { label: t('cabinet','Account'), url: ['/cabinet'] } ) -}}
+{{- addBreadcrumb( { label: t('cabinet','Addresses'), url: ['/cabinet/profile/address'] } ) -}}
+{{- addBreadcrumb(this.title) -}}
+<div class="cabinet-address-form">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h3 class="page-header">{{ this.title }}</h3>
+            {% set form = form_begin() %}
+            {{ form.field(model, 'full_name')|raw }}
+            {{ form.field(model, 'country_id').dropDownList( echo_static('Country', 'getList') )|raw }}
+            {{ form.field(model, 'zipcode')|raw }}
+            {{ form.field(model, 'region')|raw }}
+            {{ form.field(model, 'city')|raw }}
+            {{ form.field(model, 'street')|raw }}
+            <div class="row">
+                <div class="col-md-6">
+                    {{ form.field(model, 'building')|raw }}
+                </div>
+                <div class="col-md-6">
+                    {{ form.field(model, 'apartment')|raw }}
+                </div>
+            </div>
+            {{ form.field(model, 'phone')|raw }}
+
+            <div class="form-group">
+                {{ Html.submitButton(t('base','Save'), {class: 'btn btn-primary'})|raw }}
+            </div>
+            {{- form_end -}}
+        </div>
+    </div>
+</div>

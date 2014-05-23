@@ -7,6 +7,7 @@
 
 namespace yashop\site\assets;
 
+use Yii;
 use yii\web\AssetBundle;
 
 /**
@@ -15,10 +16,10 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@yashop-site/assets';
+
     public $css = [
-        'css/styles.css',
+        'less/styles.less'
     ];
     public $js = [
     ];
@@ -26,4 +27,5 @@ class AppAsset extends AssetBundle
         'yii\web\YiiAsset',
         'yii\bootstrap\BootstrapAsset',
     ];
+
 }
