@@ -4,6 +4,7 @@
  */
 
 namespace yashop\common\models\cart;
+use yii\helpers\Json;
 
 /**
  * Base class for all operations with cart for guests and signed-in users
@@ -29,6 +30,20 @@ class Cart extends CartBase
         } else {
             $this->cart = new CartUser(\Yii::$app->user->id);
         }
+    }
+
+    /**
+     * Transfer items from guest cart to user cart
+     */
+    public static function transfer()
+    {
+        $cart = new CartGuest();
+        $cart->load();
+        $userCart = new CartUser(\Yii::$app->user->id);
+        foreach($cart->getData() as $item) {
+            $userCart->add($item['sku_id'], $item['num'], Json::decode($item['params']), $item['description']);
+        }
+        $cart->clear();
     }
 
     /**
@@ -60,9 +75,17 @@ class Cart extends CartBase
     /**
      * @inheritdoc
      */
-    public function editProps($sku_id, $newId, $props)
+    public function editParams($sku_id, $newId, $props)
     {
-        return $this->cart->editProps($sku_id, $newId, $props);
+        return $this->cart->editParams($sku_id, $newId, $props);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function getParams($sku_id)
+    {
+        return $this->cart->getParams($sku_id);
     }
 
     /**

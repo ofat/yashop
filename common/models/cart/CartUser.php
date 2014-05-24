@@ -12,6 +12,7 @@ use yashop\common\models\item\ItemSku;
 use yashop\common\models\Property;
 use yashop\common\models\PropertyDescription;
 use yii\db\Query;
+use yii\helpers\ArrayHelper;
 use yii\web\HttpException;
 
 /**
@@ -33,7 +34,7 @@ class CartUser extends CartBase
      */
     public function add($sku_id, $num, $props, $description = false)
     {
-        $sku = ItemSku::find()->with('item')->where(['id'=>$sku_id])->one();
+        $sku = ItemSku::find()->where(['id'=>$sku_id])->one();
 
         if(!$sku)
             return false;
@@ -97,7 +98,7 @@ class CartUser extends CartBase
     /**
      * @inheritdoc
      */
-    public function editProps($sku_id, $newId, $props)
+    public function editParams($sku_id, $newId, $props)
     {
         $cartItem = $this->getModel($sku_id);
         $transaction = \Yii::$app->db->beginTransaction();
@@ -123,6 +124,12 @@ class CartUser extends CartBase
             $transaction->rollBack();
             throw new HttpException(400, $e->getMessage());
         }
+    }
+
+    public function getParams($sku_id)
+    {
+        $cartItem = $this->getModel($sku_id, 'properties');
+        return ArrayHelper::map($cartItem->properties, 'property_id', 'value_id');
     }
 
     /**
@@ -190,6 +197,8 @@ class CartUser extends CartBase
             ->select([
                 'property'  => 'propertyDesc.name',
                 'value'     => 'valueDesc.name',
+                'property_id'=> 'propertyDesc.property_id',
+                'value_id'  => 'valueDesc.property_id',
                 'id'        => 'cart_prop.cart_item_id'
             ])
             ->from(['cart_prop' => CartProperty::tableName()])
@@ -225,17 +234,20 @@ class CartUser extends CartBase
 
     /**
      * @param $id
+     * @param bool $with
      * @return null|CartItem
      */
-    protected function getModel($id)
+    protected function getModel($id, $with = false)
     {
         $params = [
             'user_id'   => $this->userId,
             'sku_id'    => $id
         ];
 
-        $cartItem = CartItem::find()->where($params)->one();
+        $cartItem = CartItem::find()->where($params);
+        if($with)
+            $cartItem->with($with);
 
-        return $cartItem;
+        return $cartItem->one();
     }
 }

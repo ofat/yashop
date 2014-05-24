@@ -6,10 +6,10 @@ namespace yashop\site\modules\cart\controllers;
 
 use yashop\common\components\BaseController;
 use yashop\common\models\cart\Cart;
-use yashop\common\models\cart\CartItem;
+use yashop\common\models\item\ItemSku;
 use yashop\site\modules\item\models\ItemView;
 use Yii;
-use yii\helpers\ArrayHelper;
+use yii\db\Query;
 use yii\helpers\Json;
 use yii\web\HttpException;
 
@@ -17,13 +17,15 @@ class PropertyController extends BaseController
 {
     public function actionIndex($id)
     {
-        $cartItem = CartItem::find()->with('properties', 'sku')->where(['sku_id'=>$id])->one();
-        if(!$cartItem)
+        $itemId = (new Query())->select('item_id')->from(ItemSku::tableName())->where(['id'=>$id])->scalar();
+        if(!$itemId)
             throw new HttpException(400,Yii::t('base', 'An error has occurred'));
 
-        $itemView = new ItemView($cartItem->sku->item_id);
+        $itemView = new ItemView($itemId);
         $item = $itemView->loadInputParams();
-        $active_params = ArrayHelper::map($cartItem->properties, 'property_id', 'value_id');
+
+        $cart = new Cart();
+        $active_params = $cart->getParams($id);
 
         $params = Json::encode($item->sku);
         $js = "yashop.cart.property.params = $params; \n";
@@ -40,7 +42,7 @@ class PropertyController extends BaseController
         $params = Yii::$app->request->get('params');
 
         $cart = new Cart();
-        $cart->editProps($id, $newId, $params);
+        $cart->editParams($id, $newId, $params);
 
         return true;
     }

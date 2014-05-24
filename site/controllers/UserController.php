@@ -2,6 +2,7 @@
 
 namespace yashop\site\controllers;
 
+use yashop\common\models\cart\Cart;
 use Yii;
 use yashop\common\components\BaseController;
 use yashop\site\models\forms\RegisterForm;
@@ -59,6 +60,7 @@ class UserController extends BaseController
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+            Cart::transfer();
             return $this->goBack();
         } else {
             return $this->render('login', [

@@ -11,7 +11,7 @@ abstract class CartBase
 
     protected $_count;
 
-    protected $_data;
+    protected $_data = [];
 
     /**
      * Add item to cart
@@ -42,10 +42,17 @@ abstract class CartBase
      * Edit item properties in cart
      * @param $sku_id
      * @param $newId
-     * @param $props
+     * @param $params
      * @return mixed
      */
-    abstract function editProps($sku_id, $newId, $props);
+    abstract function editParams($sku_id, $newId, $params);
+
+    /**
+     * Return item properties for item from cart
+     * @param $sku_id
+     * @return mixed
+     */
+    abstract function getParams($sku_id);
 
     /**
      * Remove all items from cart

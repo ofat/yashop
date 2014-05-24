@@ -32,8 +32,10 @@
             Выбранные:
             &nbsp;&nbsp;
             <a href="#" class="tooltip-holder cart-items-remove">Удалить</a>
+            {% if not app.user.isGuest %}
             &nbsp;&nbsp;
             <a href="#" class="tooltip-holder cart-items-favorite">Перенести в избранное</a>
+            {% endif %}
         </div>
         <div class="col-md-2 cart-total">
             {{ Base.formatMoney(cart.sum) }}
