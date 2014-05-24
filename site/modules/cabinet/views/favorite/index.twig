@@ -1,0 +1,32 @@
+{{- setTitle(t('cabinet','Favorite')) -}}
+{{- addBreadcrumb(this.title) -}}
+<div class="cabinet-favorite">
+    <div class="row">
+        {% for fav in data.getModels() %}
+            <div class="col-md-4">
+                <div class="list-item">
+                    <div class="name">
+                        <a href="{{ path('/item/default/index', {id: fav.item.id}) }}" title="{{ fav.item.description.name }}">
+                            {{ fav.item.description.name }}
+                        </a>
+                    </div>
+                    <div class="image">
+                        <a href="{{ path('item/default/index', {id: item.id}) }}">
+                            <img src="{{ item_image(item.image, 'list') }}" alt="{{ item.name }}">
+                        </a>
+                    </div>
+                    <div class="price">
+                        {{ getPrice(1, fav.item.price) }}
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        {% else %}
+            <div class="col-md-12">
+                <p>
+                    {{ t('favorite','You don\'t have items in favorite') }}
+                </p>
+            </div>
+        {% endfor %}
+    </div>
+</div>

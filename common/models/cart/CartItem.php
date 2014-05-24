@@ -2,6 +2,7 @@
 
 namespace yashop\common\models\cart;
 
+use yashop\common\models\favorite\FavoriteItem;
 use Yii;
 use yashop\common\models\item\ItemSku;
 use yashop\common\models\User;
@@ -104,7 +105,10 @@ class CartItem extends ActiveRecord
     {
         $transaction = Yii::$app->db->beginTransaction();
         try {
-            //todo: add to favorite
+            $favorite = new FavoriteItem();
+            $favorite->item_id = $this->sku->item_id;
+            $favorite->user_id = $this->user_id;
+            $favorite->save();
 
             $r = $this->delete();
             if($r)
