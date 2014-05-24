@@ -35,7 +35,7 @@ var yashop = (function($){
 
         getPrice: function(num,price,format,currency)
         {
-            format = format ? format : true;
+            format = format!==undefined ? format : true;
             currency = currency ? currency : this.defaultCurrency;
             var currencyRate = this.currencyRates[ currency ],
                 price_res = parseFloat(price) * currencyRate * num;
@@ -47,6 +47,7 @@ var yashop = (function($){
         },
 
         formatMoney: function(n, currency, decPlaces, thouSeparator, decSeparator) {
+            currency = currency ? currency : this.defaultCurrency;
             decPlaces = isNaN(decPlaces = Math.abs(decPlaces)) ? 2 : decPlaces;
             decSeparator = decSeparator == undefined ? "." : decSeparator;
             thouSeparator = thouSeparator == undefined ? " " : thouSeparator;
@@ -56,6 +57,15 @@ var yashop = (function($){
                 number = sign + (j ? i.substr(0, j) + thouSeparator : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + thouSeparator) + (decPlaces ? decSeparator + Math.abs(n - i).toFixed(decPlaces).slice(2) : "");
 
             return this.currencyFormats[currency].replace('{number}', number);
+        },
+
+        hasLocalStorage: function()
+        {
+            try {
+                return 'localStorage' in window && window['localStorage'] !== null;
+            } catch (e) {
+                return false;
+            }
         }
     };
 })(jQuery);

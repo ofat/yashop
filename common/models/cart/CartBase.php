@@ -41,10 +41,11 @@ abstract class CartBase
     /**
      * Edit item properties in cart
      * @param $sku_id
+     * @param $newId
      * @param $props
-     * @return boolean
+     * @return mixed
      */
-    abstract function editProps($sku_id, $props);
+    abstract function editProps($sku_id, $newId, $props);
 
     /**
      * Remove all items from cart

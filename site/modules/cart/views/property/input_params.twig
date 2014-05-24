@@ -1,0 +1,37 @@
+{% spaceless %}
+{% for param in params %}
+    <div class="form-group input-params">
+        <label class="col-md-3 control-label">{{ param.name }}:</label>
+        <div class="col-md-9">
+            {% for value in param.items %}
+                {{- Html.beginTag('a', {
+                href: value.image ? item_image(value.image) : '#',
+                rel: value.image ? 'preload',
+                class: 'input-property input-property-'~value.id
+                    ~ (value.image ? ' image')
+                    ~ (value.id==active_params[param.id] ? ' active'),
+                title: value.name,
+                'data-pid': param.id,
+                'data-vid': value.id
+                })|raw -}}
+                {% if value.image %}
+                    {{ Html.img(item_image(value.image, 'property'), {alt: value.name})|raw }}
+                {% else %}
+                    {{- value.name -}}
+                {% endif %}
+                {{- Html.endTag('a')|raw -}}
+            {% endfor %}
+            <input type="hidden" name="{{ param.id }}" class="input-param" id="pid_{{ param.id }}" value="{{ active_params[param.id] }}">
+        </div>
+    </div>
+{% endfor %}
+<div class="clearfix"></div>
+<div class="form-group">
+    <div class="col-md-4 col-md-offset-3">
+        <button type="button" class="btn btn-primary btn-sm" id="cart-props-save">Сохранить</button>
+    </div>
+    <div class="col-md-4">
+        <button type="button" class="btn btn-default btn-sm" id="cart-props-close">Отмена</button>
+    </div>
+</div>
+{% endspaceless %}

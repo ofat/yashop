@@ -52,8 +52,7 @@ class CartItem extends ActiveRecord
             'timestamp' => [
                 'class' => 'yii\behaviors\TimestampBehavior',
                 'attributes' => [
-                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at'],
-                    ActiveRecord::EVENT_BEFORE_UPDATE => ['created_at'],
+                    ActiveRecord::EVENT_BEFORE_INSERT => ['created_at']
                 ],
             ],
         ];
@@ -96,5 +95,27 @@ class CartItem extends ActiveRecord
     public function getProperties()
     {
         return $this->hasMany(CartProperty::className(), ['cart_item_id' => 'id']);
+    }
+
+    /**
+     * Move item from cart to user favorites
+     */
+    public function moveToFavorite()
+    {
+        $transaction = Yii::$app->db->beginTransaction();
+        try {
+            //todo: add to favorite
+
+            $r = $this->delete();
+            if($r)
+                $transaction->commit();
+            else
+                $transaction->rollBack();
+
+            return $r;
+        } catch(\Exception $e) {
+            $transaction->rollBack();
+            return false;
+        }
     }
 }

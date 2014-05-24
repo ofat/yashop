@@ -96,7 +96,9 @@ class ItemView extends Item
      */
     public $promoPriceMax;
 
-
+    /**
+     * @param integer $id
+     */
     public function __construct($id)
     {
         $this->_id = $id;
@@ -117,6 +119,16 @@ class ItemView extends Item
             ->prepareParams()
             ->loadSku()
             ->getSkuInfo();
+
+        return $this;
+    }
+
+    public function loadInputParams()
+    {
+        $this
+            ->loadParams()
+            ->prepareInputParams()
+            ->loadSku();
 
         return $this;
     }

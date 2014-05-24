@@ -6,11 +6,19 @@
         </div>
         <div class="col-md-5">
             <div class="progress cart-progress">
-                <div class="progress-bar progress-bar-info" style="width: {{ cart.data|length/cart.maxItems*100 }}%"></div>
+                <div class="progress-bar progress-bar-info" id="cart-progress" style="width: {{ cart.data|length/cart.maxItems*100 }}%"></div>
             </div>
         </div>
         <div class="pull-left">
-            <strong>{{ cart.data|length }} / {{ cart.maxItems }}</strong>
+            <strong>
+                <span id="cart-data-count">
+                    {{ cart.data|length }}
+                </span>
+                /
+                <span id="cart-data-max">
+                    {{ cart.maxItems }}
+                </span>
+            </strong>
         </div>
     </div>
 </div>
@@ -23,9 +31,9 @@
         <div class="col-md-8">
             Выбранные:
             &nbsp;&nbsp;
-            <a href="#" class="tooltip-holder items-remove">Удалить</a>
+            <a href="#" class="tooltip-holder cart-items-remove">Удалить</a>
             &nbsp;&nbsp;
-            <a href="#" class="tooltip-holder">Перенести в избранное</a>
+            <a href="#" class="tooltip-holder cart-items-favorite">Перенести в избранное</a>
         </div>
         <div class="col-md-2 cart-total">
             {{ Base.formatMoney(cart.sum) }}
@@ -48,7 +56,14 @@
         <div class="col-md-1 col">Действия</div>
     </div>
     {% for item in cart.data %}
-    <div class="row cart-row cart-row-{{ item.id }} active" data-id="{{ item.id }}" data-item-id="{{ item.item_id }}">
+    {% spaceless %}
+    <div
+        class="row cart-row cart-row-{{ item.id }} active"
+        data-id="{{ item.id }}"
+        data-price="{{ item.price }}"
+        data-base-price="{{ item.base_price }}"
+        >
+    {% endspaceless %}
         <div class="col-md-6 no-padding">
             <div class="col-md-1 col cart-col-check">
                 <input type="checkbox" class="cart-check" name="item[]" value="{{ item.id }}" checked>
@@ -64,38 +79,42 @@
                 </a>
             </div>
             <div class="col-md-6 col cart-col-params">
-                <a href="#" class="param-edit">Изменить</a>
+                <a href="#" class="cart-param-edit">Изменить</a>
                 {% for param in item.params %}
                     <p>
-                        <strong>{{ Base.maxLength(param.property, 55) }}:</strong> {{ param.value }}
+                        <strong>{{ Base.maxLength(param.property, 55) }}:</strong> <span>{{ param.value }}</span>
                     </p>
                 {% endfor %}
             </div>
         </div>
         <div class="col-md-5">
-            <div class="col-md-4 cart-col-price col" data-price="{{ item.price }}">
-                {{ getPrice(1, item.price) }}
+            <div class="col-md-4 cart-col-price col">
+                <span class="cart-row-price">{{ getPrice(1, item.price) }}</span>
                 {% if item.promo_price %}
                     <br>
-                    <s>{{ getPrice(1, item.base_price) }}</s>
+                    <s>
+                        <span class="cart-row-promo-price">{{ getPrice(1, item.base_price) }}</span>
+                    </s>
                 {% endif %}
             </div>
             <div class="col-md-4 col cart-col-num">
                 <div class="col-md-3 no-padding col-md-offset-1">
-                    <a href="#" class="item-bigger btn btn-default btn-sm btn-block"><i class="glyphicon glyphicon-plus"></i></a>
+                    <a href="#" class="item-smaller btn-sm btn btn-default btn-block"><i class="glyphicon glyphicon-minus"></i></a>
                 </div>
                 <div class="col-md-4 no-padding">
                     <input type="text" value="{{ item.num }}" class="form-control input-sm cart-num">
                 </div>
                 <div class="col-md-3 no-padding">
-                    <a href="#" class="item-smaller btn-sm btn btn-default btn-block"><i class="glyphicon glyphicon-minus"></i></a>
+                    <a href="#" class="item-bigger btn btn-default btn-sm btn-block"><i class="glyphicon glyphicon-plus"></i></a>
                 </div>
             </div>
             <div class="col-md-4 cart-col-total col">
-                {{ getPrice(item.num, item.price) }}
+                <span class="cart-row-total">{{ getPrice(item.num, item.price) }}</span>
                 {% if item.promo_price %}
                     <br>
-                    <s>{{ getPrice(item.num, item.base_price) }}</s>
+                    <s>
+                        <span class="cart-row-promo-total">{{ getPrice(item.num, item.base_price) }}</span>
+                    </s>
                 {% endif %}
             </div>
         </div>
@@ -115,22 +134,21 @@
     {% else %}
     <div class="row">
         <div class="col-md-12">
-            Empty
+            <div class="cart-empty text-center">
+                Корзина пуста
+            </div>
         </div>
     </div>
     {% endfor %}
-    <?php endforeach; endif; ?>
     <div class="row cart-info fixed-bar fixed-bottom">
         <div class="col-md-1">
-            <input type="checkbox" class="cart-input-all" value="1" checked>
+            <input type="checkbox" class="cart-check-all" value="1" checked>
         </div>
         <div class="col-md-5">
             Выбранные:&nbsp;&nbsp;
-            <a href="#" class="items-remove tooltip-holder"
-               title="Нажмите, чтобы УДАЛИТЬ из корзины все отмеченные галочкой товары">Удалить</a>&nbsp;&nbsp;
+            <a href="#" class="cart-items-remove">Удалить</a>&nbsp;&nbsp;
             {% if not app.user.isGuest %}
-            <a href="#" class="items-favorite tooltip-holder"
-               title="Нажмите, чтобы перенести из корзины В ИЗБРАННОЕ все отмеченные товары">Перенести в избранное</a>
+            <a href="#" class="cart-items-favorite tooltip-holder">Перенести в избранное</a>
             {% endif %}
         </div>
         <div class="col-md-2 text-right">Всего:</div>

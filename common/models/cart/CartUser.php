@@ -39,12 +39,7 @@ class CartUser extends CartBase
             return false;
 
         //Check if we have record with same params
-        $params = [
-            'user_id'   => $this->userId,
-            'sku_id'    => $sku_id
-        ];
-
-        $cartItem = CartItem::find()->where($params)->one();
+        $cartItem = $this->getModel($sku_id);
         if($cartItem) {
             $cartItem->num += $num;
             return $cartItem->save();
@@ -58,8 +53,6 @@ class CartUser extends CartBase
                 $cartItem->num = $num;
                 $cartItem->sku_id = $sku_id;
                 $r = $cartItem->save();
-                if(!$r)
-                    throw new \Exception($cartItem->getErrors()[0]);
                 foreach($props as $pid=>$vid)
                 {
                     $cartProp = new CartProperty;
@@ -67,8 +60,6 @@ class CartUser extends CartBase
                     $cartProp->value_id = $vid;
                     $cartProp->cart_item_id = $cartItem->id;
                     $r = $cartProp->save() && $r;
-                    if(!$r)
-                        throw new \Exception($cartProp->getErrors()[0]);
                 }
                 if($r) {
                     $transaction->commit();
@@ -79,7 +70,6 @@ class CartUser extends CartBase
             } catch(\Exception $e) {
                 $transaction->rollBack();
                 throw new HttpException(400, $e->getMessage());
-                return false;
             }
         }
     }
@@ -89,14 +79,8 @@ class CartUser extends CartBase
      */
     public function remove($sku_id)
     {
-        $params = [
-            'user_id'   => $this->userId,
-            'sku_id'    => $sku_id
-        ];
-
-        $cartItem = CartItem::find()->where($params)->one();
-
-        return $cartItem ? $cartItem->delete() : false;
+        CartItem::deleteAll(['user_id'=>$this->userId, 'sku_id'=>$sku_id]);
+        return true;
     }
 
     /**
@@ -104,15 +88,41 @@ class CartUser extends CartBase
      */
     public function editData($sku_id, $data)
     {
+        $cartItem = $this->getModel($sku_id);
+        $cartItem->setAttributes($data);
 
+        return $cartItem->save();
     }
 
     /**
      * @inheritdoc
      */
-    public function editProps($sku_id, $props)
+    public function editProps($sku_id, $newId, $props)
     {
-
+        $cartItem = $this->getModel($sku_id);
+        $transaction = \Yii::$app->db->beginTransaction();
+        try {
+            $cartItem->sku_id = $newId;
+            $r = $cartItem->save();
+            CartProperty::deleteAll(['cart_item_id' => $cartItem->id]);
+            foreach($props as $pid=>$vid)
+            {
+                $cartProp = new CartProperty;
+                $cartProp->property_id = $pid;
+                $cartProp->value_id = $vid;
+                $cartProp->cart_item_id = $cartItem->id;
+                $r = $cartProp->save() && $r;
+            }
+            if($r) {
+                $transaction->commit();
+            } else {
+                $transaction->rollBack();
+            }
+            return $r;
+        } catch(\Exception $e) {
+            $transaction->rollBack();
+            throw new HttpException(400, $e->getMessage());
+        }
     }
 
     /**
@@ -120,7 +130,7 @@ class CartUser extends CartBase
      */
     public function clear()
     {
-        CartItem::deleteAll('user_id=:uid', [':uid' => $this->userId]);
+        CartItem::deleteAll(['user_id' => $this->userId]);
         return true;
     }
 
@@ -211,5 +221,21 @@ class CartUser extends CartBase
     {
         //todo: change to config param
         return 25;
+    }
+
+    /**
+     * @param $id
+     * @return null|CartItem
+     */
+    protected function getModel($id)
+    {
+        $params = [
+            'user_id'   => $this->userId,
+            'sku_id'    => $id
+        ];
+
+        $cartItem = CartItem::find()->where($params)->one();
+
+        return $cartItem;
     }
 }

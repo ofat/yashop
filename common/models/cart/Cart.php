@@ -44,6 +44,8 @@ class Cart extends CartBase
      */
     public function remove($sku_id)
     {
+        if(!is_array($sku_id))
+            $sku_id = array($sku_id);
         return $this->cart->remove($sku_id);
     }
 
@@ -58,9 +60,9 @@ class Cart extends CartBase
     /**
      * @inheritdoc
      */
-    public function editProps($sku_id, $props)
+    public function editProps($sku_id, $newId, $props)
     {
-        return $this->cart->editProps($sku_id, $props);
+        return $this->cart->editProps($sku_id, $newId, $props);
     }
 
     /**
