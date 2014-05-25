@@ -11,6 +11,9 @@ return [
         'fake' => [
             'class' => 'yashop\console\modules\fake\FakeModule',
         ],
+        'demo' => [
+            'class' => 'yashop\console\modules\demo\DemoModule',
+        ]
     ],
     'components' => [
         'authManager' => [

@@ -23,7 +23,8 @@ class ItemController extends BaseController
         [390, 390],
         [40, 40],
         [30, 30],
-        [80, 80]
+        [80, 80],
+        [160, 160]
     ];
 
     public function actionIndex()
