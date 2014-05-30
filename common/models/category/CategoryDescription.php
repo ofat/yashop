@@ -5,8 +5,10 @@
 namespace yashop\common\models\category;
 
 use Yii;
+use yii\behaviors\AttributeBehavior;
 use yii\db\ActiveRecord;
 use yashop\common\models\Language;
+use yii\helpers\Html;
 
 /**
  * This is the model class for table "category_description".
@@ -46,6 +48,16 @@ class CategoryDescription extends ActiveRecord
         ];
     }
 
+    public function behaviors()
+    {
+        return [
+            'encode' => [
+                'class' => 'yashop\common\components\EncodeBehavior',
+                'attributes' => ['text', 'name']
+            ],
+        ];
+    }
+
     /**
      * @inheritdoc
      */
@@ -78,4 +90,5 @@ class CategoryDescription extends ActiveRecord
     {
         return $this->hasOne(Language::className(), ['id' => 'language_id']);
     }
+
 }
