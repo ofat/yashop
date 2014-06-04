@@ -60,7 +60,7 @@ class m140509_152020_item extends YashopMigration
             'language_id' => Schema::TYPE_INTEGER . '(11) NOT NULL',
             'name' => Schema::TYPE_STRING . '(255) NOT NULL',
             'title' => Schema::TYPE_STRING . '(512) DEFAULT NULL',
-            'description' => Schema::TYPE_TEXT . ' NOT NULL',
+            'description' => Schema::TYPE_TEXT . ' DEFAULT NULL',
             'meta_desc' => Schema::TYPE_STRING . '(255) DEFAULT NULL',
             'meta_keyword' => Schema::TYPE_STRING . '(255) DEFAULT NULL'
         ], $this->tableOptions);

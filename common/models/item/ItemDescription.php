@@ -39,7 +39,7 @@ class ItemDescription extends ActiveRecord
     public function rules()
     {
         return [
-            [['item_id', 'language_id', 'name', 'description'], 'required'],
+            [['item_id', 'language_id', 'name'], 'required'],
             [['item_id', 'language_id'], 'integer'],
             [['description'], 'string'],
             [['name', 'meta_desc', 'meta_keyword'], 'string', 'max' => 255],
