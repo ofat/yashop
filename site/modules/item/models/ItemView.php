@@ -294,6 +294,10 @@ class ItemView extends Item
      */
     protected function getSkuInfo()
     {
+        if(empty($this->sku)) {
+            $this->priceMin = $this->priceMax = $this->price;
+            return $this;
+        }
         foreach($this->sku as $sku)
         {
             if($sku['price'] > $this->priceMax)
